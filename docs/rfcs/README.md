@@ -1,7 +1,7 @@
 # RFCs
 
 The RFC ("Request for Comments") process is how Sumirea makes larger or
-cross-cutting decisions in the open, *before* they are built.
+cross-cutting decisions in the open, _before_ they are built.
 
 ## When an RFC is needed
 

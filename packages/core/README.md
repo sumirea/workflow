@@ -3,7 +3,7 @@
 The **workflow engine** — this is the product.
 
 `core` holds the domain model, step execution, and orchestration that define
-what a Sumirea workflow *is* and how it runs. It is deliberately **pure** and
+what a Sumirea workflow _is_ and how it runs. It is deliberately **pure** and
 **surface-agnostic**: no network, no filesystem, no direct clock or randomness.
 Anything external (a model call, a repository read) arrives through a **port** —
 a narrow interface that `core` defines and an adapter implements.

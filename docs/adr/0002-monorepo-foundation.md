@@ -1,6 +1,6 @@
 # 2. Monorepo foundation: layout, toolchain, and license
 
-- Status: Accepted
+- Status: Proposed
 - Date: 2026-06-30
 
 ## Context
@@ -14,7 +14,7 @@ than aspirational, and that suits a long-lived community project.
 ## Decision
 
 1. **Monorepo with a strict layering.** Reusable libraries live in `packages/`
-   and *are* the product; deployable surfaces live in `apps/` and stay thin.
+   and _are_ the product; deployable surfaces live in `apps/` and stay thin.
    Dependencies point one way: `apps → sdk → core → schema`, with `adapters`
    injected behind ports. See [`ARCHITECTURE.md`](../../ARCHITECTURE.md).
 2. **Toolchain: pnpm workspaces + Turborepo**, TypeScript in strict mode, ESM,
@@ -33,5 +33,5 @@ than aspirational, and that suits a long-lived community project.
 - Provider/integration churn is isolated in `adapters` and cannot ripple into
   the engine.
 - Several concrete choices remain open by design (workflow format, runtime
-  model, first adapters, persistence) and will be decided via RFCs *inside*
+  model, first adapters, persistence) and will be decided via RFCs _inside_
   packages without reshaping the repository.

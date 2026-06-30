@@ -8,7 +8,7 @@
 Sumirea is a long-term open-source project with many future contributors. Design
 decisions made early (repository structure, dependency direction, toolchain) are
 costly to reverse and easy to forget the reasoning behind. We need a lightweight,
-durable way to capture *why* a decision was made, not just *what* the code does.
+durable way to capture _why_ a decision was made, not just _what_ the code does.
 
 ## Decision
 

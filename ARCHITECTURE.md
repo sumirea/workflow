@@ -1,8 +1,8 @@
 # Architecture
 
 This document describes the structure of the Sumirea monorepo and the
-principles that govern it. It is the canonical reference for *where code
-belongs* and *why*. It deliberately describes boundaries, not features — no
+principles that govern it. It is the canonical reference for _where code
+belongs_ and _why_. It deliberately describes boundaries, not features — no
 features exist yet.
 
 ## North star
@@ -67,26 +67,35 @@ past the `sdk` into `core`) is an architectural bug, not a style preference.
 
 ## Packages
 
-| Package                      | Responsibility                                                                 | May depend on            |
-| ---------------------------- | ------------------------------------------------------------------------------ | ------------------------ |
-| `packages/schema`            | Canonical workflow definition format, shared types, runtime validation.        | (nothing internal)       |
-| `packages/core`              | Workflow engine — domain model, step execution, orchestration. Pure.           | `schema`                 |
-| `packages/adapters`          | Port interfaces + concrete integrations: AI providers, VCS, editors, storage.  | `schema`, `core` (types) |
-| `packages/sdk`               | Stable public API that composes `core` + `adapters` for embedders.             | `schema`, `core`, `adapters` |
-| `packages/ui`                | Shared, surface-agnostic presentational components.                            | `schema` (types only)    |
-| `packages/typescript-config` | Internal shared `tsconfig` presets.                                            | —                        |
-| `packages/eslint-config`     | Internal shared lint presets.                                                  | —                        |
+| Package                      | Responsibility                                                                | May depend on                |
+| ---------------------------- | ----------------------------------------------------------------------------- | ---------------------------- |
+| `packages/schema`            | Canonical workflow definition format, shared types, runtime validation.       | (nothing internal)           |
+| `packages/core`              | Workflow engine — domain model, step execution, orchestration. Pure.          | `schema`                     |
+| `packages/adapters`          | Port interfaces + concrete integrations: AI providers, VCS, editors, storage. | `schema`, `core` (types)     |
+| `packages/sdk`               | Stable public API that composes `core` + `adapters` for embedders.            | `schema`, `core`, `adapters` |
+| `packages/ui`                | Shared, surface-agnostic presentational components.                           | `schema` (types only)        |
+| `packages/typescript-config` | Internal shared `tsconfig` presets.                                           | —                            |
+| `packages/eslint-config`     | Internal shared lint presets.                                                 | —                            |
+
+> [!NOTE]
+> **Planned vs. established boundaries.** This table describes the _intended_
+> shape. As of Day 0, only `schema` and `core` carry intent to be built first.
+> `adapters`, `sdk`, and `ui` are **planned boundaries**: their packages exist
+> to reserve the seam and document the dependency direction, not to signal
+> delivered capability. They are empty scaffolding and may be deferred, merged,
+> or reshaped via ADR/RFC before they hold real code — see each package's README
+> ("scaffold only").
 
 ## Apps (surfaces)
 
-| App              | Responsibility                                            |
-| ---------------- | --------------------------------------------------------- |
-| `apps/extension` | Browser-extension shell that drives the `sdk`.            |
-| `apps/cli`       | Terminal/CI entry point that drives the `sdk`.            |
-| `apps/docs`      | Public documentation **website** for users.               |
+| App              | Responsibility                                 |
+| ---------------- | ---------------------------------------------- |
+| `apps/extension` | Browser-extension shell that drives the `sdk`. |
+| `apps/cli`       | Terminal/CI entry point that drives the `sdk`. |
+| `apps/docs`      | Public documentation **website** for users.    |
 
-> Note the two "docs": `apps/docs` is the user-facing *website*; the top-level
-> [`docs/`](./docs) directory holds *project* documentation — this file, ADRs,
+> Note the two "docs": `apps/docs` is the user-facing _website_; the top-level
+> [`docs/`](./docs) directory holds _project_ documentation — this file, ADRs,
 > and RFCs.
 
 ## Ports and adapters (why `adapters` is its own package)
@@ -120,4 +129,4 @@ This foundation deliberately leaves room for later, RFC-driven decisions,
 including: the concrete workflow definition format, the execution/runtime model
 (local vs. hosted, sync vs. event-driven), the first model and VCS adapters, and
 the persistence strategy. The structure above is designed so those decisions can
-be made *inside* a package without reshaping the repository.
+be made _inside_ a package without reshaping the repository.

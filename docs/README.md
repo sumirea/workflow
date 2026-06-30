@@ -1,7 +1,7 @@
 # Project documentation
 
 This directory holds **project** documentation — how Sumirea is designed and
-how decisions are made. (The user-facing documentation *website* is a separate
+how decisions are made. (The user-facing documentation _website_ is a separate
 app at [`apps/docs`](../apps/docs).)
 
 - [`../ARCHITECTURE.md`](../ARCHITECTURE.md) — the canonical structure and rules.
@@ -12,8 +12,8 @@ app at [`apps/docs`](../apps/docs).)
 
 ## When to use which
 
-| Situation                                              | Use   |
-| ------------------------------------------------------ | ----- |
-| A decision was made; record what and why               | ADR   |
-| A change needs design and discussion before building   | RFC   |
-| The decision reshapes architecture or public API       | RFC → then an ADR for the outcome |
+| Situation                                            | Use                               |
+| ---------------------------------------------------- | --------------------------------- |
+| A decision was made; record what and why             | ADR                               |
+| A change needs design and discussion before building | RFC                               |
+| The decision reshapes architecture or public API     | RFC → then an ADR for the outcome |

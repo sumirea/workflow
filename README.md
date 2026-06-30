@@ -20,7 +20,7 @@ coordinates the repeatable steps of AI-assisted software development — plannin
 context gathering, code generation, review, and verification — independently of
 any single editor, model provider, or delivery surface.
 
-A browser extension, a CLI, and a docs site are some of the *surfaces* through
+A browser extension, a CLI, and a docs site are some of the _surfaces_ through
 which Sumirea is delivered. They are deliberately thin. The product lives in the
 shared packages, so the same workflow behaves identically wherever it runs.
 
@@ -48,6 +48,16 @@ sumirea/
 The dependency direction is strict and one-way:
 `apps → sdk → core → schema`, with `adapters` plugged in behind ports.
 See [`ARCHITECTURE.md`](./ARCHITECTURE.md) for the full rationale.
+
+## A note on naming
+
+- **Sumirea** is the project/brand name. It is what the product is called.
+- **`workflow`** is the name of this Git repository (`sumirea/workflow`) — the
+  monorepo that houses Sumirea.
+- **`sumirea`** is the CLI binary name (`apps/cli`), kept as-is for now.
+
+So "Sumirea" (brand) and "workflow" (repo) refer to the same thing at different
+levels; the npm scope for all internal packages is `@sumirea/*`.
 
 ## Tech foundation
 

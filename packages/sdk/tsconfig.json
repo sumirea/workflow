@@ -4,10 +4,6 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "references": [
-    { "path": "../schema" },
-    { "path": "../core" },
-    { "path": "../adapters" }
-  ],
+  "references": [{ "path": "../schema" }, { "path": "../core" }, { "path": "../adapters" }],
   "include": ["src"]
 }

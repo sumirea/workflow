@@ -34,14 +34,14 @@ handle ordering and caching.
 
 ## Where things go
 
-| If you are changing…                | Work in…                       |
-| ----------------------------------- | ------------------------------ |
-| The workflow definition / types     | `packages/schema`              |
-| Engine / orchestration behavior     | `packages/core`                |
-| A provider integration              | `packages/adapters`            |
-| The public API                      | `packages/sdk`                 |
-| A surface (extension/CLI/docs site) | `apps/*`                       |
-| Project decisions / proposals       | `docs/adr`, `docs/rfcs`        |
+| If you are changing…                | Work in…                |
+| ----------------------------------- | ----------------------- |
+| The workflow definition / types     | `packages/schema`       |
+| Engine / orchestration behavior     | `packages/core`         |
+| A provider integration              | `packages/adapters`     |
+| The public API                      | `packages/sdk`          |
+| A surface (extension/CLI/docs site) | `apps/*`                |
+| Project decisions / proposals       | `docs/adr`, `docs/rfcs` |
 
 ## Proposing larger changes (RFCs)
 
@@ -54,7 +54,7 @@ implementation decisions are captured as ADRs in [`docs/adr/`](./docs/adr).
 
 - Branch from the default branch; keep PRs focused.
 - Make sure `pnpm lint`, `pnpm typecheck`, and `pnpm test` pass.
-- Describe the *why*, not just the *what*. Link the issue or RFC.
+- Describe the _why_, not just the _what_. Link the issue or RFC.
 - By submitting a contribution you agree it is licensed under the project's
   [Apache-2.0 License](./LICENSE).
 

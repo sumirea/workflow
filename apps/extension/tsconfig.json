@@ -4,9 +4,6 @@
     "outDir": "dist",
     "rootDir": "src"
   },
-  "references": [
-    { "path": "../../packages/sdk" },
-    { "path": "../../packages/ui" }
-  ],
+  "references": [{ "path": "../../packages/sdk" }, { "path": "../../packages/ui" }],
   "include": ["src"]
 }

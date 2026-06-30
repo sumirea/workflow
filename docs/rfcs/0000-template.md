@@ -24,7 +24,7 @@ dependency rules in `ARCHITECTURE.md`.
 
 ## Drawbacks
 
-Why might we *not* do this?
+Why might we _not_ do this?
 
 ## Alternatives
 
