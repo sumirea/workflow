@@ -1,0 +1,25 @@
+{
+  "name": "@sumirea/extension",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Browser-extension surface for Sumirea. One delivery surface among several — deliberately thin.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --build",
+    "dev": "tsc --build --watch",
+    "clean": "rm -rf dist .turbo *.tsbuildinfo",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"no tests yet\" && exit 0"
+  },
+  "dependencies": {
+    "@sumirea/sdk": "workspace:*",
+    "@sumirea/ui": "workspace:*"
+  },
+  "devDependencies": {
+    "@sumirea/eslint-config": "workspace:*",
+    "@sumirea/typescript-config": "workspace:*",
+    "typescript": "^5.5.0"
+  }
+}

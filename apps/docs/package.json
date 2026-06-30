@@ -1,0 +1,16 @@
+{
+  "name": "@sumirea/docs",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Public documentation website for Sumirea.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo \"docs site framework not chosen yet (see docs/rfcs)\" && exit 0",
+    "dev": "echo \"docs site framework not chosen yet (see docs/rfcs)\" && exit 0",
+    "clean": "rm -rf dist .turbo",
+    "lint": "echo \"no lint yet\" && exit 0",
+    "typecheck": "echo \"no typecheck yet\" && exit 0",
+    "test": "echo \"no tests yet\" && exit 0"
+  }
+}

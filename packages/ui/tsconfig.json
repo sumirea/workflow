@@ -1,0 +1,9 @@
+{
+  "extends": "@sumirea/typescript-config/library.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "references": [{ "path": "../schema" }],
+  "include": ["src"]
+}
