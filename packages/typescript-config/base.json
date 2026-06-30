@@ -1,0 +1,5 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Sumirea Base",
+  "extends": "../../tsconfig.base.json"
+}

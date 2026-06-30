@@ -1,0 +1,28 @@
+{
+  "name": "@sumirea/schema",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Canonical workflow definition format, shared types, and runtime validation.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "rm -rf dist .turbo *.tsbuildinfo",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "echo \"no tests yet\" && exit 0"
+  },
+  "devDependencies": {
+    "@sumirea/eslint-config": "workspace:*",
+    "@sumirea/typescript-config": "workspace:*",
+    "typescript": "^5.5.0"
+  }
+}
