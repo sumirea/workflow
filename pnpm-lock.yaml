@@ -61,6 +61,12 @@ importers:
         specifier: workspace:*
         version: link:../../packages/core
 
+  examples/sdk-basics:
+    dependencies:
+      '@sumirea/sdk':
+        specifier: workspace:*
+        version: link:../../packages/sdk
+
   packages/adapters:
     dependencies:
       '@sumirea/core':

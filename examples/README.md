@@ -17,3 +17,14 @@ available):
 pnpm build
 pnpm --filter @sumirea/example-runtime-basics start
 ```
+
+## `sdk-basics`
+
+The same lifecycle tour, but through the curated
+[`@sumirea/sdk`](../packages/sdk) facade — a consumer imports only from
+`@sumirea/sdk` and never reaches into `@sumirea/core`.
+
+```sh
+pnpm build
+pnpm --filter @sumirea/example-sdk-basics start
+```
