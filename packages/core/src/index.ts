@@ -127,8 +127,15 @@ export function run(instance: WorkflowInstance): WorkflowInstance {
  * continues at `cursor + 1` (the pausing Step is never re-run) using the paused
  * Workflow State as the starting state; the active Checkpoint is consumed. The
  * resumed run may complete, fail, or pause again at a later Checkpoint.
+ *
+ * Only a `paused` instance may be resumed. Calling `resume` with any other
+ * status is caller misuse — not a Step or Workflow failure — so it throws
+ * without touching the instance or running any Step.
  */
 export function resume(instance: WorkflowInstance): WorkflowInstance {
+  if (instance.status !== 'paused') {
+    throw new Error(`cannot resume a workflow with status "${instance.status}"; expected "paused"`);
+  }
   return execute(instance, instance.cursor + 1, instance.state);
 }
 
