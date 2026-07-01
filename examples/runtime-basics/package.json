@@ -1,0 +1,14 @@
+{
+  "name": "@sumirea/example-runtime-basics",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Runnable tour of the @sumirea/core Runtime API.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "@sumirea/core": "workspace:*"
+  }
+}
