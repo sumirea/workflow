@@ -59,9 +59,11 @@ caller misuse (a plain `Error`), not a Workflow failure; no instance is created.
 It validates structure only — Step behaviour and `initialState` contents stay
 opaque, and duplicate Step names are allowed.
 
-`resume(instance)` and `cancel(instance)` accept **only** a `paused` instance.
-Called with any other status they throw — this is caller misuse, not a Step or
-Workflow failure, and the input instance is left untouched.
+`run(instance)` accepts **only** a `created` instance; `resume(instance)` and
+`cancel(instance)` accept **only** a `paused` instance. Called with any other
+status they throw — this is caller misuse, not a Step or Workflow failure, and
+the input instance is left untouched. (Use `resume` to continue a paused run,
+not `run`.)
 
 ### Types
 

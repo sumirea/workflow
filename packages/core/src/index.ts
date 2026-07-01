@@ -169,8 +169,15 @@ function execute(
 /**
  * Run an instance from its first Step until it terminates or pauses. See
  * `execute` for the outcome handling.
+ *
+ * Only a `created` instance may be run. Calling `run` with any other status is
+ * caller misuse — not a Step or Workflow failure — so it throws without touching
+ * the instance or running any Step. Use `resume` to continue a paused run.
  */
 export function run(instance: WorkflowInstance): WorkflowInstance {
+  if (instance.status !== 'created') {
+    throw new Error(`cannot run a workflow with status "${instance.status}"; expected "created"`);
+  }
   return execute(instance, 0, instance.state);
 }
 
