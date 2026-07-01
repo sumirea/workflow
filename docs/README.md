@@ -8,6 +8,9 @@ app at [`apps/docs`](../apps/docs).)
 - [`CANONICAL_PRODUCT_LANGUAGE.md`](./CANONICAL_PRODUCT_LANGUAGE.md) — the
   official product language specification that all documentation, RFCs, ADRs,
   issues, and implementation work must reference.
+- [`AI_COLLABORATION_CONTRACT.md`](./AI_COLLABORATION_CONTRACT.md) — the rules
+  AI must follow when collaborating on this project (communication language,
+  workflow status reporting, and proactive-behavior limits).
 - [`adr/`](./adr) — Architecture Decision Records: short, immutable notes
   capturing a decision and its context.
 - [`rfcs/`](./rfcs) — Requests for Comments: proposals for larger or
