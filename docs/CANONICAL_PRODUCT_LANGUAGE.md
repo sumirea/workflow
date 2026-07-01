@@ -76,14 +76,14 @@ The canonical language is organised into six domains. Each domain groups terms
 that share a subject and a level of abstraction. A term lives in exactly one
 domain.
 
-| # | Domain                    | Concern                                                         |
-| - | ------------------------- | -------------------------------------------------------------- |
-| 1 | **Product Language**      | What Sumirea is, who it serves, and why it exists.             |
-| 2 | **Workflow Language**     | The structure and lifecycle of workflows — the unit of value.  |
-| 3 | **Intelligence Language** | How the system suggests, learns, and automates.               |
-| 4 | **Platform Language**     | How abilities are structured, extended, and delivered.        |
-| 5 | **AI Language**           | Models, providers, and the mechanics of AI usage.             |
-| 6 | **Analytics Language**    | How value and trust are observed and measured.                |
+| #   | Domain                    | Concern                                                       |
+| --- | ------------------------- | ------------------------------------------------------------- |
+| 1   | **Product Language**      | What Sumirea is, who it serves, and why it exists.            |
+| 2   | **Workflow Language**     | The structure and lifecycle of workflows — the unit of value. |
+| 3   | **Intelligence Language** | How the system suggests, learns, and automates.               |
+| 4   | **Platform Language**     | How abilities are structured, extended, and delivered.        |
+| 5   | **AI Language**           | Models, providers, and the mechanics of AI usage.             |
+| 6   | **Analytics Language**    | How value and trust are observed and measured.                |
 
 ---
 
@@ -1052,15 +1052,15 @@ The canonical language is a living specification. It changes deliberately.
 
 ### 6.1 What may change, and how
 
-| Change                                | Mechanism                            | Bar        |
-| ------------------------------------- | ------------------------------------ | ---------- |
-| Add a new term                        | RFC → ADR                            | Normal     |
-| Refine a Definition / examples        | RFC → ADR                            | Normal     |
-| Promote `Experimental` → `Stable`     | ADR, with evidence of settled usage  | Moderate   |
-| Deprecate a term                      | ADR, with migration guidance         | Moderate   |
-| Rename a canonical term               | RFC → ADR, with migration plan       | High       |
-| Add, remove, or change a Domain       | RFC → ADR                            | High       |
-| Change a **Product Axiom** (§2)       | RFC → ADR, explicit and unambiguous  | Highest    |
+| Change                            | Mechanism                           | Bar      |
+| --------------------------------- | ----------------------------------- | -------- |
+| Add a new term                    | RFC → ADR                           | Normal   |
+| Refine a Definition / examples    | RFC → ADR                           | Normal   |
+| Promote `Experimental` → `Stable` | ADR, with evidence of settled usage | Moderate |
+| Deprecate a term                  | ADR, with migration guidance        | Moderate |
+| Rename a canonical term           | RFC → ADR, with migration plan      | High     |
+| Add, remove, or change a Domain   | RFC → ADR                           | High     |
+| Change a **Product Axiom** (§2)   | RFC → ADR, explicit and unambiguous | Highest  |
 
 Axioms are the most protected. A change that would contradict an existing Axiom
 is not a language change — it is a product change, and must be argued as one.
@@ -1093,11 +1093,11 @@ is not a language change — it is a product change, and must be argued as one.
 
 The following are non-canonical and should be replaced on sight:
 
-| Discouraged            | Use instead              | Why                                            |
-| ---------------------- | ------------------------ | ---------------------------------------------- |
-| "AI Routing"           | **Intelligence Routing** | Routing is a product capability, not "the AI." |
-| "OS" / "operating system" | **Workflow Layer**    | Avoids over-claiming scope.                    |
-| "Client"               | **Surface**              | Surfaces are thin delivery channels.           |
-| "Feature" (for platform ability) | **Capability** | Capabilities describe value; Features realise them. |
-| "Agent" (as core term) | Name the capability (e.g. **Automation**, **Intelligence**) | The system is not an identity (Axiom A5). Use "Agent" only where an established external meaning makes it unavoidable, and define it locally. |
-| "the AI" / "the assistant" (as an actor) | **Intelligence** (a capability) | The product is not personified.       |
+| Discouraged                              | Use instead                                                 | Why                                                                                                                                           |
+| ---------------------------------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| "AI Routing"                             | **Intelligence Routing**                                    | Routing is a product capability, not "the AI."                                                                                                |
+| "OS" / "operating system"                | **Workflow Layer**                                          | Avoids over-claiming scope.                                                                                                                   |
+| "Client"                                 | **Surface**                                                 | Surfaces are thin delivery channels.                                                                                                          |
+| "Feature" (for platform ability)         | **Capability**                                              | Capabilities describe value; Features realise them.                                                                                           |
+| "Agent" (as core term)                   | Name the capability (e.g. **Automation**, **Intelligence**) | The system is not an identity (Axiom A5). Use "Agent" only where an established external meaning makes it unavoidable, and define it locally. |
+| "the AI" / "the assistant" (as an actor) | **Intelligence** (a capability)                             | The product is not personified.                                                                                                               |
