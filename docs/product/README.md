@@ -3,10 +3,30 @@
 > **Status:** Skeleton (structure only — full content intentionally deferred).
 > **Canonical:** Navigational index (not itself a source of truth).
 
+> **What this establishes:** the product documentation _structure_ (the Product
+> Blueprint) and the currently approved product decisions (e.g. `surface` as the
+> canonical term; the capability vs feature distinction). It does **not** yet
+> establish the complete product language — the detailed terminology and the
+> full contents of each document will be developed in future PRs. The product
+> language is part of the Product Blueprint, not a replacement for it.
+
 This directory holds the **product language** of Sumirea — what it is, why it
 exists, who it serves, and what it will (and will not) do. It is distinct from
 [`../../ARCHITECTURE.md`](../../ARCHITECTURE.md) (how it is _built_) and from
 [`../adr/`](../adr) / [`../rfcs/`](../rfcs) (decisions and design proposals).
+
+## Start here
+
+New to Sumirea? Read these three, in order — the fastest way to understand what
+Sumirea is:
+
+1. [identity.md](./identity.md) — what Sumirea is
+2. [vision.md](./vision.md) — why it exists and where it's going
+3. [capability-map.md](./capability-map.md) — what it can actually do
+
+Everything else builds on these. The full canonical reading order (all 11
+documents) is in the [Outline](#outline) below; `terminology.md` is a reference
+to dip into at any time, not only at its numbered position.
 
 ## Purpose
 
@@ -22,6 +42,10 @@ No engineering/architecture content; no implementation.
 ## Canonical status
 
 This index is **not** canonical. The canonical documents are marked below.
+
+Changing a canonical product document is an architectural matter, not a routine
+edit: such a change should normally be discussed and introduced through an RFC
+(`../rfcs/`) or ADR (`../adr/`) before it becomes canonical.
 
 ## Relationship to other documents
 
