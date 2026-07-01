@@ -7,10 +7,16 @@
 // @sumirea/schema `Step` contract; AI, review, Git and the rest live inside
 // Steps, never here.
 
-import type { Step, WorkflowDefinition, WorkflowState } from '@sumirea/schema';
+import { isStepPause, pause } from '@sumirea/schema';
+import type { Checkpoint, Step, WorkflowDefinition, WorkflowState } from '@sumirea/schema';
+
+// Re-export the Step-outcome contract so Step authors and consumers reach it
+// from the engine's public surface.
+export { pause } from '@sumirea/schema';
+export type { Checkpoint, StepOutcome, StepPause } from '@sumirea/schema';
 
 /** Lifecycle of a workflow run. */
-export type WorkflowStatus = 'created' | 'running' | 'completed' | 'failed';
+export type WorkflowStatus = 'created' | 'running' | 'paused' | 'completed' | 'failed';
 
 /**
  * Minimal record of a failed run. The Runtime captures where the run stopped
@@ -37,6 +43,8 @@ export interface WorkflowInstance {
   readonly cursor: number;
   /** Present only when `status` is `failed`. */
   readonly failure?: WorkflowFailure;
+  /** Present only when `status` is `paused`. The Step's opaque pause marker. */
+  readonly checkpoint?: Checkpoint;
 }
 
 /** Create a fresh instance, ready to run from its first Step. */
@@ -50,23 +58,27 @@ export function createInstance(definition: WorkflowDefinition): WorkflowInstance
 }
 
 /**
- * Run an instance to termination. The instance transitions into `running`
- * immediately before the first Step executes; from there the run is in flight
- * until it terminates. Execute each Step in order, threading the state each
- * returns into the next. If a Step throws, the Runtime stops immediately, marks
- * the instance `failed`, and preserves the last state that was successfully
- * produced. It treats every Step identically — it calls `run`, takes the result
- * (or catches the failure), and does not know or care what any Step does or why
- * it failed.
+ * Run an instance until it terminates or pauses. The instance transitions into
+ * `running` immediately before the first Step executes. Execute each Step in
+ * order, taking its outcome: a next state to continue with, or a pause at a
+ * Checkpoint. If a Step throws, the Runtime stops immediately, marks the
+ * instance `failed`, and preserves the last state that was successfully
+ * produced. If a Step asks to pause, the Runtime stops, marks the instance
+ * `paused`, preserves the state the Step held, and records the Step's opaque
+ * Checkpoint. It treats every Step identically — it calls `run`, reads the
+ * generic outcome, and does not know or care what any Step does, why it failed,
+ * or why it paused.
  */
 export function run(instance: WorkflowInstance): WorkflowInstance {
   // Enter `running` before any Step executes. The terminal `completed` /
-  // `failed` transitions below carry forward from this in-flight instance.
+  // `failed` and the `paused` transitions below carry forward from this
+  // in-flight instance.
   const running: WorkflowInstance = { ...instance, status: 'running' };
   let state = running.state;
   for (const [index, step] of running.definition.steps.entries()) {
+    let outcome;
     try {
-      state = step.run(state);
+      outcome = step.run(state);
     } catch (error) {
       return {
         ...running,
@@ -76,6 +88,16 @@ export function run(instance: WorkflowInstance): WorkflowInstance {
         failure: { stepIndex: index, error },
       };
     }
+    if (isStepPause(outcome)) {
+      return {
+        ...running,
+        status: 'paused',
+        state: outcome.state,
+        cursor: index,
+        checkpoint: outcome.checkpoint,
+      };
+    }
+    state = outcome;
   }
   return {
     ...running,
@@ -102,6 +124,14 @@ function failingStep(name: string): Step {
   };
 }
 
+/** A trivial Step that pauses the run at a Checkpoint, holding state unchanged. */
+function pausingStep(name: string): Step {
+  return {
+    name,
+    run: (state) => pause({ name: `${name}-checkpoint` }, state),
+  };
+}
+
 /**
  * The smallest possible built-in workflow: a few no-op Steps in sequence. It
  * exists solely to demonstrate that an instance can be created and run from
@@ -120,4 +150,14 @@ export const trivialWorkflow: WorkflowDefinition = {
 export const trivialFailingWorkflow: WorkflowDefinition = {
   name: 'trivial-failing',
   steps: [noopStep('first'), failingStep('second'), noopStep('third')],
+};
+
+/**
+ * A built-in workflow whose middle Step pauses at a Checkpoint. It exists solely
+ * to demonstrate that the Runtime stops at the pausing Step and marks the
+ * instance `paused`. The final Step must never run.
+ */
+export const trivialPausingWorkflow: WorkflowDefinition = {
+  name: 'trivial-pausing',
+  steps: [noopStep('first'), pausingStep('second'), noopStep('third')],
 };
