@@ -16,7 +16,8 @@ export { pause } from '@sumirea/schema';
 export type { Checkpoint, StepOutcome, StepPause } from '@sumirea/schema';
 
 /** Lifecycle of a workflow run. */
-export type WorkflowStatus = 'created' | 'running' | 'paused' | 'completed' | 'failed';
+export type WorkflowStatus =
+  'created' | 'running' | 'paused' | 'completed' | 'failed' | 'cancelled';
 
 /**
  * Minimal record of a failed run. The Runtime captures where the run stopped
@@ -137,6 +138,22 @@ export function resume(instance: WorkflowInstance): WorkflowInstance {
     throw new Error(`cannot resume a workflow with status "${instance.status}"; expected "paused"`);
   }
   return execute(instance, instance.cursor + 1, instance.state);
+}
+
+/**
+ * Cancel a paused instance, terminating it as `cancelled` without resuming.
+ * The paused Workflow State is preserved and the active Checkpoint is cleared;
+ * no Step runs. Cancellation is a caller decision, not a Step or Workflow
+ * failure, and the Runtime never inspects why the Checkpoint was cancelled.
+ *
+ * Only a `paused` instance may be cancelled. Calling `cancel` with any other
+ * status is caller misuse, so it throws without touching the instance.
+ */
+export function cancel(instance: WorkflowInstance): WorkflowInstance {
+  if (instance.status !== 'paused') {
+    throw new Error(`cannot cancel a workflow with status "${instance.status}"; expected "paused"`);
+  }
+  return { ...instance, status: 'cancelled', checkpoint: undefined };
 }
 
 // --- Trivial built-in workflows, used only to prove orchestration behaviour. ---
