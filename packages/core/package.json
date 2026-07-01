@@ -18,7 +18,7 @@
     "clean": "rm -rf dist .turbo *.tsbuildinfo",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "echo \"no tests yet\" && exit 0"
+    "test": "tsc --build && node --test \"test/*.test.mjs\""
   },
   "dependencies": {
     "@sumirea/schema": "workspace:*"
