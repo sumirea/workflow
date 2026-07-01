@@ -1,0 +1,14 @@
+{
+  "name": "@sumirea/example-sdk-basics",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Runnable tour of the Runtime lifecycle through the @sumirea/sdk facade.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "dependencies": {
+    "@sumirea/sdk": "workspace:*"
+  }
+}
