@@ -46,3 +46,29 @@ Reading order and canonical map (✅ = canonical source of truth):
 | 9   | [surface-map.md](./surface-map.md)       | Product model | —         |
 | 10  | [roadmap.md](./roadmap.md)               | Execution     | —         |
 | 11  | [metrics.md](./metrics.md)               | Execution     | —         |
+
+## Reserved future documents
+
+These documents are **anticipated but intentionally not created yet**. They are
+reserved here so the blueprint has a home for them when the need is real. Do not
+create them until a milestone requires them.
+
+- `use-cases.md` / `scenarios.md` — end-to-end user journeys (the "how it's
+  used" narrative that personas + capabilities do not by themselves capture).
+- `offerings.md` / `editions.md` — product packaging, segmentation, and
+  deployment models (the home for areas like Enterprise and Cloud, which are
+  offerings/segments rather than capabilities).
+- `ecosystem.md` / `marketplace.md` — the ecosystem and distribution strategy
+  (e.g. third-party workflows, discovery, trust) beyond the marketplace
+  _capability_ itself.
+
+## Future evolution
+
+The product model documents start as single files and stay that way for now:
+
+- `capability-map.md` and `feature-map.md` are **single files today**.
+- If their content grows, each map may become an **index**, with per-item
+  detail sinking into a `capabilities/` or `features/` **subfolder**
+  (one file per capability / feature).
+- **Do not create those subfolders yet** — introduce them only when the volume
+  of content genuinely warrants it.

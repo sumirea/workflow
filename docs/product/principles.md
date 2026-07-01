@@ -1,7 +1,10 @@
-# Principles
+# Product Principles
 
 > **Status:** Skeleton (structure only — full content intentionally deferred).
 > Part of the Sumirea Product Blueprint (`docs/product/`).
+
+**Product principles guide product decisions. Engineering rules belong in
+ARCHITECTURE.md.**
 
 ## Purpose
 
