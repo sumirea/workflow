@@ -55,8 +55,52 @@ export interface WorkflowInstance {
   readonly checkpoint?: Checkpoint;
 }
 
-/** Create a fresh instance, ready to run from its first Step. */
+/**
+ * Reject a malformed WorkflowDefinition before an instance is created. This is
+ * Runtime API boundary validation: it checks only the structural shape of the
+ * definition and its Steps — never Step behaviour, business meaning, or the
+ * opaque contents of `initialState`. Invalid input is caller misuse, so it
+ * throws; it is never turned into a `failed` instance.
+ */
+function assertValidDefinition(definition: WorkflowDefinition): void {
+  if (typeof definition !== 'object' || definition === null) {
+    throw new Error('invalid workflow definition: expected an object');
+  }
+  if (typeof definition.name !== 'string' || definition.name.length === 0) {
+    throw new Error('invalid workflow definition: `name` must be a non-empty string');
+  }
+  if (!Array.isArray(definition.steps)) {
+    throw new Error('invalid workflow definition: `steps` must be an array');
+  }
+  if (definition.steps.length === 0) {
+    throw new Error('invalid workflow definition: `steps` must not be empty');
+  }
+  definition.steps.forEach((step, index) => {
+    if (typeof step !== 'object' || step === null) {
+      throw new Error(`invalid workflow definition: step ${index} must be an object`);
+    }
+    if (typeof step.run !== 'function') {
+      throw new Error(`invalid workflow definition: step ${index} must have a callable \`run\``);
+    }
+    if (typeof step.name !== 'string' || step.name.length === 0) {
+      throw new Error(
+        `invalid workflow definition: step ${index} must have a non-empty string \`name\``,
+      );
+    }
+  });
+  if (definition.initialState !== undefined) {
+    if (typeof definition.initialState !== 'object' || definition.initialState === null) {
+      throw new Error('invalid workflow definition: `initialState`, if present, must be an object');
+    }
+  }
+}
+
+/**
+ * Create a fresh instance, ready to run from its first Step. Throws if the
+ * definition is malformed — see `assertValidDefinition`.
+ */
 export function createInstance(definition: WorkflowDefinition): WorkflowInstance {
+  assertValidDefinition(definition);
   return {
     definition,
     status: 'created',
