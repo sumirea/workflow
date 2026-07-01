@@ -58,24 +58,31 @@ export function createInstance(definition: WorkflowDefinition): WorkflowInstance
 }
 
 /**
- * Run an instance until it terminates or pauses. The instance transitions into
- * `running` immediately before the first Step executes. Execute each Step in
- * order, taking its outcome: a next state to continue with, or a pause at a
- * Checkpoint. If a Step throws, the Runtime stops immediately, marks the
- * instance `failed`, and preserves the last state that was successfully
- * produced. If a Step asks to pause, the Runtime stops, marks the instance
- * `paused`, preserves the state the Step held, and records the Step's opaque
- * Checkpoint. It treats every Step identically — it calls `run`, reads the
- * generic outcome, and does not know or care what any Step does, why it failed,
- * or why it paused.
+ * Execute an instance's Steps from `fromIndex`, threading `startState` through
+ * each. Shared by `run` (from the first Step) and `resume` (from the Step after
+ * a pause). The instance transitions into `running` and any active Checkpoint is
+ * consumed as execution begins.
+ *
+ * Take each Step's outcome: a next state to continue with, or a pause at a
+ * Checkpoint. If a Step throws, stop immediately, mark the instance `failed`,
+ * and preserve the last state that was successfully produced. If a Step asks to
+ * pause, stop, mark the instance `paused`, preserve the state the Step held, and
+ * record the Step's opaque Checkpoint. Every Step is treated identically — the
+ * Runtime calls `run`, reads the generic outcome, and does not know or care what
+ * any Step does, why it failed, or why it paused.
  */
-export function run(instance: WorkflowInstance): WorkflowInstance {
-  // Enter `running` before any Step executes. The terminal `completed` /
-  // `failed` and the `paused` transitions below carry forward from this
-  // in-flight instance.
-  const running: WorkflowInstance = { ...instance, status: 'running' };
-  let state = running.state;
+function execute(
+  base: WorkflowInstance,
+  fromIndex: number,
+  startState: WorkflowState,
+): WorkflowInstance {
+  // Enter `running` and consume any active Checkpoint. The terminal `completed`
+  // / `failed` transitions carry this cleared instance forward; a fresh pause
+  // below records its own Checkpoint.
+  const running: WorkflowInstance = { ...base, status: 'running', checkpoint: undefined };
+  let state = startState;
   for (const [index, step] of running.definition.steps.entries()) {
+    if (index < fromIndex) continue;
     let outcome;
     try {
       outcome = step.run(state);
@@ -105,6 +112,24 @@ export function run(instance: WorkflowInstance): WorkflowInstance {
     state,
     cursor: running.definition.steps.length,
   };
+}
+
+/**
+ * Run an instance from its first Step until it terminates or pauses. See
+ * `execute` for the outcome handling.
+ */
+export function run(instance: WorkflowInstance): WorkflowInstance {
+  return execute(instance, 0, instance.state);
+}
+
+/**
+ * Resume a paused instance from the Step after the one that paused. Execution
+ * continues at `cursor + 1` (the pausing Step is never re-run) using the paused
+ * Workflow State as the starting state; the active Checkpoint is consumed. The
+ * resumed run may complete, fail, or pause again at a later Checkpoint.
+ */
+export function resume(instance: WorkflowInstance): WorkflowInstance {
+  return execute(instance, instance.cursor + 1, instance.state);
 }
 
 // --- Trivial built-in workflows, used only to prove orchestration behaviour. ---
