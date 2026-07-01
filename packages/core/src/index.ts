@@ -1,15 +1,28 @@
 // @sumirea/core — the workflow engine (orchestration only).
 //
 // The Runtime's single responsibility is orchestration: create an instance,
-// thread state through Steps in order, and terminate. It holds no business
-// logic and never interprets what a Step does — every Step is a black box
-// behind the @sumirea/schema `Step` contract. AI, review, Git, context
-// assembly and the rest live inside Steps, never here.
+// thread state through Steps in order, and terminate — whether the run
+// completes or a Step fails. It holds no business logic and never interprets
+// what a Step does or why it failed. Every Step is a black box behind the
+// @sumirea/schema `Step` contract; AI, review, Git and the rest live inside
+// Steps, never here.
 
 import type { Step, WorkflowDefinition, WorkflowState } from '@sumirea/schema';
 
 /** Lifecycle of a workflow run. */
-export type WorkflowStatus = 'created' | 'running' | 'completed';
+export type WorkflowStatus = 'created' | 'running' | 'completed' | 'failed';
+
+/**
+ * Minimal record of a failed run. The Runtime captures where the run stopped
+ * and the raw value the Step raised — it never inspects or interprets that
+ * value.
+ */
+export interface WorkflowFailure {
+  /** Zero-based index of the Step that failed. Positional only. */
+  readonly stepIndex: number;
+  /** The raw value the Step threw. Opaque to the Runtime — never inspected. */
+  readonly error: unknown;
+}
 
 /**
  * A single execution of a WorkflowDefinition. It carries the run's current
@@ -22,6 +35,8 @@ export interface WorkflowInstance {
   readonly state: WorkflowState;
   /** Number of Steps completed. Equals `definition.steps.length` when done. */
   readonly cursor: number;
+  /** Present only when `status` is `failed`. */
+  readonly failure?: WorkflowFailure;
 }
 
 /** Create a fresh instance, ready to run from its first Step. */
@@ -35,15 +50,27 @@ export function createInstance(definition: WorkflowDefinition): WorkflowInstance
 }
 
 /**
- * Run an instance to completion: execute each Step in order, threading the
- * state each returns into the next. The Runtime treats every Step identically —
- * it calls `run`, takes the result, and continues. It does not know or care
- * what any Step does.
+ * Run an instance to termination. Execute each Step in order, threading the
+ * state each returns into the next. If a Step throws, the Runtime stops
+ * immediately, marks the instance `failed`, and preserves the last state that
+ * was successfully produced. It treats every Step identically — it calls `run`,
+ * takes the result (or catches the failure), and does not know or care what any
+ * Step does or why it failed.
  */
 export function run(instance: WorkflowInstance): WorkflowInstance {
   let state = instance.state;
-  for (const step of instance.definition.steps) {
-    state = step.run(state);
+  for (const [index, step] of instance.definition.steps.entries()) {
+    try {
+      state = step.run(state);
+    } catch (error) {
+      return {
+        ...instance,
+        status: 'failed',
+        state,
+        cursor: index,
+        failure: { stepIndex: index, error },
+      };
+    }
   }
   return {
     ...instance,
@@ -53,11 +80,21 @@ export function run(instance: WorkflowInstance): WorkflowInstance {
   };
 }
 
-// --- A trivial built-in workflow, used only to prove orchestration runs. ---
+// --- Trivial built-in workflows, used only to prove orchestration behaviour. ---
 
 /** A trivial no-op Step: returns the state unchanged. */
 function noopStep(name: string): Step {
   return { name, run: (state) => state };
+}
+
+/** A trivial Step that always fails by throwing. */
+function failingStep(name: string): Step {
+  return {
+    name,
+    run: () => {
+      throw new Error(`step "${name}" failed`);
+    },
+  };
 }
 
 /**
@@ -68,4 +105,14 @@ function noopStep(name: string): Step {
 export const trivialWorkflow: WorkflowDefinition = {
   name: 'trivial',
   steps: [noopStep('first'), noopStep('second'), noopStep('third')],
+};
+
+/**
+ * A built-in workflow whose middle Step fails. It exists solely to demonstrate
+ * that the Runtime stops at the failing Step and terminates as `failed`. The
+ * final Step must never run.
+ */
+export const trivialFailingWorkflow: WorkflowDefinition = {
+  name: 'trivial-failing',
+  steps: [noopStep('first'), failingStep('second'), noopStep('third')],
 };
