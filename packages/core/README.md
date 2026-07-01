@@ -52,6 +52,13 @@ import {
 | `cancel(instance)`           | `WorkflowInstance` | Terminate a `paused` instance as `cancelled` without running any further Step.                   |
 | `pause(checkpoint, state)`   | `StepOutcome`      | Built by a Step to request a pause: the state to hold and the Checkpoint to stop at.             |
 
+`createInstance(definition)` throws if the definition is malformed — a missing or
+empty `name`, `steps` that is not a non-empty array, a Step missing a callable
+`run` or a non-empty string `name`, or a non-object `initialState`. This is
+caller misuse (a plain `Error`), not a Workflow failure; no instance is created.
+It validates structure only — Step behaviour and `initialState` contents stay
+opaque, and duplicate Step names are allowed.
+
 `resume(instance)` and `cancel(instance)` accept **only** a `paused` instance.
 Called with any other status they throw — this is caller misuse, not a Step or
 Workflow failure, and the input instance is left untouched.
