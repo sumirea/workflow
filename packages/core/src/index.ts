@@ -50,21 +50,26 @@ export function createInstance(definition: WorkflowDefinition): WorkflowInstance
 }
 
 /**
- * Run an instance to termination. Execute each Step in order, threading the
- * state each returns into the next. If a Step throws, the Runtime stops
- * immediately, marks the instance `failed`, and preserves the last state that
- * was successfully produced. It treats every Step identically — it calls `run`,
- * takes the result (or catches the failure), and does not know or care what any
- * Step does or why it failed.
+ * Run an instance to termination. The instance transitions into `running`
+ * immediately before the first Step executes; from there the run is in flight
+ * until it terminates. Execute each Step in order, threading the state each
+ * returns into the next. If a Step throws, the Runtime stops immediately, marks
+ * the instance `failed`, and preserves the last state that was successfully
+ * produced. It treats every Step identically — it calls `run`, takes the result
+ * (or catches the failure), and does not know or care what any Step does or why
+ * it failed.
  */
 export function run(instance: WorkflowInstance): WorkflowInstance {
-  let state = instance.state;
-  for (const [index, step] of instance.definition.steps.entries()) {
+  // Enter `running` before any Step executes. The terminal `completed` /
+  // `failed` transitions below carry forward from this in-flight instance.
+  const running: WorkflowInstance = { ...instance, status: 'running' };
+  let state = running.state;
+  for (const [index, step] of running.definition.steps.entries()) {
     try {
       state = step.run(state);
     } catch (error) {
       return {
-        ...instance,
+        ...running,
         status: 'failed',
         state,
         cursor: index,
@@ -73,10 +78,10 @@ export function run(instance: WorkflowInstance): WorkflowInstance {
     }
   }
   return {
-    ...instance,
+    ...running,
     status: 'completed',
     state,
-    cursor: instance.definition.steps.length,
+    cursor: running.definition.steps.length,
   };
 }
 
