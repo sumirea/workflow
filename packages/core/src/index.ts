@@ -10,10 +10,17 @@
 import { isStepPause, pause } from '@sumirea/schema';
 import type { Checkpoint, Step, WorkflowDefinition, WorkflowState } from '@sumirea/schema';
 
-// Re-export the Step-outcome contract so Step authors and consumers reach it
-// from the engine's public surface.
-export { pause } from '@sumirea/schema';
-export type { Checkpoint, StepOutcome, StepPause } from '@sumirea/schema';
+// Re-export the schema contract so Step authors and consumers reach the whole
+// public surface from the engine, without importing @sumirea/schema directly.
+export { pause, isStepPause } from '@sumirea/schema';
+export type {
+  Checkpoint,
+  Step,
+  StepOutcome,
+  StepPause,
+  WorkflowDefinition,
+  WorkflowState,
+} from '@sumirea/schema';
 
 /** Lifecycle of a workflow run. */
 export type WorkflowStatus =
