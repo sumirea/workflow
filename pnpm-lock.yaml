@@ -104,6 +104,22 @@ importers:
 
   packages/eslint-config: {}
 
+  packages/journal:
+    dependencies:
+      '@sumirea/core':
+        specifier: workspace:*
+        version: link:../core
+    devDependencies:
+      '@sumirea/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@sumirea/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      typescript:
+        specifier: ^5.5.0
+        version: 5.9.3
+
   packages/schema:
     devDependencies:
       '@sumirea/eslint-config':
