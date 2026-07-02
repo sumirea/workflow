@@ -52,6 +52,14 @@ export interface WorkflowInstance {
    * records to a single run — nothing more. `undefined` when no id was supplied.
    */
   readonly id?: string;
+  /**
+   * Optional, caller-provided lifecycle observer. Internal-first: it travels
+   * with the instance so `run`/`resume`/`cancel` can emit orchestration
+   * transitions synchronously, but it is not part of the SDK surface and holds
+   * no run state. `undefined` when no observer was supplied. See
+   * `LifecycleEvent` and `CreateInstanceOptions.onEvent`.
+   */
+  readonly onEvent?: LifecycleObserver;
   readonly definition: WorkflowDefinition;
   readonly status: WorkflowStatus;
   readonly state: WorkflowState;
@@ -61,6 +69,71 @@ export interface WorkflowInstance {
   readonly failure?: WorkflowFailure;
   /** Present only when `status` is `paused`. The Step's opaque pause marker. */
   readonly checkpoint?: Checkpoint;
+}
+
+/**
+ * A Runtime lifecycle event: a synchronous, read-only description of a single
+ * orchestration transition. Events describe *only* transitions the Runtime
+ * itself performs — a run starting, a Step boundary, a pause, a terminal state.
+ * They carry positional and opaque-reference data only: never Step business
+ * logic, never Workflow State contents, never timestamps or ordering metadata.
+ * `instanceId` is the caller-provided `WorkflowInstance.id`, passed by value as
+ * an opaque correlation handle (`undefined` when none was supplied).
+ *
+ * This is internal-first: an observation surface for future Journal / Metrics /
+ * Persistence / Event Bus work — not a Journal, a bus, or an SDK contract yet.
+ */
+export type LifecycleEvent =
+  | { readonly type: 'run:started'; readonly instanceId?: string; readonly definitionName: string }
+  | {
+      readonly type: 'step:started';
+      readonly instanceId?: string;
+      readonly index: number;
+      readonly name: string;
+    }
+  | {
+      readonly type: 'step:settled';
+      readonly instanceId?: string;
+      readonly index: number;
+      readonly name: string;
+    }
+  | {
+      readonly type: 'run:paused';
+      readonly instanceId?: string;
+      readonly cursor: number;
+      readonly checkpoint: Checkpoint;
+    }
+  | { readonly type: 'run:resumed'; readonly instanceId?: string; readonly fromCursor: number }
+  | { readonly type: 'run:completed'; readonly instanceId?: string; readonly cursor: number }
+  | {
+      readonly type: 'run:failed';
+      readonly instanceId?: string;
+      readonly cursor: number;
+      readonly failure: WorkflowFailure;
+    }
+  | { readonly type: 'run:cancelled'; readonly instanceId?: string; readonly cursor: number };
+
+/**
+ * A synchronous lifecycle observer. The Runtime invokes it as each transition
+ * occurs. It is a single opt-in callback — not a subscription registry or event
+ * bus. Its return value is ignored, and any error it throws is isolated: an
+ * observer can never alter the Runtime's orchestration result.
+ */
+export type LifecycleObserver = (event: LifecycleEvent) => void;
+
+/**
+ * Invoke the observer for one event, isolating any error it throws. Emission is
+ * a pure side effect of a transition: it never changes the instance the Runtime
+ * returns, and a throwing observer must not break orchestration.
+ */
+function emit(observer: LifecycleObserver | undefined, event: LifecycleEvent): void {
+  if (observer === undefined) return;
+  try {
+    observer(event);
+  } catch {
+    // Observer errors are deliberately swallowed: orchestration is never
+    // affected by what an observer does. The Runtime does not interpret them.
+  }
 }
 
 /**
@@ -104,8 +177,7 @@ function assertValidDefinition(definition: WorkflowDefinition): void {
 }
 
 /**
- * Options for creating an instance. All fields are optional; the sole field
- * today is an opaque, caller-owned run `id`.
+ * Options for creating an instance. All fields are optional.
  */
 export interface CreateInstanceOptions {
   /**
@@ -114,6 +186,14 @@ export interface CreateInstanceOptions {
    * UUID) and never inspects it. Omit it to leave `instance.id` `undefined`.
    */
   readonly id?: string;
+  /**
+   * Optional synchronous lifecycle observer. When provided, the Runtime emits a
+   * `LifecycleEvent` at each orchestration transition (run/step start, pause,
+   * resume, completion, failure, cancellation). Opt-in: when omitted, no events
+   * are emitted and behaviour is exactly as before. A throwing observer never
+   * affects the run. See `LifecycleEvent`.
+   */
+  readonly onEvent?: LifecycleObserver;
 }
 
 /**
@@ -131,6 +211,7 @@ export function createInstance(
   assertValidDefinition(definition);
   return {
     id: options?.id,
+    onEvent: options?.onEvent,
     definition,
     status: 'created',
     state: definition.initialState ?? {},
@@ -161,22 +242,33 @@ function execute(
   // / `failed` transitions carry this cleared instance forward; a fresh pause
   // below records its own Checkpoint.
   const running: WorkflowInstance = { ...base, status: 'running', checkpoint: undefined };
+  const observer = base.onEvent;
+  const instanceId = base.id;
   let state = startState;
   for (const [index, step] of running.definition.steps.entries()) {
     if (index < fromIndex) continue;
+    emit(observer, { type: 'step:started', instanceId, index, name: step.name });
     let outcome;
     try {
       outcome = step.run(state);
     } catch (error) {
+      const failure = { stepIndex: index, error };
+      emit(observer, { type: 'run:failed', instanceId, cursor: index, failure });
       return {
         ...running,
         status: 'failed',
         state,
         cursor: index,
-        failure: { stepIndex: index, error },
+        failure,
       };
     }
     if (isStepPause(outcome)) {
+      emit(observer, {
+        type: 'run:paused',
+        instanceId,
+        cursor: index,
+        checkpoint: outcome.checkpoint,
+      });
       return {
         ...running,
         status: 'paused',
@@ -185,8 +277,14 @@ function execute(
         checkpoint: outcome.checkpoint,
       };
     }
+    emit(observer, { type: 'step:settled', instanceId, index, name: step.name });
     state = outcome;
   }
+  emit(observer, {
+    type: 'run:completed',
+    instanceId,
+    cursor: running.definition.steps.length,
+  });
   return {
     ...running,
     status: 'completed',
@@ -207,6 +305,11 @@ export function run(instance: WorkflowInstance): WorkflowInstance {
   if (instance.status !== 'created') {
     throw new Error(`cannot run a workflow with status "${instance.status}"; expected "created"`);
   }
+  emit(instance.onEvent, {
+    type: 'run:started',
+    instanceId: instance.id,
+    definitionName: instance.definition.name,
+  });
   return execute(instance, 0, instance.state);
 }
 
@@ -224,7 +327,9 @@ export function resume(instance: WorkflowInstance): WorkflowInstance {
   if (instance.status !== 'paused') {
     throw new Error(`cannot resume a workflow with status "${instance.status}"; expected "paused"`);
   }
-  return execute(instance, instance.cursor + 1, instance.state);
+  const fromCursor = instance.cursor + 1;
+  emit(instance.onEvent, { type: 'run:resumed', instanceId: instance.id, fromCursor });
+  return execute(instance, fromCursor, instance.state);
 }
 
 /**
@@ -240,6 +345,11 @@ export function cancel(instance: WorkflowInstance): WorkflowInstance {
   if (instance.status !== 'paused') {
     throw new Error(`cannot cancel a workflow with status "${instance.status}"; expected "paused"`);
   }
+  emit(instance.onEvent, {
+    type: 'run:cancelled',
+    instanceId: instance.id,
+    cursor: instance.cursor,
+  });
   return { ...instance, status: 'cancelled', checkpoint: undefined };
 }
 
