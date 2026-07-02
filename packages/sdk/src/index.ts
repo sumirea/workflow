@@ -21,4 +21,5 @@ export type {
   WorkflowInstance,
   WorkflowStatus,
   WorkflowFailure,
+  CreateInstanceOptions,
 } from '@sumirea/core';
