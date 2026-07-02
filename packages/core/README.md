@@ -44,13 +44,13 @@ import {
 
 ### Functions
 
-| Function                     | Returns            | Description                                                                                      |
-| ---------------------------- | ------------------ | ------------------------------------------------------------------------------------------------ |
-| `createInstance(definition)` | `WorkflowInstance` | A fresh instance with status `created`, `cursor` `0`, and state `definition.initialState ?? {}`. |
-| `run(instance)`              | `WorkflowInstance` | Run from the first Step until the run completes, fails, or pauses.                               |
-| `resume(instance)`           | `WorkflowInstance` | Continue a `paused` instance from the Step after the pause (`cursor + 1`).                       |
-| `cancel(instance)`           | `WorkflowInstance` | Terminate a `paused` instance as `cancelled` without running any further Step.                   |
-| `pause(checkpoint, state)`   | `StepOutcome`      | Built by a Step to request a pause: the state to hold and the Checkpoint to stop at.             |
+| Function                               | Returns            | Description                                                                                                                                              |
+| -------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `createInstance(definition, options?)` | `WorkflowInstance` | A fresh instance with status `created`, `cursor` `0`, and state `definition.initialState ?? {}`. An optional `{ id }` sets the instance's opaque run id. |
+| `run(instance)`                        | `WorkflowInstance` | Run from the first Step until the run completes, fails, or pauses.                                                                                       |
+| `resume(instance)`                     | `WorkflowInstance` | Continue a `paused` instance from the Step after the pause (`cursor + 1`).                                                                               |
+| `cancel(instance)`                     | `WorkflowInstance` | Terminate a `paused` instance as `cancelled` without running any further Step.                                                                           |
+| `pause(checkpoint, state)`             | `StepOutcome`      | Built by a Step to request a pause: the state to hold and the Checkpoint to stop at.                                                                     |
 
 `createInstance(definition)` throws if the definition is malformed — a missing or
 empty `name`, `steps` that is not a non-empty array, a Step missing a callable
@@ -58,6 +58,15 @@ empty `name`, `steps` that is not a non-empty array, a Step missing a callable
 caller misuse (a plain `Error`), not a Workflow failure; no instance is created.
 It validates structure only — Step behaviour and `initialState` contents stay
 opaque, and duplicate Step names are allowed.
+
+`createInstance(definition, { id })` accepts an optional, **caller-provided** run
+`id`. It is opaque and caller-owned: the Runtime **stores it verbatim, never
+generates one** (no clock, random, or UUID), and never inspects or interprets
+it. When omitted, `instance.id` is `undefined`. A provided id stays stable across
+every lifecycle transition — run, pause, resume, fail, cancel, complete. This is
+an **observation seed** so later capabilities can attach records to a single
+run; it is **not** a Journal, Event, Persistence, or Metrics mechanism, and it
+does not change the `Step.run(state)` contract.
 
 `run(instance)` accepts **only** a `created` instance; `resume(instance)` and
 `cancel(instance)` accept **only** a `paused` instance. Called with any other
@@ -111,6 +120,7 @@ interface Checkpoint {
 
 ```ts
 interface WorkflowInstance {
+  readonly id?: string; // optional caller-provided run id; opaque, never generated
   readonly definition: WorkflowDefinition;
   readonly status: WorkflowStatus;
   readonly state: WorkflowState;

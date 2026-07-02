@@ -44,6 +44,14 @@ export interface WorkflowFailure {
  * never see it.
  */
 export interface WorkflowInstance {
+  /**
+   * Optional, caller-provided run identifier. Opaque to the Runtime: it is
+   * stored as given, carried unchanged through every lifecycle transition, and
+   * never generated, inspected, or interpreted here. It is an observation seed
+   * for future capabilities (Journal, Events, Persistence, Metrics) to attach
+   * records to a single run — nothing more. `undefined` when no id was supplied.
+   */
+  readonly id?: string;
   readonly definition: WorkflowDefinition;
   readonly status: WorkflowStatus;
   readonly state: WorkflowState;
@@ -96,12 +104,33 @@ function assertValidDefinition(definition: WorkflowDefinition): void {
 }
 
 /**
+ * Options for creating an instance. All fields are optional; the sole field
+ * today is an opaque, caller-owned run `id`.
+ */
+export interface CreateInstanceOptions {
+  /**
+   * Opaque run identifier. Stored as given and carried unchanged through every
+   * lifecycle transition. The Runtime never generates it (no clock, random, or
+   * UUID) and never inspects it. Omit it to leave `instance.id` `undefined`.
+   */
+  readonly id?: string;
+}
+
+/**
  * Create a fresh instance, ready to run from its first Step. Throws if the
  * definition is malformed — see `assertValidDefinition`.
+ *
+ * An optional, caller-provided `id` is stored on the instance verbatim. The
+ * Runtime never generates one: if `options.id` is omitted, `instance.id` is
+ * `undefined`.
  */
-export function createInstance(definition: WorkflowDefinition): WorkflowInstance {
+export function createInstance(
+  definition: WorkflowDefinition,
+  options?: CreateInstanceOptions,
+): WorkflowInstance {
   assertValidDefinition(definition);
   return {
+    id: options?.id,
     definition,
     status: 'created',
     state: definition.initialState ?? {},
