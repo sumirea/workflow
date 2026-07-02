@@ -33,12 +33,12 @@ Landing Page 的每一個 Section 都必須服務其中至少一項；不服務�
 
 ### 1.2 訊息階層（Messaging Hierarchy）
 
-| 層級 | 訊息 | 出現位置 |
-| --- | --- | --- |
-| **Primary（唯一主張）** | 需要你的時候才叫你，其餘時間安靜。Protect Cognitive Bandwidth。 | Hero、Waitlist |
-| **Secondary（支撐）** | 消除等待與 Micro Decision 帶來的 Decision Fatigue。 | Problem、Value |
-| **Proof（證明）** | Browser MVP 的「Claude 等你 → 通知 → 回來」故事。 | How it works / Demo |
-| **Trust（信任）** | Human in Control：只觀察，絕不替你動手。 | Is/Is-not、Philosophy、FAQ |
+| 層級                    | 訊息                                                            | 出現位置                   |
+| ----------------------- | --------------------------------------------------------------- | -------------------------- |
+| **Primary（唯一主張）** | 需要你的時候才叫你，其餘時間安靜。Protect Cognitive Bandwidth。 | Hero、Waitlist             |
+| **Secondary（支撐）**   | 消除等待與 Micro Decision 帶來的 Decision Fatigue。             | Problem、Value             |
+| **Proof（證明）**       | Browser MVP 的「Claude 等你 → 通知 → 回來」故事。               | How it works / Demo        |
+| **Trust（信任）**       | Human in Control：只觀察，絕不替你動手。                        | Is/Is-not、Philosophy、FAQ |
 
 ### 1.3 語氣（Voice & Tone）—— 讓頁面本身就是 Quiet Intelligence
 
@@ -49,12 +49,12 @@ Landing Page 的每一個 Section 都必須服務其中至少一項；不服務�
 
 ### 1.4 反定位（關鍵，因為最容易被誤解）
 
-| Sumirea 是 | Sumirea 不是 |
-| --- | --- |
-| AI 工作時守護注意力的界線 | 什麼都嗶你一下的通知工具 |
-| 判斷「你何時真正被需要」的判斷力 | 會點擊 / 核准 / 編輯的瀏覽器自動化 |
-| 安靜地待在既有工具旁 | 又一個要重新學的 AI chat / agent / IDE |
-| 自動化「干擾」 | 自動化「你」 |
+| Sumirea 是                       | Sumirea 不是                           |
+| -------------------------------- | -------------------------------------- |
+| AI 工作時守護注意力的界線        | 什麼都嗶你一下的通知工具               |
+| 判斷「你何時真正被需要」的判斷力 | 會點擊 / 核准 / 編輯的瀏覽器自動化     |
+| 安靜地待在既有工具旁             | 又一個要重新學的 AI chat / agent / IDE |
+| 自動化「干擾」                   | 自動化「你」                           |
 
 > 通知只是 **mechanism（手段）**，不是 product。難的是「只在對的一刻」響，其餘保持安靜 —— 那份判斷才是產品。
 
@@ -121,18 +121,18 @@ FAQ           解除最後疑慮                    ← 補上臨門一腳
 
 ## 4. Section-by-Section IA（每個 Section 的目的）
 
-| # | Section | 唯一目的 | 關鍵訊息 | 服務的成功標準 |
-| --- | --- | --- | --- | --- |
-| 1 | **Hero** | 3 秒定調、給承諾 | Walk away… + Primary CTA | 這是什麼 / 下一步 |
-| 2 | **Problem** | 讓使用者對號入座 | 等待、Micro Decision、切換＝Decision Fatigue | 解決什麼 |
-| 3 | **Statement**（翻轉） | 製造 Aha | 機器等你，其餘安靜；Silence is a feature | 這是什麼 |
-| 4 | **How it works / Demo** | 用故事證明可信 | Claude 工作→你離開→需要人→通知→回來 | 這是什麼（可信度） |
-| 5 | **Is / Is-not** | 打掉三大誤解 | 不是通知工具 / 不是自動化 / 不自動化你 | 不是什麼 |
-| 6 | **Philosophy** | 建立信任與差異 | 不自動化開發者；Human in Control；Quiet Intelligence | 不是什麼 / 信任 |
-| 7 | **Who it's for** | 給歸屬感 | 同時用 Claude Code / ChatGPT / Cursor / Codex / Gemini | 解決誰 |
-| 8 | **Beta Waitlist** | 轉換：收 email | 名額有限、免費、一起定義「什麼配得上打擾你」 | 下一步 |
-| 9 | **FAQ** | 解除最後疑慮 | 通知？會替我動手？支援哪些？會一直吵？要學嗎？收費？ | 信任 |
-| — | **Footer** | 收束品牌句 | Protect Cognitive Bandwidth. Human in Control. | — |
+| #   | Section                 | 唯一目的         | 關鍵訊息                                               | 服務的成功標準     |
+| --- | ----------------------- | ---------------- | ------------------------------------------------------ | ------------------ |
+| 1   | **Hero**                | 3 秒定調、給承諾 | Walk away… + Primary CTA                               | 這是什麼 / 下一步  |
+| 2   | **Problem**             | 讓使用者對號入座 | 等待、Micro Decision、切換＝Decision Fatigue           | 解決什麼           |
+| 3   | **Statement**（翻轉）   | 製造 Aha         | 機器等你，其餘安靜；Silence is a feature               | 這是什麼           |
+| 4   | **How it works / Demo** | 用故事證明可信   | Claude 工作→你離開→需要人→通知→回來                    | 這是什麼（可信度） |
+| 5   | **Is / Is-not**         | 打掉三大誤解     | 不是通知工具 / 不是自動化 / 不自動化你                 | 不是什麼           |
+| 6   | **Philosophy**          | 建立信任與差異   | 不自動化開發者；Human in Control；Quiet Intelligence   | 不是什麼 / 信任    |
+| 7   | **Who it's for**        | 給歸屬感         | 同時用 Claude Code / ChatGPT / Cursor / Codex / Gemini | 解決誰             |
+| 8   | **Beta Waitlist**       | 轉換：收 email   | 名額有限、免費、一起定義「什麼配得上打擾你」           | 下一步             |
+| 9   | **FAQ**                 | 解除最後疑慮     | 通知？會替我動手？支援哪些？會一直吵？要學嗎？收費？   | 信任               |
+| —   | **Footer**              | 收束品牌句       | Protect Cognitive Bandwidth. Human in Control.         | —                  |
 
 > **刻意排除**（符合 Scope，不在此頁出現）：Runtime、SDK、Workflow Engine、Recorder、Architecture、Infrastructure、平台 roadmap。
 
@@ -153,11 +153,11 @@ FAQ           解除最後疑慮                    ← 補上臨門一腳
 
 ### 6.1 CTA 階層
 
-| 類型 | 文案 | 位置 | 行為 |
-| --- | --- | --- | --- |
-| **Primary** | Join the beta waitlist／加入 Beta 候補名單 | Nav、Hero、Waitlist | 錨到 / 聚焦 email 欄位 |
-| **Secondary** | See the 30-second story →／看 30 秒的故事 → | Hero | 錨到 How/Demo |
-| **In-form** | Request beta access／申請 Beta 使用權 | Waitlist 表單按鈕 | 送出 email |
+| 類型          | 文案                                        | 位置                | 行為                   |
+| ------------- | ------------------------------------------- | ------------------- | ---------------------- |
+| **Primary**   | Join the beta waitlist／加入 Beta 候補名單  | Nav、Hero、Waitlist | 錨到 / 聚焦 email 欄位 |
+| **Secondary** | See the 30-second story →／看 30 秒的故事 → | Hero                | 錨到 How/Demo          |
+| **In-form**   | Request beta access／申請 Beta 使用權       | Waitlist 表單按鈕   | 送出 email             |
 
 ### 6.2 Waitlist Messaging（轉換區）
 

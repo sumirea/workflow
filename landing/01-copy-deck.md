@@ -30,18 +30,18 @@ Section 順序（與核可 IA 一致）：
 
 ## 1. Nav
 
-| 項目 | EN | 繁體中文 |
-| --- | --- | --- |
-| Brand | Sumirea | Sumirea |
-| Link 1 | How it works | 運作方式 |
-| Link 2 | Why | 為什麼 |
-| Link 3 | FAQ | 常見問題 |
-| Lang toggle | 繁體中文 ⇄ EN | 繁體中文 ⇄ EN |
-| CTA (primary) | Join the beta | 加入 Beta |
+| 項目          | EN            | 繁體中文      |
+| ------------- | ------------- | ------------- |
+| Brand         | Sumirea       | Sumirea       |
+| Link 1        | How it works  | 運作方式      |
+| Link 2        | Why           | 為什麼        |
+| Link 3        | FAQ           | 常見問題      |
+| Lang toggle   | 繁體中文 ⇄ EN | 繁體中文 ⇄ EN |
+| CTA (primary) | Join the beta | 加入 Beta     |
 
 ---
 
-## 2. Hero  ·  *purpose: 3-second framing + promise + primary CTA*
+## 2. Hero · _purpose: 3-second framing + promise + primary CTA_
 
 **EN**
 
@@ -65,7 +65,7 @@ Section 順序（與核可 IA 一致）：
 
 ---
 
-## 3. Problem  ·  *purpose: 讓使用者對號入座*
+## 3. Problem · _purpose: 讓使用者對號入座_
 
 **EN**
 
@@ -73,11 +73,11 @@ Section 順序（與核可 IA 一致）：
 - Heading: AI made the work faster. It also made you wait more.
 - Intro: You run Claude Code, Cursor, ChatGPT, Codex, Gemini — often at the same time. Each one is fast, and each one keeps stopping to ask you something. So you hover. You babysit. You context-switch a hundred times a day, and never quite drop into deep work.
 
-| Card | Label | Title | Body |
-| --- | --- | --- | --- |
-| 1 | Waiting | Hovering over a progress bar | The task takes eight minutes. You watch all eight, because you don't know when it will need you. That's cognitive bandwidth spent on nothing. |
-| 2 | Micro Decisions | Death by tiny prompts | "Proceed? Which option? Approve this?" Dozens of small, low-stakes choices a day. Individually trivial. Together, that's Decision Fatigue. |
-| 3 | Switching | Five tools, zero focus | Every tab you keep half-watching is a tab pulling you out of flow. The cost isn't the minutes — it's never getting a clean hour. |
+| Card | Label           | Title                        | Body                                                                                                                                          |
+| ---- | --------------- | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1    | Waiting         | Hovering over a progress bar | The task takes eight minutes. You watch all eight, because you don't know when it will need you. That's cognitive bandwidth spent on nothing. |
+| 2    | Micro Decisions | Death by tiny prompts        | "Proceed? Which option? Approve this?" Dozens of small, low-stakes choices a day. Individually trivial. Together, that's Decision Fatigue.    |
+| 3    | Switching       | Five tools, zero focus       | Every tab you keep half-watching is a tab pulling you out of flow. The cost isn't the minutes — it's never getting a clean hour.              |
 
 **繁體中文**
 
@@ -85,15 +85,15 @@ Section 順序（與核可 IA 一致）：
 - Heading：AI 讓工作變快了，卻也讓你等得更多。
 - Intro：你同時開著 Claude Code、Cursor、ChatGPT、Codex、Gemini。每一個都很快，每一個又都會停下來問你一句。於是你盯著、你顧著、你一天切換上百次，始終沒辦法真正進入深度工作。
 
-| 卡片 | 標籤 | 標題 | 內文 |
-| --- | --- | --- | --- |
-| 1 | 等待 | 盯著進度條發呆 | 任務要跑八分鐘，你八分鐘全程盯著 —— 因為你不知道它什麼時候會需要你。這就是白白花掉的 Cognitive Bandwidth。 |
-| 2 | Micro Decision | 被無數小提示淹沒 | 「要繼續嗎？選哪個？核准這個？」一天幾十個低風險的小選擇，單看都微不足道，加起來就是 Decision Fatigue。 |
-| 3 | 切換 | 五個工具、零專注 | 每一個你半盯著的分頁，都在把你拉出心流。代價不是那幾分鐘 —— 而是你永遠拿不到完整的一小時。 |
+| 卡片 | 標籤           | 標題             | 內文                                                                                                       |
+| ---- | -------------- | ---------------- | ---------------------------------------------------------------------------------------------------------- |
+| 1    | 等待           | 盯著進度條發呆   | 任務要跑八分鐘，你八分鐘全程盯著 —— 因為你不知道它什麼時候會需要你。這就是白白花掉的 Cognitive Bandwidth。 |
+| 2    | Micro Decision | 被無數小提示淹沒 | 「要繼續嗎？選哪個？核准這個？」一天幾十個低風險的小選擇，單看都微不足道，加起來就是 Decision Fatigue。    |
+| 3    | 切換           | 五個工具、零專注 | 每一個你半盯著的分頁，都在把你拉出心流。代價不是那幾分鐘 —— 而是你永遠拿不到完整的一小時。                 |
 
 ---
 
-## 4. Statement  ·  *purpose: 製造 Aha（reframe）*
+## 4. Statement · _purpose: 製造 Aha（reframe）_
 
 > 連接語（Problem → Statement 的橋）：把上面的痛點收束成一個翻轉。
 
@@ -111,7 +111,7 @@ Section 順序（與核可 IA 一致）：
 
 ---
 
-## 5. How it works / Demo  ·  *purpose: 用 MVP 故事證明「只在對的一刻叫你」可信*
+## 5. How it works / Demo · _purpose: 用 MVP 故事證明「只在對的一刻叫你」可信_
 
 > **Proof frame（強化 MVP＝證明，非產品本體）：** 明確說明這是「Sumirea 做的第一件事」，是想法的證明，而非產品的全部。
 
@@ -131,13 +131,13 @@ Section 順序（與核可 IA 一致）：
 
 ### 5.2 Demo copy — 5-step loop（Hero 動態裝置與 How 時間軸共用）
 
-| Step | State label (EN) | Title (EN) | Caption (EN) | 狀態標籤 (中) | 標題 (中) | 說明 (中) |
-| --- | --- | --- | --- | --- | --- | --- |
-| 01 | claude.ai — working… | Claude is working | You kick off a long task. | claude.ai — 工作中… | Claude 正在工作 | 你交付了一個很長的任務。 |
-| 02 | claude.ai — working… | You walk away | Coffee. Another repo. Real life. | claude.ai — 工作中… | 你離開了 | 去泡咖啡、去別的 repo、去過生活。 |
-| 03 · **signal** | claude.ai — waiting for you | A decision needs you | It reaches a point only you can settle. | claude.ai — 正在等你 | 有個決定需要你 | 它走到了只有你能拍板的地方。 |
-| 04 · **signal** | Sumirea — brought you back | Sumirea calls you back | One quiet notification. You return, decide, done. | Sumirea — 把你叫回來了 | Sumirea 把你叫回來 | 一則安靜的通知。你回來、決定、結束。 |
-| 05 | — | You return & decide | Land back in context, make the call, then walk away again. | — | 你回來決定 | 帶著情境回到現場、拍板，然後再次放心離開。 |
+| Step            | State label (EN)            | Title (EN)             | Caption (EN)                                               | 狀態標籤 (中)          | 標題 (中)          | 說明 (中)                                  |
+| --------------- | --------------------------- | ---------------------- | ---------------------------------------------------------- | ---------------------- | ------------------ | ------------------------------------------ |
+| 01              | claude.ai — working…        | Claude is working      | You kick off a long task.                                  | claude.ai — 工作中…    | Claude 正在工作    | 你交付了一個很長的任務。                   |
+| 02              | claude.ai — working…        | You walk away          | Coffee. Another repo. Real life.                           | claude.ai — 工作中…    | 你離開了           | 去泡咖啡、去別的 repo、去過生活。          |
+| 03 · **signal** | claude.ai — waiting for you | A decision needs you   | It reaches a point only you can settle.                    | claude.ai — 正在等你   | 有個決定需要你     | 它走到了只有你能拍板的地方。               |
+| 04 · **signal** | Sumirea — brought you back  | Sumirea calls you back | One quiet notification. You return, decide, done.          | Sumirea — 把你叫回來了 | Sumirea 把你叫回來 | 一則安靜的通知。你回來、決定、結束。       |
+| 05              | —                           | You return & decide    | Land back in context, make the call, then walk away again. | —                      | 你回來決定         | 帶著情境回到現場、拍板，然後再次放心離開。 |
 
 - Demo footer caption (EN): `no notification until the moment you're needed`
 - Demo footer caption (中)：`在需要你之前，不會有任何通知`
@@ -146,35 +146,35 @@ Section 順序（與核可 IA 一致）：
 
 ---
 
-## 6. Is / Is-not  ·  *purpose: 打掉三大誤解*
+## 6. Is / Is-not · _purpose: 打掉三大誤解_
 
 **EN**
 
 - Eyebrow: `READ THIS BEFORE YOU ASSUME`
 - Heading: What Sumirea is — and what it refuses to be.
 
-| It **is** | It **is not** |
-| --- | --- |
-| A boundary around your attention while AI works. | A notification tool that buzzes you about everything. |
-| A way to protect Cognitive Bandwidth and Protected Focus. | Browser automation that clicks, approves, or edits. |
-| The signal that a real decision — not a chore — needs you. | Another AI chat, agent, or IDE to learn. |
-| Human in Control by design: it observes, it never acts for you. | A tool that automates *you*. It automates the distractions. |
+| It **is**                                                       | It **is not**                                               |
+| --------------------------------------------------------------- | ----------------------------------------------------------- |
+| A boundary around your attention while AI works.                | A notification tool that buzzes you about everything.       |
+| A way to protect Cognitive Bandwidth and Protected Focus.       | Browser automation that clicks, approves, or edits.         |
+| The signal that a real decision — not a chore — needs you.      | Another AI chat, agent, or IDE to learn.                    |
+| Human in Control by design: it observes, it never acts for you. | A tool that automates _you_. It automates the distractions. |
 
 **繁體中文**
 
 - Eyebrow：`在你自己下定論之前，先讀這段`
 - Heading：Sumirea 是什麼 —— 又拒絕成為什麼。
 
-| 它**是** | 它**不是** |
-| --- | --- |
-| AI 工作時，守護你注意力的一道界線。 | 什麼事都要嗶你一下的通知工具。 |
-| 守住 Cognitive Bandwidth 與 Protected Focus 的方式。 | 會點擊、核准、編輯的瀏覽器自動化。 |
-| 真正的決定（不是雜事）需要你時的那個訊號。 | 又一個要你重新學的 AI 對話、agent 或 IDE。 |
+| 它**是**                                              | 它**不是**                                   |
+| ----------------------------------------------------- | -------------------------------------------- |
+| AI 工作時，守護你注意力的一道界線。                   | 什麼事都要嗶你一下的通知工具。               |
+| 守住 Cognitive Bandwidth 與 Protected Focus 的方式。  | 會點擊、核准、編輯的瀏覽器自動化。           |
+| 真正的決定（不是雜事）需要你時的那個訊號。            | 又一個要你重新學的 AI 對話、agent 或 IDE。   |
 | 骨子裡就是 Human in Control：它只觀察，絕不替你動手。 | 一個把「你」自動化的工具。它自動化的是干擾。 |
 
 ---
 
-## 7. Philosophy  ·  *purpose: 建立信任與差異*
+## 7. Philosophy · _purpose: 建立信任與差異_
 
 **EN**
 
@@ -182,11 +182,11 @@ Section 順序（與核可 IA 一致）：
 - Heading: We don't automate developers. We automate the decisions that distract them from creating.
 - Lede: Your creativity and judgment are the point. The recurring, low-value choices around them are the tax. Sumirea takes aim at the tax — never at the work only you can do.
 
-| Principle | Body |
-| --- | --- |
-| Protect Cognitive Bandwidth | Your attention is finite and precious. Every needless interruption spends it. The job is to spend less of it, not more. |
-| Human in Control | You hold authority over every consequential decision. Sumirea can watch and signal, but it will not click, approve, or change your work. |
-| Quiet Intelligence | Restraint is the feature. The best outcome is often silence — nothing needed you, so nothing interrupted you. |
+| Principle                   | Body                                                                                                                                     |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Protect Cognitive Bandwidth | Your attention is finite and precious. Every needless interruption spends it. The job is to spend less of it, not more.                  |
+| Human in Control            | You hold authority over every consequential decision. Sumirea can watch and signal, but it will not click, approve, or change your work. |
+| Quiet Intelligence          | Restraint is the feature. The best outcome is often silence — nothing needed you, so nothing interrupted you.                            |
 
 **繁體中文**
 
@@ -194,15 +194,15 @@ Section 順序（與核可 IA 一致）：
 - Heading：我們不自動化開發者。我們自動化那些讓他們無法專心創造的決定。
 - Lede：你的創造力與判斷，才是重點。圍繞在它周圍那些重複、低價值的選擇，才是稅。Sumirea 瞄準的是稅 —— 從不碰只有你能做的工作。
 
-| 原則 | 內文 |
-| --- | --- |
-| Protect Cognitive Bandwidth | 你的注意力有限而珍貴。每一次多餘的打擾都在花掉它。我們的任務是花得更少，而不是更多。 |
-| Human in Control | 每一個有後果的決定，權力都在你手上。Sumirea 可以觀察、可以提醒，但它不會點擊、不會核准、不會改動你的工作。 |
-| Quiet Intelligence | 克制就是功能。最好的結果往往是安靜 —— 沒有事情需要你，所以沒有東西打擾你。 |
+| 原則                        | 內文                                                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Protect Cognitive Bandwidth | 你的注意力有限而珍貴。每一次多餘的打擾都在花掉它。我們的任務是花得更少，而不是更多。                       |
+| Human in Control            | 每一個有後果的決定，權力都在你手上。Sumirea 可以觀察、可以提醒，但它不會點擊、不會核准、不會改動你的工作。 |
+| Quiet Intelligence          | 克制就是功能。最好的結果往往是安靜 —— 沒有事情需要你，所以沒有東西打擾你。                                 |
 
 ---
 
-## 8. Who it's for  ·  *purpose: 給歸屬感*
+## 8. Who it's for · _purpose: 給歸屬感_
 
 **EN**
 
@@ -220,7 +220,7 @@ Section 順序（與核可 IA 一致）：
 
 ---
 
-## 9. Beta Waitlist  ·  *purpose: 轉換（收 email）*
+## 9. Beta Waitlist · _purpose: 轉換（收 email）_
 
 **EN**
 
@@ -244,20 +244,20 @@ Section 順序（與核可 IA 一致）：
 
 ---
 
-## 10. FAQ  ·  *purpose: 解除最後疑慮*
+## 10. FAQ · _purpose: 解除最後疑慮_
 
 **EN**
 
 - Eyebrow: `QUESTIONS` · Heading: The honest FAQ.
 
 1. **Isn't this just a notification?**
-   A notification is the mechanism, not the product. Anything can buzz you. The hard part — and the whole point — is buzzing you *only* at the one moment a human decision appears, and staying silent every other time. Sumirea is the judgment about when you're actually needed.
+   A notification is the mechanism, not the product. Anything can buzz you. The hard part — and the whole point — is buzzing you _only_ at the one moment a human decision appears, and staying silent every other time. Sumirea is the judgment about when you're actually needed.
 2. **Does it click buttons or approve things for me?**
    No. Never. Sumirea observes and signals; it does not act on your behalf. Human in Control is a hard rule, not a setting. It will not click, approve, merge, or edit anything.
 3. **Which tools does the beta work with?**
    The first beta focuses on the "waiting for you" moment in the AI tools developers use most. We're starting narrow and honest rather than claiming everything at once — join the waitlist and tell us which tool you'd want covered first.
 4. **Will it interrupt me constantly?**
-   The opposite is the design goal. Quiet Intelligence means the product is measured by how *little* it interrupts you. If nothing needs your judgment, you hear nothing.
+   The opposite is the design goal. Quiet Intelligence means the product is measured by how _little_ it interrupts you. If nothing needs your judgment, you hear nothing.
 5. **Is it another AI I have to learn?**
    No. Sumirea isn't a chat, an agent, or an IDE. It sits quietly beside the tools you already use and does one thing: bring you back at the right moment.
 6. **What does the beta cost?**

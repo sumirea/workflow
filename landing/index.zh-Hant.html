@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sumirea — 放心離開，需要你的時候我們會叫你。</title>
+    <meta
+      name="description"
+      content="Sumirea 在你的 AI 工具工作時，保護你的 Cognitive Bandwidth。離開那些等待與 Micro Decision，只在真正需要人的決定出現時，才把你叫回來。不是通知工具，也不是瀏覽器自動化。"
+    />
+    <meta property="og:title" content="放心離開。需要你的時候，我們會叫你。" />
+    <meta
+      property="og:description"
+      content="當 Claude Code、Cursor、ChatGPT、Codex、Gemini 在替你等待時，它是一道守護你注意力的界線。"
+    />
+    <meta property="og:type" content="website" />
+    <link rel="alternate" hreflang="en" href="./index.html" />
+    <link rel="alternate" hreflang="zh-Hant" href="./index.zh-Hant.html" />
+    <style>
+      :root {
+        --paper: #f7f6f3;
+        --paper-2: #efeee9;
+        --ink: #17171a;
+        --ink-2: #4b4b52;
+        --muted: #7c7c84;
+        --line: #e2e0da;
+        --line-2: #d4d2ca;
+        --signal: #e0522f;
+        --signal-ink: #ffffff;
+        --card: #fffffe;
+        --radius: 14px;
+        --maxw: 1080px;
+        --font:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang TC', 'Noto Sans TC',
+          'Microsoft JhengHei', Inter, Roboto, Helvetica, Arial, sans-serif;
+        --mono: ui-monospace, 'SF Mono', 'JetBrains Mono', 'Roboto Mono', Menlo, monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #101012;
+          --paper-2: #17171a;
+          --ink: #f4f3ef;
+          --ink-2: #c3c2bd;
+          --muted: #8b8b92;
+          --line: #26262b;
+          --line-2: #32323a;
+          --signal: #ff6a45;
+          --card: #17171a;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.01em;
+        line-height: 1.25;
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      header.nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: saturate(1.4) blur(10px);
+        background: color-mix(in srgb, var(--paper) 82%, transparent);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 62px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 620;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--signal);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 18%, transparent);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        font-size: 15px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--ink-2);
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .lang {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line-2);
+        background: transparent;
+        color: var(--ink);
+        padding: 11px 18px;
+        border-radius: 999px;
+        font: inherit;
+        font-size: 15px;
+        font-weight: 560;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          transform 0.12s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn-primary {
+        background: var(--signal);
+        color: var(--signal-ink);
+        border-color: var(--signal);
+      }
+      .btn-primary:hover {
+        background: color-mix(in srgb, var(--signal) 88%, #000);
+      }
+      .nav .btn {
+        padding: 8px 15px;
+      }
+      .hero {
+        padding: 92px 0 40px;
+      }
+      .hero .wrap {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: clamp(34px, 5.4vw, 58px);
+        font-weight: 680;
+        line-height: 1.22;
+      }
+      .hero .sub {
+        margin-top: 22px;
+        font-size: clamp(16px, 2.1vw, 19px);
+        color: var(--ink-2);
+        max-width: 26ch;
+      }
+      .hero .cta-row {
+        margin-top: 34px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .hero .assurance {
+        margin-top: 18px;
+        font-size: 13.5px;
+        color: var(--muted);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .device {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow:
+          0 1px 0 var(--line),
+          0 30px 60px -40px rgba(0, 0, 0, 0.35);
+      }
+      .device .bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 13px 16px;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper-2);
+      }
+      .device .bar i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--line-2);
+        display: inline-block;
+      }
+      .device .bar .title {
+        margin-left: 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .stage {
+        padding: 26px 24px 28px;
+        min-height: 280px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .step-line {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 9px 0;
+        opacity: 0.32;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+        transform: translateY(2px);
+      }
+      .step-line.on {
+        opacity: 1;
+        transform: none;
+      }
+      .step-line .ic {
+        flex: 0 0 auto;
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line-2);
+        font-size: 14px;
+        margin-top: 3px;
+      }
+      .step-line.signal .ic {
+        background: var(--signal);
+        border-color: var(--signal);
+        color: #fff;
+      }
+      .step-line.signal.on .ic {
+        animation: pulse 1.8s ease-out infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 55%, transparent);
+        }
+        70% {
+          box-shadow: 0 0 0 12px color-mix(in srgb, var(--signal) 0%, transparent);
+        }
+        100% {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 0%, transparent);
+        }
+      }
+      .step-line .tx b {
+        display: block;
+        font-size: 15px;
+        font-weight: 620;
+      }
+      .step-line .tx span {
+        font-size: 13.5px;
+        color: var(--muted);
+      }
+      .stage-foot {
+        margin-top: 16px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+        text-align: center;
+      }
+      section {
+        padding: 76px 0;
+        border-top: 1px solid var(--line);
+      }
+      .section-head {
+        max-width: 60ch;
+        margin-bottom: 44px;
+      }
+      .section-head h2 {
+        font-size: clamp(25px, 3.4vw, 37px);
+        font-weight: 680;
+      }
+      .section-head p {
+        margin-top: 16px;
+        font-size: 18px;
+        color: var(--ink-2);
+      }
+      .cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 26px 24px;
+      }
+      .card .k {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--signal);
+        margin-bottom: 12px;
+      }
+      .card h3 {
+        font-size: 19px;
+        font-weight: 640;
+      }
+      .card p {
+        margin-top: 10px;
+        color: var(--ink-2);
+        font-size: 15px;
+      }
+      .statement {
+        background: var(--paper-2);
+      }
+      .statement .wrap {
+        max-width: 900px;
+      }
+      .statement p.big {
+        font-size: clamp(23px, 3.8vw, 38px);
+        font-weight: 660;
+        letter-spacing: -0.01em;
+        line-height: 1.4;
+      }
+      .statement .accent {
+        color: var(--signal);
+      }
+      .statement .foot {
+        margin-top: 24px;
+        font-size: 17px;
+        color: var(--ink-2);
+        max-width: 54ch;
+      }
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+      }
+      .flow .node {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 22px 18px;
+      }
+      .flow .node .n {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .flow .node h3 {
+        margin-top: 12px;
+        font-size: 16px;
+        font-weight: 640;
+      }
+      .flow .node p {
+        margin-top: 8px;
+        font-size: 13.5px;
+        color: var(--ink-2);
+      }
+      .flow .node.hot {
+        border-color: color-mix(in srgb, var(--signal) 55%, var(--line));
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--signal) 30%, transparent);
+      }
+      .flow .node.hot .n {
+        color: var(--signal);
+      }
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+      .principle {
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+      }
+      .principle:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .principle h3 {
+        font-size: 20px;
+        font-weight: 640;
+      }
+      .principle p {
+        margin-top: 8px;
+        color: var(--ink-2);
+        font-size: 15.5px;
+      }
+      .isnot {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .isnot .panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 26px 24px;
+        background: var(--card);
+      }
+      .isnot .panel.no {
+        background: var(--paper-2);
+      }
+      .isnot h3 {
+        font-size: 14px;
+        font-family: var(--mono);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .isnot ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .isnot li {
+        padding: 10px 0;
+        border-top: 1px dashed var(--line);
+        display: flex;
+        gap: 12px;
+        font-size: 15.5px;
+        color: var(--ink-2);
+      }
+      .isnot li:first-child {
+        border-top: none;
+      }
+      .isnot .mark {
+        font-family: var(--mono);
+        flex: 0 0 auto;
+      }
+      .isnot .yes .mark {
+        color: var(--signal);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .chip {
+        border: 1px solid var(--line-2);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-family: var(--mono);
+        color: var(--ink-2);
+      }
+      .waitlist {
+        background: var(--ink);
+        color: var(--paper);
+        border-radius: 24px;
+        padding: 56px 44px;
+        text-align: center;
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist {
+          background: var(--paper-2);
+          border: 1px solid var(--line-2);
+        }
+      }
+      .waitlist h2 {
+        font-size: clamp(25px, 3.8vw, 38px);
+        font-weight: 680;
+        color: var(--paper);
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist h2 {
+          color: var(--ink);
+        }
+      }
+      .waitlist p {
+        margin: 16px auto 0;
+        max-width: 42ch;
+        color: color-mix(in srgb, var(--paper) 74%, transparent);
+        font-size: 17px;
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist p {
+          color: var(--ink-2);
+        }
+      }
+      form.signup {
+        margin: 30px auto 0;
+        display: flex;
+        gap: 10px;
+        max-width: 460px;
+      }
+      form.signup input {
+        flex: 1;
+        border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent);
+        background: color-mix(in srgb, var(--paper) 8%, transparent);
+        color: var(--paper);
+        border-radius: 999px;
+        padding: 13px 20px;
+        font: inherit;
+        font-size: 15px;
+        outline: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        form.signup input {
+          color: var(--ink);
+          border-color: var(--line-2);
+          background: var(--card);
+        }
+      }
+      form.signup input::placeholder {
+        color: color-mix(in srgb, var(--paper) 55%, transparent);
+      }
+      form.signup input:focus {
+        border-color: var(--signal);
+      }
+      .waitlist .micro {
+        margin-top: 16px;
+        font-size: 13px;
+        color: color-mix(in srgb, var(--paper) 55%, transparent);
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist .micro {
+          color: var(--muted);
+        }
+      }
+      #signup-done {
+        display: none;
+        margin-top: 26px;
+        font-size: 17px;
+        color: var(--paper);
+      }
+      @media (prefers-color-scheme: dark) {
+        #signup-done {
+          color: var(--ink);
+        }
+      }
+      .faq details {
+        border-top: 1px solid var(--line);
+        padding: 20px 0;
+      }
+      .faq details:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .faq summary {
+        cursor: pointer;
+        list-style: none;
+        font-size: 18px;
+        font-weight: 620;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq summary .plus {
+        font-family: var(--mono);
+        color: var(--muted);
+        transition: transform 0.2s ease;
+      }
+      .faq details[open] summary .plus {
+        transform: rotate(45deg);
+      }
+      .faq p {
+        margin-top: 14px;
+        color: var(--ink-2);
+        font-size: 16px;
+        max-width: 70ch;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 44px 0 60px;
+        color: var(--muted);
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      footer .fnote {
+        font-size: 13.5px;
+        max-width: 48ch;
+        line-height: 1.7;
+      }
+      footer a {
+        color: var(--ink-2);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--ink);
+      }
+      @media (max-width: 860px) {
+        .hero .wrap {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .cols-3 {
+          grid-template-columns: 1fr;
+        }
+        .flow {
+          grid-template-columns: 1fr 1fr;
+        }
+        .split {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .isnot {
+          grid-template-columns: 1fr;
+        }
+        .nav-links a:not(.lang):not(.btn) {
+          display: none;
+        }
+      }
+      @media (max-width: 520px) {
+        .flow {
+          grid-template-columns: 1fr;
+        }
+        form.signup {
+          flex-direction: column;
+        }
+        .waitlist {
+          padding: 40px 22px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+        .step-line {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Sumirea</a>
+        <nav class="nav-links">
+          <a href="#how">運作方式</a>
+          <a href="#why">為什麼</a>
+          <a href="#faq">常見問題</a>
+          <a class="lang" href="./index.html" hreflang="en">EN</a>
+          <a class="btn btn-primary" href="#waitlist">加入 Beta</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" style="border-top: none">
+        <div class="wrap">
+          <div>
+            <p class="eyebrow">Protect Cognitive Bandwidth</p>
+            <h1>放心離開。<br />需要你的時候，我們會叫你。</h1>
+            <p class="sub">
+              讓 AI 工具去做又長又慢的工作。Sumirea 在旁邊看著 —— 只在真正需要人來決定的那一刻，
+              才把你叫回來。
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#waitlist">加入 Beta 候補名單</a>
+              <a class="btn" href="#how">看 30 秒的故事 →</a>
+            </div>
+            <p class="assurance">
+              <span class="dot" aria-hidden="true" style="width: 8px; height: 8px"></span>
+              它不會點擊、不會核准、不會改動任何東西。Human in Control，永遠如此。
+            </p>
+          </div>
+
+          <div class="device" aria-label="Sumirea 流程的簡短動畫">
+            <div class="bar">
+              <i></i><i></i><i></i>
+              <span class="title">claude.ai — 工作中…</span>
+            </div>
+            <div class="stage" id="stage">
+              <div class="step-line" data-step="0">
+                <span class="ic">▶</span>
+                <span class="tx"><b>Claude 正在工作</b><span>你交付了一個很長的任務。</span></span>
+              </div>
+              <div class="step-line" data-step="1">
+                <span class="ic">↗</span>
+                <span class="tx"
+                  ><b>你離開了</b><span>去泡咖啡、去別的 repo、去過生活。</span></span
+                >
+              </div>
+              <div class="step-line signal" data-step="2">
+                <span class="ic">!</span>
+                <span class="tx"
+                  ><b>有個決定需要你</b><span>它走到了只有你能拍板的地方。</span></span
+                >
+              </div>
+              <div class="step-line" data-step="3">
+                <span class="ic">✓</span>
+                <span class="tx"
+                  ><b>Sumirea 把你叫回來</b><span>一則安靜的通知。你回來、決定、結束。</span></span
+                >
+              </div>
+              <p class="stage-foot" id="stagefoot">在需要你之前，不會有任何通知</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">你早已習慣、卻沒察覺的稅</p>
+            <h2>AI 讓工作變快了，卻也讓你等得更多。</h2>
+            <p>
+              你同時開著 Claude Code、Cursor、ChatGPT、Codex、Gemini。每一個都很快，
+              每一個又都會停下來問你一句。於是你盯著、你顧著、你一天切換上百次，
+              始終沒辦法真正進入深度工作。
+            </p>
+          </div>
+          <div class="cols-3">
+            <div class="card">
+              <p class="k">等待</p>
+              <h3>盯著進度條發呆</h3>
+              <p>
+                任務要跑八分鐘，你八分鐘全程盯著 —— 因為你不知道它什麼時候會需要你。
+                這就是白白花掉的 Cognitive Bandwidth。
+              </p>
+            </div>
+            <div class="card">
+              <p class="k">Micro Decision</p>
+              <h3>被無數小提示淹沒</h3>
+              <p>
+                「要繼續嗎？選哪個？核准這個？」一天幾十個低風險的小選擇，
+                單看都微不足道，加起來就是 Decision Fatigue。
+              </p>
+            </div>
+            <div class="card">
+              <p class="k">切換</p>
+              <h3>五個工具、零專注</h3>
+              <p>
+                每一個你半盯著的分頁，都在把你拉出心流。代價不是那幾分鐘 ——
+                而是你永遠拿不到完整的一小時。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATEMENT -->
+      <section class="statement">
+        <div class="wrap">
+          <p class="eyebrow">翻轉</p>
+          <p class="big">
+            Sumirea 翻轉了預設。不再是你盯著機器，
+            <span class="accent">而是機器等到真正需要你的那一刻</span> —— 其餘時間，它保持安靜。
+          </p>
+          <p class="foot">
+            安靜本身就是一種功能。沒有事情需要你的判斷，你就什麼都不會聽到。 Quiet Intelligence
+            的意思是：這個產品的價值，由它「多不打擾你」來證明。
+          </p>
+        </div>
+      </section>
+
+      <!-- HOW / DEMO -->
+      <section id="how">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">30 秒的故事</p>
+            <h2>一道界線，畫在你的注意力周圍。</h2>
+            <p>
+              這是 Sumirea 做的第一件事 —— 是這個想法的證明，而不是它的全部。 它看著一個很長的 AI
+              任務，在需要人做決定的那一瞬間，把你叫回來。這就是完整的循環。
+            </p>
+          </div>
+          <div class="flow">
+            <div class="node">
+              <p class="n">01</p>
+              <h3>Claude 正在工作</h3>
+              <p>你選用的 AI 工具正在跑一個長任務。</p>
+            </div>
+            <div class="node">
+              <p class="n">02</p>
+              <h3>你離開</h3>
+              <p>去做別的事、離開座位、別再盯著看。</p>
+            </div>
+            <div class="node hot">
+              <p class="n">03</p>
+              <h3>它需要人</h3>
+              <p>任務走到只有你的判斷能解決的地方。</p>
+            </div>
+            <div class="node hot">
+              <p class="n">04</p>
+              <h3>Sumirea 叫你</h3>
+              <p>一則通知 —— 唯一值得打擾你的那一刻。</p>
+            </div>
+            <div class="node">
+              <p class="n">05</p>
+              <h3>你回來決定</h3>
+              <p>帶著情境回到現場、拍板，然後再次放心離開。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IS / IS NOT -->
+      <section id="isnot">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">在你自己下定論之前，先讀這段</p>
+            <h2>Sumirea 是什麼 —— 又拒絕成為什麼。</h2>
+          </div>
+          <div class="isnot">
+            <div class="panel yes">
+              <h3>它是</h3>
+              <ul>
+                <li><span class="mark">→</span> AI 工作時，守護你注意力的一道界線。</li>
+                <li>
+                  <span class="mark">→</span> 守住 Cognitive Bandwidth 與 Protected Focus 的方式。
+                </li>
+                <li><span class="mark">→</span> 真正的決定（不是雜事）需要你時的那個訊號。</li>
+                <li>
+                  <span class="mark">→</span> 骨子裡就是 Human in Control：它只觀察，絕不替你動手。
+                </li>
+              </ul>
+            </div>
+            <div class="panel no">
+              <h3>它不是</h3>
+              <ul>
+                <li><span class="mark">✕</span> 什麼事都要嗶你一下的通知工具。</li>
+                <li><span class="mark">✕</span> 會點擊、核准、編輯的瀏覽器自動化。</li>
+                <li><span class="mark">✕</span> 又一個要你重新學的 AI 對話、agent 或 IDE。</li>
+                <li><span class="mark">✕</span> 一個把「你」自動化的工具。它自動化的是干擾。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHILOSOPHY -->
+      <section id="why">
+        <div class="wrap">
+          <div class="split">
+            <div>
+              <p class="eyebrow">我們為什麼這樣做</p>
+              <h2 style="font-size: clamp(25px, 3.4vw, 37px); font-weight: 680">
+                我們不自動化開發者。
+                <br />我們自動化那些讓他們無法專心創造的決定。
+              </h2>
+              <p style="margin-top: 20px; color: var(--ink-2); font-size: 17px; max-width: 40ch">
+                你的創造力與判斷，才是重點。圍繞在它周圍那些重複、低價值的選擇，才是稅。 Sumirea
+                瞄準的是稅 —— 從不碰只有你能做的工作。
+              </p>
+            </div>
+            <div>
+              <div class="principle">
+                <h3>Protect Cognitive Bandwidth</h3>
+                <p>
+                  你的注意力有限而珍貴。每一次多餘的打擾都在花掉它。
+                  我們的任務是花得更少，而不是更多。
+                </p>
+              </div>
+              <div class="principle">
+                <h3>Human in Control</h3>
+                <p>
+                  每一個有後果的決定，權力都在你手上。Sumirea 可以觀察、可以提醒，
+                  但它不會點擊、不會核准、不會改動你的工作。
+                </p>
+              </div>
+              <div class="principle">
+                <h3>Quiet Intelligence</h3>
+                <p>克制就是功能。最好的結果往往是安靜 —— 沒有事情需要你，所以沒有東西打擾你。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO -->
+      <section id="who">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">為誰而做</p>
+            <h2>為同時開著不只一個 AI 的開發者而生。</h2>
+            <p>
+              如果你的一天散落在好幾個 AI 工具之間 —— 每個都快、每個都在打斷你 ——
+              那你比任何人都更能感覺到那些等待與 Micro Decision。這正是我們這次 Beta 想服務的人。
+            </p>
+          </div>
+          <div class="chips" aria-label="開發者日常會用到的 AI 工具">
+            <span class="chip">Claude Code</span>
+            <span class="chip">ChatGPT</span>
+            <span class="chip">Cursor</span>
+            <span class="chip">Codex</span>
+            <span class="chip">Gemini</span>
+            <span class="chip">…以及下一個</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- WAITLIST -->
+      <section id="waitlist" style="border-top: none">
+        <div class="wrap">
+          <div class="waitlist">
+            <p class="eyebrow" style="color: color-mix(in srgb, var(--paper) 60%, transparent)">
+              Beta — 名額有限的早期使用權
+            </p>
+            <h2>被叫回來，而不是被燒乾。</h2>
+            <p>
+              加入候補名單。我們會邀請第一批開發者試用 Beta， 和我們一起定義：什麼才配得上打擾你 ——
+              以及什麼永遠不該。
+            </p>
+            <form class="signup" id="signup" novalidate>
+              <input
+                id="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="you@company.com"
+                aria-label="電子郵件"
+                required
+              />
+              <button class="btn btn-primary" type="submit">申請 Beta 使用權</button>
+            </form>
+            <p class="micro">邀請就緒時，只寄一封信給你。不寄垃圾信、不賣你的信箱，隨時可退訂。</p>
+            <p id="signup-done">✓ 你已經在名單上了。在邀請就緒之前我們會保持安靜 —— 這正是重點。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">問題</p>
+            <h2>誠實的常見問題。</h2>
+          </div>
+          <div class="faq">
+            <details>
+              <summary>這不就是個通知嗎？<span class="plus">+</span></summary>
+              <p>
+                通知只是手段，不是產品。任何東西都能嗶你一下。難的地方 —— 也是整個重點 ——
+                在於「只」在需要人做決定的那一刻嗶你，其餘每一刻都保持安靜。 Sumirea
+                提供的，是判斷你「什麼時候真正被需要」的那份判斷力。
+              </p>
+            </details>
+            <details>
+              <summary>它會替我點按鈕、核准東西嗎？<span class="plus">+</span></summary>
+              <p>
+                不會，永遠不會。Sumirea 只觀察、只發訊號；它不會代替你行動。 Human in Control
+                是一條硬規則，不是一個設定。它不會點擊、核准、合併或編輯任何東西。
+              </p>
+            </details>
+            <details>
+              <summary>Beta 支援哪些工具？<span class="plus">+</span></summary>
+              <p>
+                第一版 Beta 專注在開發者最常用的 AI 工具裡「等待你」的那一刻。
+                我們寧可從窄而誠實開始，也不會一次宣稱支援全部 ——
+                加入候補名單，告訴我們你最希望先支援哪個工具。
+              </p>
+            </details>
+            <details>
+              <summary>它會一直打擾我嗎？<span class="plus">+</span></summary>
+              <p>
+                設計目標正好相反。Quiet Intelligence 的意思是：這個產品由它「多不打擾你」來衡量。
+                沒有事情需要你的判斷，你就什麼都不會聽到。
+              </p>
+            </details>
+            <details>
+              <summary>又是一個我得重新學的 AI 嗎？<span class="plus">+</span></summary>
+              <p>
+                不是。Sumirea 不是對話、不是 agent、也不是 IDE。
+                它安靜地待在你已經在用的工具旁邊，只做一件事：在對的時刻把你叫回來。
+              </p>
+            </details>
+            <details>
+              <summary>Beta 要多少錢？<span class="plus">+</span></summary>
+              <p>
+                對我們邀請的第一批開發者，Beta 免費。我們想知道的是： 它是否真的守住了你的專注 ——
+                現在對我們來說，這比營收更值得。
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="fnote">
+          <a class="brand" href="#top" style="font-size: 16px; margin-bottom: 10px"
+            ><span class="dot" aria-hidden="true"></span>Sumirea</a
+          ><br />
+          Protect Cognitive Bandwidth。Human in Control。 我們自動化那些讓你無法專心創造的決定 ——
+          從不碰創造本身。
+        </div>
+        <div style="display: flex; gap: 22px; font-size: 14px; align-items: center">
+          <a href="#how">運作方式</a>
+          <a href="#waitlist">加入 Beta</a>
+          <a href="./index.html" hreflang="en">EN</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var steps = Array.prototype.slice.call(document.querySelectorAll('.step-line'));
+        var bar = document.querySelector('.device .bar .title');
+        var foot = document.getElementById('stagefoot');
+        var titles = [
+          'claude.ai — 工作中…',
+          'claude.ai — 工作中…',
+          'claude.ai — 正在等你',
+          'Sumirea — 把你叫回來了',
+        ];
+        var foots = [
+          '在需要你之前，不會有任何通知',
+          '在需要你之前，不會有任何通知',
+          '…唯一值得打擾你的那一刻',
+          '點一下，帶著情境回到現場',
+        ];
+        if (reduce) {
+          steps.forEach(function (s) {
+            s.classList.add('on');
+          });
+          return;
+        }
+        var i = 0;
+        function tick() {
+          steps.forEach(function (s, idx) {
+            s.classList.toggle('on', idx <= i);
+          });
+          if (bar) bar.textContent = titles[i] || titles[0];
+          if (foot) foot.textContent = foots[i] || foots[0];
+          i++;
+          if (i > steps.length) {
+            setTimeout(function () {
+              i = 0;
+              tick();
+            }, 1600);
+            return;
+          }
+          setTimeout(tick, 1150);
+        }
+        tick();
+      })();
+
+      (function () {
+        var form = document.getElementById('signup');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = document.getElementById('email');
+          if (!email.value || email.value.indexOf('@') === -1) {
+            email.focus();
+            email.style.borderColor = 'var(--signal)';
+            return;
+          }
+          form.style.display = 'none';
+          var done = document.getElementById('signup-done');
+          if (done) done.style.display = 'block';
+          // 整合點：將 email.value POST 到 Beta 候補名單端點。
+        });
+      })();
+    </script>
+  </body>
+</html>
