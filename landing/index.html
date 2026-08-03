@@ -3,6 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // Language: let the browser decide on first entry; respect a manual choice.
+      (function () {
+        try {
+          var pref = localStorage.getItem('sumirea-lang');
+          if (pref === 'zh') return location.replace('./index.zh-Hant.html');
+          if (pref === 'en') return;
+          var langs = (navigator.languages || [navigator.language || '']).join(',').toLowerCase();
+          if (/(^|,)zh|zh-/.test(langs)) location.replace('./index.zh-Hant.html');
+        } catch (e) {}
+      })();
+    </script>
     <title>Sumirea: Walk away. We'll call you when you're needed.</title>
     <meta
       name="description"
@@ -14,6 +26,11 @@
       content="A Developer Workflow Platform that protects your cognitive bandwidth while Claude, Cursor, ChatGPT, Codex and Gemini do the work."
     />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="og.png" />
     <link rel="alternate" hreflang="en" href="./index.html" />
     <link rel="alternate" hreflang="zh-Hant" href="./index.zh-Hant.html" />
     <link
@@ -32,11 +49,14 @@
         --paper-2: #efeee9;
         --ink: #17171a;
         --ink-2: #4b4b52;
-        --muted: #7c7c84;
+        --muted: #63636b;
         --line: #e2e0da;
         --line-2: #d4d2ca;
         --signal: #e0522f;
         --signal-ink: #ffffff;
+        --signal-text: #b8401e;
+        --btn-bg: #b8401e;
+        --btn-ink: #ffffff;
         --card: #fffffe;
         --radius: 14px;
         --maxw: 1080px;
@@ -57,6 +77,9 @@
           --line: #26262b;
           --line-2: #32323a;
           --signal: #ff6a45;
+          --signal-text: #ff6a45;
+          --btn-bg: #ff6a45;
+          --btn-ink: #101012;
           --card: #17171a;
         }
       }
@@ -171,13 +194,13 @@
       .btn:hover {
         transform: translateY(-1px);
       }
-      .btn-primary {
-        background: var(--signal);
-        color: var(--signal-ink);
-        border-color: var(--signal);
+      .btn.btn-primary {
+        background: var(--btn-bg);
+        color: var(--btn-ink);
+        border-color: var(--btn-bg);
       }
-      .btn-primary:hover {
-        background: color-mix(in srgb, var(--signal) 88%, #000);
+      .btn.btn-primary:hover {
+        background: color-mix(in srgb, var(--btn-bg) 85%, #000);
       }
       .nav .btn {
         padding: 8px 15px;
@@ -268,7 +291,7 @@
         align-items: center;
         gap: 9px;
         border: 1px solid var(--signal);
-        color: var(--signal);
+        color: var(--signal-text);
         border-radius: 12px;
         padding: 14px 22px;
         font-weight: 600;
@@ -349,9 +372,9 @@
         margin-top: 1px;
       }
       .step-line.signal .ic {
-        background: var(--signal);
-        border-color: var(--signal);
-        color: #fff;
+        background: var(--btn-bg);
+        border-color: var(--btn-bg);
+        color: var(--btn-ink);
       }
       .step-line.signal.on .ic {
         animation: pulse 1.8s ease-out infinite;
@@ -421,7 +444,7 @@
         font-size: 12px;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        color: var(--signal);
+        color: var(--signal-text);
         margin-bottom: 12px;
       }
       .card h3 {
@@ -446,7 +469,7 @@
         line-height: 1.14;
       }
       .statement .accent {
-        color: var(--signal);
+        color: var(--signal-text);
       }
       .statement .foot {
         margin-top: 24px;
@@ -485,7 +508,7 @@
         box-shadow: 0 0 0 1px color-mix(in srgb, var(--signal) 30%, transparent);
       }
       .flow .node.hot .n {
-        color: var(--signal);
+        color: var(--signal-text);
       }
       .split {
         display: grid;
@@ -552,7 +575,7 @@
         flex: 0 0 auto;
       }
       .isnot .yes .mark {
-        color: var(--signal);
+        color: var(--signal-text);
       }
       .chips {
         display: flex;
@@ -630,7 +653,7 @@
         color: color-mix(in srgb, var(--paper) 55%, transparent);
       }
       form.signup input:focus {
-        border-color: var(--signal);
+        border-color: var(--signal-text);
       }
       .waitlist .micro {
         margin-top: 16px;
@@ -751,10 +774,17 @@
           padding: 0 24px;
           max-height: 0;
           overflow: hidden;
-          transition: max-height 0.32s ease;
+          visibility: hidden;
+          transition:
+            max-height 0.32s ease,
+            visibility 0s linear 0.32s;
         }
         .nav-links.open {
           max-height: 70vh;
+          visibility: visible;
+          transition:
+            max-height 0.32s ease,
+            visibility 0s;
         }
         .nav-links a {
           padding: 15px 2px;
@@ -850,7 +880,7 @@
         color: var(--ink-2);
       }
       table.models tr.local td.prov {
-        color: var(--signal);
+        color: var(--signal-text);
       }
       .models-note {
         margin-top: 18px;
@@ -1323,7 +1353,7 @@
       <section id="waitlist" style="border-top: none">
         <div class="wrap">
           <div class="waitlist">
-            <p class="eyebrow" style="color: color-mix(in srgb, var(--paper) 60%, transparent)">
+            <p class="eyebrow" style="color: rgba(247, 246, 243, 0.62)">
               Beta, limited early access
             </p>
             <h2>Get called back, not burned out.</h2>
@@ -1436,6 +1466,19 @@
     </footer>
 
     <script>
+      // Remember an explicit language choice so the browser-detect entry respects it.
+      (function () {
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a');
+          if (!a) return;
+          var href = a.getAttribute('href') || '';
+          try {
+            if (/index\.zh-Hant\.html$/.test(href)) localStorage.setItem('sumirea-lang', 'zh');
+            else if (/index\.html$/.test(href)) localStorage.setItem('sumirea-lang', 'en');
+          } catch (_) {}
+        });
+      })();
+
       // Mobile nav: accordion open/close
       (function () {
         var btn = document.querySelector('.nav-toggle');
