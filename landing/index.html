@@ -6,12 +6,12 @@
     <title>Sumirea: Walk away. We'll call you when you're needed.</title>
     <meta
       name="description"
-      content="Sumirea protects your cognitive bandwidth while your AI tools work. Walk away from the waiting and the micro decisions, come back only when a decision actually needs you. Not a notification tool. Not browser automation."
+      content="Sumirea is a Developer Workflow Platform that protects your cognitive bandwidth while your AI tools work. It cuts the waiting, the tool-switching, and the repetitive decisions, so you stay focused on creating. Not another AI. Not another IDE."
     />
     <meta property="og:title" content="Walk away. We'll call you when you're needed." />
     <meta
       property="og:description"
-      content="A boundary around your attention while Claude Code, Cursor, ChatGPT, Codex and Gemini do the waiting for you."
+      content="A Developer Workflow Platform that protects your cognitive bandwidth while Claude, Cursor, ChatGPT, Codex and Gemini do the work."
     />
     <meta property="og:type" content="website" />
     <link rel="alternate" hreflang="en" href="./index.html" />
@@ -222,7 +222,7 @@
         margin-top: 22px;
         font-size: clamp(17px, 2.2vw, 20px);
         color: var(--ink-2);
-        max-width: 30ch;
+        max-width: 38ch;
       }
       .hero .cta-row {
         margin-top: 34px;
@@ -357,6 +357,11 @@
       .cols-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
       }
       .card {
@@ -667,6 +672,9 @@
         .cols-3 {
           grid-template-columns: 1fr;
         }
+        .cols-4 {
+          grid-template-columns: 1fr 1fr;
+        }
         .flow {
           grid-template-columns: 1fr 1fr;
         }
@@ -719,6 +727,9 @@
         }
       }
       @media (max-width: 520px) {
+        .cols-4 {
+          grid-template-columns: 1fr;
+        }
         .flow {
           grid-template-columns: 1fr;
         }
@@ -816,6 +827,7 @@
           <a href="#how">How it works</a>
           <a href="#why">Why</a>
           <a href="#models">Models</a>
+          <a href="#vision">Vision</a>
           <a href="#faq">FAQ</a>
           <a class="lang" href="./index.zh-Hant.html" hreflang="zh-Hant">繁體中文</a>
           <a class="btn btn-primary" href="#waitlist">Join the beta</a>
@@ -831,8 +843,8 @@
             <p class="eyebrow">Protect Cognitive Bandwidth</p>
             <h1>Walk away.<br />We'll call you when you're needed.</h1>
             <p class="sub">
-              Your AI tools do the long, slow work. Sumirea watches, then pulls you back only for
-              the one decision that actually needs a human.
+              Sumirea is a Developer Workflow Platform. Your AI tools do the work; it pulls you back
+              only for the one decision that actually needs a human.
             </p>
             <div class="cta-row">
               <a class="btn btn-primary" href="#waitlist">Join the beta waitlist</a>
@@ -1068,6 +1080,13 @@
                   so nothing interrupted you.
                 </p>
               </div>
+              <div class="principle">
+                <h3>Automate Decisions, Not Creativity</h3>
+                <p>
+                  Sumirea automates the repetitive, low-value decisions around your work. Your
+                  creativity and judgment are never the target.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1085,13 +1104,12 @@
               building the beta for.
             </p>
           </div>
-          <div class="chips" aria-label="AI tools in the developer's day">
-            <span class="chip">Claude Code</span>
-            <span class="chip">ChatGPT</span>
-            <span class="chip">Cursor</span>
-            <span class="chip">Codex</span>
-            <span class="chip">Gemini</span>
-            <span class="chip">…and the next one</span>
+          <div class="chips" aria-label="Who Sumirea is for">
+            <span class="chip">AI Heavy Developers</span>
+            <span class="chip">Solo Founders</span>
+            <span class="chip">Indie Hackers</span>
+            <span class="chip">AI Startup Teams</span>
+            <span class="chip">Open Source Maintainers</span>
           </div>
         </div>
       </section>
@@ -1170,6 +1188,50 @@
             Nine providers today, and more on the way. Intelligence Routing picks the right model
             for each task; BYOK keeps your keys, accounts, and data yours.
           </p>
+        </div>
+      </section>
+
+      <!-- FUTURE -->
+      <section id="vision">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Where it's going</p>
+            <h2>
+              Waiting for You is step one. Sumirea grows into a full Developer Workflow Platform.
+            </h2>
+            <p>
+              These are directions we're building toward, not shipped features. Each one follows the
+              same rule: reduce the interruptions and repetitive decisions around your work, never
+              the creative work itself.
+            </p>
+          </div>
+          <div class="cols-4">
+            <div class="card">
+              <p class="k">Coordination</p>
+              <h3>Workflow Coordination</h3>
+              <p>
+                Coordinate multiple AI tools and workflows so switching between them costs you less.
+              </p>
+            </div>
+            <div class="card">
+              <p class="k">Observation</p>
+              <h3>Workflow Observation</h3>
+              <p>Observe how your work actually flows and build a reviewable Workflow Journal.</p>
+            </div>
+            <div class="card">
+              <p class="k">Learning</p>
+              <h3>Workflow Learning</h3>
+              <p>Spot the patterns you repeat and suggest the workflows worth automating.</p>
+            </div>
+            <div class="card">
+              <p class="k">Evolution</p>
+              <h3>Workflow Evolution</h3>
+              <p>
+                Keep analyzing and improving workflows, so teams build best practices instead of
+                just running fixed steps.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

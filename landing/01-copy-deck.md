@@ -209,14 +209,14 @@ Section 順序（與核可 IA 一致）：
 - Eyebrow: `WHO IT'S FOR`
 - Heading: Built for developers who run more than one AI at once.
 - Body: If your day is spread across several AI tools, each fast, each interrupting, you feel the waiting and the micro decisions more than anyone. That's exactly who we're building the beta for.
-- Chips: `Claude Code` · `ChatGPT` · `Cursor` · `Codex` · `Gemini` · `…and the next one`
+- Chips (personas): `AI Heavy Developers` · `Solo Founders` · `Indie Hackers` · `AI Startup Teams` · `Open Source Maintainers`
 
 **繁體中文**
 
 - Eyebrow：`為誰而做`
 - Heading：為同時開著不只一個 AI 的開發者而生。
 - Body：如果你的一天散落在好幾個 AI 工具之間，每個都快、每個都在打斷你，那你比任何人都更能感覺到那些等待與 Micro Decision。這正是我們這次 Beta 想服務的人。
-- Chips：`Claude Code` · `ChatGPT` · `Cursor` · `Codex` · `Gemini` · `…以及下一個`
+- Chips（persona）：`AI Heavy Developers` · `Solo Founder` · `Indie Hacker` · `AI Startup Team` · `Open Source Maintainers`
 
 ---
 
@@ -254,7 +254,38 @@ Section 順序（與核可 IA 一致）：
 | Groq                                | llama-3.3-70b, llama-3.1-8b, qwen-2.5-72b          | Blazing fast, with a free tier                   | 速度極快、有免費額度        |
 | Ollama (local) / Ollama（本機模型） | llama3.2, qwen2.5:7b, gemma3                       | Zero API cost, a Local Model on your own machine | 零 API 費用，跑在自己電腦上 |
 
-> 對照來源表的兩處在地化調整（保留原意、貼合開發者 Landing 語氣）：Claude 的「課堂預設」→「預設選擇（Default choice）」；Groq 的「課堂示範友善」略去，保留「速度極快、有免費額度」。如需保留原「課堂」語境可還原。
+> 「適合誰」欄採開發者語氣（已與人類確認）：Claude 為「預設選擇，正式站已接（Default choice）」；Groq 為「速度極快、有免費額度」。
+
+---
+
+## 8.7 Where it's going · _purpose: 從 MVP 過渡到 Developer Workflow Platform 的願景（誠實標示為方向）_
+
+> 定位升級：Sumirea 是一個 **Developer Workflow Platform**（brief 定案）。一句話定位：
+> _Sumirea is a Developer Workflow Platform that protects cognitive bandwidth by reducing interruptions, repetitive decisions, and AI waiting time, so developers can stay focused on creating._
+> 對應第 4 條原則：**Automate Decisions, Not Creativity**（自動化重複決策，而不是創造力）。
+
+**EN**
+
+- Eyebrow: `WHERE IT'S GOING`
+- Heading: Waiting for You is step one. Sumirea grows into a full Developer Workflow Platform.
+- Intro: These are directions we're building toward, not shipped features. Each one follows the same rule: reduce the interruptions and repetitive decisions around your work, never the creative work itself.
+
+**繁體中文**
+
+- Eyebrow：`未來方向`
+- Heading：Waiting for You 只是第一步。Sumirea 會長成完整的 Developer Workflow Platform。
+- Intro：以下是我們正在前進的方向，不是已上線的功能。每一項都遵守同一條規則：減少工作周圍的中斷與重複決策，而不是碰你的創造工作。
+
+**Four directions（EN / 繁體中文）**
+
+| Direction             | EN                                                                                                    | 繁體中文                                                            |
+| --------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Workflow Coordination | Coordinate multiple AI tools and workflows so switching between them costs you less.                  | 協調多個 AI 工具與工作流程，降低彼此切換的成本。                    |
+| Workflow Observation  | Observe how your work actually flows and build a reviewable Workflow Journal.                         | 觀察你的開發流程，建立可回顧的 Workflow Journal。                   |
+| Workflow Learning     | Spot the patterns you repeat and suggest the workflows worth automating.                              | 找出你重複的模式，提出值得自動化的 Workflow 建議。                  |
+| Workflow Evolution    | Keep analyzing and improving workflows, so teams build best practices instead of running fixed steps. | 持續分析與改善 Workflow，讓團隊建立最佳實踐，而不只是執行固定流程。 |
+
+> 對應 Canonical 概念：**Workflow**、**Journal**、**Automation**、**Learning**、**Evolution**（皆為既有語彙）。此區塊呈現方向，不宣稱已上線，維持 Quiet Intelligence 的誠實。
 
 ---
 

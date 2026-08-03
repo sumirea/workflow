@@ -6,12 +6,12 @@
     <title>Sumirea：放心離開，需要你的時候我們會叫你。</title>
     <meta
       name="description"
-      content="Sumirea 在你的 AI 工具工作時，保護你的 Cognitive Bandwidth。離開那些等待與 Micro Decision，只在真正需要人的決定出現時，才把你叫回來。不是通知工具，也不是瀏覽器自動化。"
+      content="Sumirea 是一個 Developer Workflow Platform，在你的 AI 工具工作時保護你的 Cognitive Bandwidth。減少等待、切換與重複決策，讓你專注在真正的創造。不是另一個 AI，也不是另一個 IDE。"
     />
     <meta property="og:title" content="放心離開。需要你的時候，我們會叫你。" />
     <meta
       property="og:description"
-      content="當 Claude Code、Cursor、ChatGPT、Codex、Gemini 在替你等待時，它是一道守護你注意力的界線。"
+      content="一個 Developer Workflow Platform，在 Claude、Cursor、ChatGPT、Codex、Gemini 替你工作時，守護你的 Cognitive Bandwidth。"
     />
     <meta property="og:type" content="website" />
     <link rel="alternate" hreflang="en" href="./index.html" />
@@ -223,7 +223,7 @@
         margin-top: 22px;
         font-size: clamp(16px, 2.1vw, 19px);
         color: var(--ink-2);
-        max-width: 26ch;
+        max-width: 30ch;
       }
       .hero .cta-row {
         margin-top: 34px;
@@ -358,6 +358,11 @@
       .cols-3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
       }
       .card {
@@ -669,6 +674,9 @@
         .cols-3 {
           grid-template-columns: 1fr;
         }
+        .cols-4 {
+          grid-template-columns: 1fr 1fr;
+        }
         .flow {
           grid-template-columns: 1fr 1fr;
         }
@@ -721,6 +729,9 @@
         }
       }
       @media (max-width: 520px) {
+        .cols-4 {
+          grid-template-columns: 1fr;
+        }
         .flow {
           grid-template-columns: 1fr;
         }
@@ -818,6 +829,7 @@
           <a href="#how">運作方式</a>
           <a href="#why">為什麼</a>
           <a href="#models">模型</a>
+          <a href="#vision">願景</a>
           <a href="#faq">常見問題</a>
           <a class="lang" href="./index.html" hreflang="en">EN</a>
           <a class="btn btn-primary" href="#waitlist">加入 Beta</a>
@@ -833,8 +845,8 @@
             <p class="eyebrow">Protect Cognitive Bandwidth</p>
             <h1>放心離開。<br />需要你的時候，我們會叫你。</h1>
             <p class="sub">
-              讓 AI 工具去做又長又慢的工作。Sumirea 在旁邊看著，只在真正需要人來決定的那一刻，
-              才把你叫回來。
+              Sumirea 是一個 Developer Workflow Platform。讓 AI
+              工具去做那些工作，只在真正需要人來決定的那一刻，才把你叫回來。
             </p>
             <div class="cta-row">
               <a class="btn btn-primary" href="#waitlist">加入 Beta 候補名單</a>
@@ -1045,6 +1057,13 @@
                 <h3>Quiet Intelligence</h3>
                 <p>克制就是功能。最好的結果往往是安靜，沒有事情需要你，所以沒有東西打擾你。</p>
               </div>
+              <div class="principle">
+                <h3>Automate Decisions, Not Creativity</h3>
+                <p>
+                  Sumirea
+                  自動化的是工作周圍那些重複、低價值的決策。你的創造力與判斷，永遠不是被自動化的對象。
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1061,13 +1080,12 @@
               那你比任何人都更能感覺到那些等待與 Micro Decision。這正是我們這次 Beta 想服務的人。
             </p>
           </div>
-          <div class="chips" aria-label="開發者日常會用到的 AI 工具">
-            <span class="chip">Claude Code</span>
-            <span class="chip">ChatGPT</span>
-            <span class="chip">Cursor</span>
-            <span class="chip">Codex</span>
-            <span class="chip">Gemini</span>
-            <span class="chip">…以及下一個</span>
+          <div class="chips" aria-label="Sumirea 適合誰">
+            <span class="chip">AI Heavy Developers</span>
+            <span class="chip">Solo Founder</span>
+            <span class="chip">Indie Hacker</span>
+            <span class="chip">AI Startup Team</span>
+            <span class="chip">Open Source Maintainers</span>
           </div>
         </div>
       </section>
@@ -1146,6 +1164,41 @@
             目前 9 家，之後會再增加。Intelligence Routing 為每個任務挑對模型；BYOK
             讓金鑰、帳號與資料都還是你的。
           </p>
+        </div>
+      </section>
+
+      <!-- FUTURE -->
+      <section id="vision">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">未來方向</p>
+            <h2>Waiting for You 只是第一步。Sumirea 會長成完整的 Developer Workflow Platform。</h2>
+            <p>
+              以下是我們正在前進的方向，不是已上線的功能。每一項都遵守同一條規則：減少工作周圍的中斷與重複決策，而不是碰你的創造工作。
+            </p>
+          </div>
+          <div class="cols-4">
+            <div class="card">
+              <p class="k">Coordination</p>
+              <h3>Workflow Coordination</h3>
+              <p>協調多個 AI 工具與工作流程，降低彼此切換的成本。</p>
+            </div>
+            <div class="card">
+              <p class="k">Observation</p>
+              <h3>Workflow Observation</h3>
+              <p>觀察你的開發流程，建立可回顧的 Workflow Journal。</p>
+            </div>
+            <div class="card">
+              <p class="k">Learning</p>
+              <h3>Workflow Learning</h3>
+              <p>找出你重複的模式，提出值得自動化的 Workflow 建議。</p>
+            </div>
+            <div class="card">
+              <p class="k">Evolution</p>
+              <h3>Workflow Evolution</h3>
+              <p>持續分析與改善 Workflow，讓團隊建立最佳實踐，而不只是執行固定流程。</p>
+            </div>
+          </div>
         </div>
       </section>
 
