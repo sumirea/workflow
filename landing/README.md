@@ -1,4 +1,4 @@
-# Sumirea — Beta Landing Page
+# Sumirea, Beta Landing Page
 
 Static, self-contained bilingual landing page for the Sumirea beta waitlist.
 Product-marketing only. It does not depend on, build with, or modify any of the

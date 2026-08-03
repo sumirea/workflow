@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sumirea — 放心離開，需要你的時候我們會叫你。</title>
+    <title>Sumirea：放心離開，需要你的時候我們會叫你。</title>
     <meta
       name="description"
       content="Sumirea 在你的 AI 工具工作時，保護你的 Cognitive Bandwidth。離開那些等待與 Micro Decision，只在真正需要人的決定出現時，才把你叫回來。不是通知工具，也不是瀏覽器自動化。"
@@ -172,6 +172,38 @@
       }
       .nav .btn {
         padding: 8px 15px;
+      }
+      .nav-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--line-2);
+        border-radius: 10px;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      .nav-toggle .bar {
+        width: 18px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition:
+          transform 0.25s ease,
+          opacity 0.2s ease;
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
       }
       .hero {
         padding: 92px 0 40px;
@@ -647,8 +679,45 @@
         .isnot {
           grid-template-columns: 1fr;
         }
-        .nav-links a:not(.lang):not(.btn) {
-          display: none;
+        .nav .wrap {
+          position: relative;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .nav-links {
+          position: absolute;
+          top: 62px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: color-mix(in srgb, var(--paper) 97%, transparent);
+          backdrop-filter: saturate(1.4) blur(10px);
+          border-bottom: 1px solid var(--line);
+          padding: 0 24px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.32s ease;
+        }
+        .nav-links.open {
+          max-height: 70vh;
+        }
+        .nav-links a {
+          padding: 15px 2px;
+          border-top: 1px solid var(--line);
+          font-size: 16px;
+        }
+        .nav-links a:first-child {
+          border-top: none;
+        }
+        .nav-links .lang {
+          font-size: 14px;
+        }
+        .nav-links .btn {
+          margin: 14px 0 18px;
+          justify-content: center;
         }
       }
       @media (max-width: 520px) {
@@ -734,7 +803,18 @@
     <header class="nav">
       <div class="wrap">
         <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Sumirea</a>
-        <nav class="nav-links">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="選單"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
           <a href="#how">運作方式</a>
           <a href="#why">為什麼</a>
           <a href="#models">模型</a>
@@ -753,7 +833,7 @@
             <p class="eyebrow">Protect Cognitive Bandwidth</p>
             <h1>放心離開。<br />需要你的時候，我們會叫你。</h1>
             <p class="sub">
-              讓 AI 工具去做又長又慢的工作。Sumirea 在旁邊看著 —— 只在真正需要人來決定的那一刻，
+              讓 AI 工具去做又長又慢的工作。Sumirea 在旁邊看著，只在真正需要人來決定的那一刻，
               才把你叫回來。
             </p>
             <div class="cta-row">
@@ -769,7 +849,7 @@
           <div class="device" aria-label="Sumirea 流程的簡短動畫">
             <div class="bar">
               <i></i><i></i><i></i>
-              <span class="title">claude.ai — 工作中…</span>
+              <span class="title">claude.ai，工作中…</span>
             </div>
             <div class="stage" id="stage">
               <div class="step-line" data-step="0">
@@ -817,8 +897,8 @@
               <p class="k">等待</p>
               <h3>盯著進度條發呆</h3>
               <p>
-                任務要跑八分鐘，你八分鐘全程盯著 —— 因為你不知道它什麼時候會需要你。
-                這就是白白花掉的 Cognitive Bandwidth。
+                任務要跑八分鐘，你八分鐘全程盯著，因為你不知道它什麼時候會需要你。 這就是白白花掉的
+                Cognitive Bandwidth。
               </p>
             </div>
             <div class="card">
@@ -833,7 +913,7 @@
               <p class="k">切換</p>
               <h3>五個工具、零專注</h3>
               <p>
-                每一個你半盯著的分頁，都在把你拉出心流。代價不是那幾分鐘 ——
+                每一個你半盯著的分頁，都在把你拉出心流。代價不是那幾分鐘，
                 而是你永遠拿不到完整的一小時。
               </p>
             </div>
@@ -847,7 +927,7 @@
           <p class="eyebrow">翻轉</p>
           <p class="big">
             Sumirea 翻轉了預設。不再是你盯著機器，
-            <span class="accent">而是機器等到真正需要你的那一刻</span> —— 其餘時間，它保持安靜。
+            <span class="accent">而是機器等到真正需要你的那一刻</span>，其餘時間，它保持安靜。
           </p>
           <p class="foot">
             安靜本身就是一種功能。沒有事情需要你的判斷，你就什麼都不會聽到。 Quiet Intelligence
@@ -863,7 +943,7 @@
             <p class="eyebrow">30 秒的故事</p>
             <h2>一道界線，畫在你的注意力周圍。</h2>
             <p>
-              這是 Sumirea 做的第一件事 —— 是這個想法的證明，而不是它的全部。 它看著一個很長的 AI
+              這是 Sumirea 做的第一件事，是這個想法的證明，而不是它的全部。它看著一個很長的 AI
               任務，在需要人做決定的那一瞬間，把你叫回來。這就是完整的循環。
             </p>
           </div>
@@ -886,7 +966,7 @@
             <div class="node hot">
               <p class="n">04</p>
               <h3>Sumirea 叫你</h3>
-              <p>一則通知 —— 唯一值得打擾你的那一刻。</p>
+              <p>一則通知，唯一值得打擾你的那一刻。</p>
             </div>
             <div class="node">
               <p class="n">05</p>
@@ -902,7 +982,7 @@
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">在你自己下定論之前，先讀這段</p>
-            <h2>Sumirea 是什麼 —— 又拒絕成為什麼。</h2>
+            <h2>Sumirea 是什麼，又拒絕成為什麼。</h2>
           </div>
           <div class="isnot">
             <div class="panel yes">
@@ -943,7 +1023,7 @@
               </h2>
               <p style="margin-top: 20px; color: var(--ink-2); font-size: 17px; max-width: 40ch">
                 你的創造力與判斷，才是重點。圍繞在它周圍那些重複、低價值的選擇，才是稅。 Sumirea
-                瞄準的是稅 —— 從不碰只有你能做的工作。
+                瞄準的是稅，從不碰只有你能做的工作。
               </p>
             </div>
             <div>
@@ -963,7 +1043,7 @@
               </div>
               <div class="principle">
                 <h3>Quiet Intelligence</h3>
-                <p>克制就是功能。最好的結果往往是安靜 —— 沒有事情需要你，所以沒有東西打擾你。</p>
+                <p>克制就是功能。最好的結果往往是安靜，沒有事情需要你，所以沒有東西打擾你。</p>
               </div>
             </div>
           </div>
@@ -977,7 +1057,7 @@
             <p class="eyebrow">為誰而做</p>
             <h2>為同時開著不只一個 AI 的開發者而生。</h2>
             <p>
-              如果你的一天散落在好幾個 AI 工具之間 —— 每個都快、每個都在打斷你 ——
+              如果你的一天散落在好幾個 AI 工具之間，每個都快、每個都在打斷你，
               那你比任何人都更能感覺到那些等待與 Micro Decision。這正是我們這次 Beta 想服務的人。
             </p>
           </div>
@@ -1000,7 +1080,7 @@
             <h2>用你已經在付費的模型就行。</h2>
             <p>
               Sumirea 是 model-agnostic。用你自己的金鑰（BYOK），把每個任務交給你信任的 AI Provider
-              —— 或把敏感工作留在完全不離開你機器的 Local Model 上。Human in
+              ，或把敏感工作留在完全不離開你機器的 Local Model 上。Human in
               Control，也延伸到你的模型。
             </p>
           </div>
@@ -1074,11 +1154,11 @@
         <div class="wrap">
           <div class="waitlist">
             <p class="eyebrow" style="color: color-mix(in srgb, var(--paper) 60%, transparent)">
-              Beta — 名額有限的早期使用權
+              Beta，名額有限的早期使用權
             </p>
             <h2>被叫回來，而不是被燒乾。</h2>
             <p>
-              加入候補名單。我們會邀請第一批開發者試用 Beta， 和我們一起定義：什麼才配得上打擾你 ——
+              加入候補名單。我們會邀請第一批開發者試用 Beta，和我們一起定義：什麼才配得上打擾你，
               以及什麼永遠不該。
             </p>
             <form class="signup" id="signup" novalidate>
@@ -1094,7 +1174,7 @@
               <button class="btn btn-primary" type="submit">申請 Beta 使用權</button>
             </form>
             <p class="micro">邀請就緒時，只寄一封信給你。不寄垃圾信、不賣你的信箱，隨時可退訂。</p>
-            <p id="signup-done">✓ 你已經在名單上了。在邀請就緒之前我們會保持安靜 —— 這正是重點。</p>
+            <p id="signup-done">✓ 你已經在名單上了。在邀請就緒之前我們會保持安靜，這正是重點。</p>
           </div>
         </div>
       </section>
@@ -1110,7 +1190,7 @@
             <details>
               <summary>這不就是個通知嗎？<span class="plus">+</span></summary>
               <p>
-                通知只是手段，不是產品。任何東西都能嗶你一下。難的地方 —— 也是整個重點 ——
+                通知只是手段，不是產品。任何東西都能嗶你一下。難的地方，也是整個重點，
                 在於「只」在需要人做決定的那一刻嗶你，其餘每一刻都保持安靜。 Sumirea
                 提供的，是判斷你「什麼時候真正被需要」的那份判斷力。
               </p>
@@ -1126,7 +1206,7 @@
               <summary>Beta 支援哪些工具？<span class="plus">+</span></summary>
               <p>
                 第一版 Beta 專注在開發者最常用的 AI 工具裡「等待你」的那一刻。
-                我們寧可從窄而誠實開始，也不會一次宣稱支援全部 ——
+                我們寧可從窄而誠實開始，也不會一次宣稱支援全部，
                 加入候補名單，告訴我們你最希望先支援哪個工具。
               </p>
             </details>
@@ -1147,7 +1227,7 @@
             <details>
               <summary>Beta 要多少錢？<span class="plus">+</span></summary>
               <p>
-                對我們邀請的第一批開發者，Beta 免費。我們想知道的是： 它是否真的守住了你的專注 ——
+                對我們邀請的第一批開發者，Beta 免費。我們想知道的是： 它是否真的守住了你的專注，
                 現在對我們來說，這比營收更值得。
               </p>
             </details>
@@ -1162,7 +1242,7 @@
           <a class="brand" href="#top" style="font-size: 16px; margin-bottom: 10px"
             ><span class="dot" aria-hidden="true"></span>Sumirea</a
           ><br />
-          Protect Cognitive Bandwidth。Human in Control。 我們自動化那些讓你無法專心創造的決定 ——
+          Protect Cognitive Bandwidth。Human in Control。 我們自動化那些讓你無法專心創造的決定，
           從不碰創造本身。
         </div>
         <div style="display: flex; gap: 22px; font-size: 14px; align-items: center">
@@ -1174,16 +1254,33 @@
     </footer>
 
     <script>
+      // Mobile nav: accordion open/close
+      (function () {
+        var btn = document.querySelector('.nav-toggle');
+        var links = document.getElementById('nav-links');
+        if (!btn || !links) return;
+        function setOpen(open) {
+          links.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function () {
+          setOpen(!links.classList.contains('open'));
+        });
+        links.addEventListener('click', function (e) {
+          if (e.target.closest('a')) setOpen(false);
+        });
+      })();
+
       (function () {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var steps = Array.prototype.slice.call(document.querySelectorAll('.step-line'));
         var bar = document.querySelector('.device .bar .title');
         var foot = document.getElementById('stagefoot');
         var titles = [
-          'claude.ai — 工作中…',
-          'claude.ai — 工作中…',
-          'claude.ai — 正在等你',
-          'Sumirea — 把你叫回來了',
+          'claude.ai，工作中…',
+          'claude.ai，工作中…',
+          'claude.ai，正在等你',
+          'Sumirea，把你叫回來了',
         ];
         var foots = [
           '在需要你之前，不會有任何通知',

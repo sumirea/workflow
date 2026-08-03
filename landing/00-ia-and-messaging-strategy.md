@@ -1,4 +1,4 @@
-# Sumirea Landing Page — Information Architecture & Messaging Strategy
+# Sumirea Landing Page, Information Architecture & Messaging Strategy
 
 > **狀態：** Planning（提案中，待人類確認）
 > **範圍：** 僅產品行銷。Hero、敘事、IA、CTA、Demo 定位、Messaging。
@@ -11,10 +11,10 @@
 
 一位第一次到訪的開發者，應在 **30 秒內** 能回答：
 
-1. **這是什麼？** —— 在 AI 工作時，把我叫回來的一道界線。
-2. **解決我什麼問題？** —— 等待、Micro Decision、不斷切換造成的 Decision Fatigue。
-3. **它不是什麼？** —— 不是通知工具，不是瀏覽器自動化。
-4. **下一步？** —— 留下 email 加入 Beta 候補名單。
+1. **這是什麼？**，在 AI 工作時，把我叫回來的一道界線。
+2. **解決我什麼問題？**，等待、Micro Decision、不斷切換造成的 Decision Fatigue。
+3. **它不是什麼？**，不是通知工具，不是瀏覽器自動化。
+4. **下一步？**，留下 email 加入 Beta 候補名單。
 
 Landing Page 的每一個 Section 都必須服務其中至少一項；不服務的就砍掉。
 
@@ -29,7 +29,7 @@ Landing Page 的每一個 Section 都必須服務其中至少一項；不服務�
 
 - **產品類別（我們自己說的）：** 一道守護注意力的界線 / Protected Focus 的守門人。
 - **不主張的類別：** notification app、browser automation、AI agent、AI IDE、AI chat。
-- **一句話電梯簡報：** 「你的 AI 工具去做又長又慢的活；Sumirea 只在真正需要人來決定的那一刻，把你叫回來 —— 其餘時間保持安靜。」
+- **一句話電梯簡報：** 「你的 AI 工具去做又長又慢的活；Sumirea 只在真正需要人來決定的那一刻，把你叫回來，其餘時間保持安靜。」
 
 ### 1.2 訊息階層（Messaging Hierarchy）
 
@@ -40,7 +40,7 @@ Landing Page 的每一個 Section 都必須服務其中至少一項；不服務�
 | **Proof（證明）**       | Browser MVP 的「Claude 等你 → 通知 → 回來」故事。               | How it works / Demo        |
 | **Trust（信任）**       | Human in Control：只觀察，絕不替你動手。                        | Is/Is-not、Philosophy、FAQ |
 
-### 1.3 語氣（Voice & Tone）—— 讓頁面本身就是 Quiet Intelligence
+### 1.3 語氣（Voice & Tone），讓頁面本身就是 Quiet Intelligence
 
 - **克制、冷靜、留白多。** 頁面的設計本身就示範「不打擾」。
 - **誠實、不誇大。** 這是 Beta / MVP，不宣稱支援全部工具。
@@ -56,7 +56,7 @@ Landing Page 的每一個 Section 都必須服務其中至少一項；不服務�
 | 安靜地待在既有工具旁             | 又一個要重新學的 AI chat / agent / IDE |
 | 自動化「干擾」                   | 自動化「你」                           |
 
-> 通知只是 **mechanism（手段）**，不是 product。難的是「只在對的一刻」響，其餘保持安靜 —— 那份判斷才是產品。
+> 通知只是 **mechanism（手段）**，不是 product。難的是「只在對的一刻」響，其餘保持安靜，那份判斷才是產品。
 
 ---
 
@@ -64,18 +64,18 @@ Landing Page 的每一個 Section 都必須服務其中至少一項；不服務�
 
 提出三個候選，並附推薦。
 
-### 方向 A —（推薦）「Walk away.」— 情緒 + 承諾
+### 方向 A, （推薦）「Walk away.」, 情緒 + 承諾
 
 - **Headline：** Walk away. We'll call you when you're needed.／放心離開。需要你的時候，我們會叫你。
-- **Sub：** 讓 AI 工具去做又長又慢的工作。Sumirea 在旁邊看著 —— 只在真正需要人決定的那一刻，把你叫回來。
+- **Sub：** 讓 AI 工具去做又長又慢的工作。Sumirea 在旁邊看著，只在真正需要人決定的那一刻，把你叫回來。
 - **為何推薦：** 直接就是官方 Positioning，30 秒理解門檻最低；情緒（放心離開）+ 明確承諾（會叫你）兼具。
 
-### 方向 B —「Stop babysitting your AI.」— 痛點切入
+### 方向 B, 「Stop babysitting your AI.」, 痛點切入
 
 - **Headline：** Stop babysitting your AI.／別再當 AI 的保母。
 - **為何不作主打：** 較嗆、較負面，開場即批評使用者現況；適合放在 Problem Section，不適合 Hero 定調。
 
-### 方向 C —「Silence is the feature.」— 哲學切入
+### 方向 C, 「Silence is the feature.」, 哲學切入
 
 - **Headline：** Silence is the feature.／安靜，就是功能。
 - **為何不作主打：** 太抽象，第一次到訪者無法在 30 秒內判斷「這到底是什麼」；適合作為 Statement Section 的大標。
@@ -132,7 +132,7 @@ FAQ           解除最後疑慮                    ← 補上臨門一腳
 | 7   | **Who it's for**        | 給歸屬感         | 同時用 Claude Code / ChatGPT / Cursor / Codex / Gemini | 解決誰             |
 | 8   | **Beta Waitlist**       | 轉換：收 email   | 名額有限、免費、一起定義「什麼配得上打擾你」           | 下一步             |
 | 9   | **FAQ**                 | 解除最後疑慮     | 通知？會替我動手？支援哪些？會一直吵？要學嗎？收費？   | 信任               |
-| —   | **Footer**              | 收束品牌句       | Protect Cognitive Bandwidth. Human in Control.         | —                  |
+| ,   | **Footer**              | 收束品牌句       | Protect Cognitive Bandwidth. Human in Control.         | ,                  |
 
 > **刻意排除**（符合 Scope，不在此頁出現）：Runtime、SDK、Workflow Engine、Recorder、Architecture、Infrastructure、平台 roadmap。
 
@@ -143,7 +143,7 @@ FAQ           解除最後疑慮                    ← 補上臨門一腳
 - **定位：** Demo ＝ Primary Message 的 **Proof**，不是功能展示。它證明「只在對的一刻叫你」是真的做得到，而不是承諾。
 - **出現兩次，強度遞進：**
   1. **Hero 右側（輕量、動態）：** 一個小型「裝置」動畫，循環演示五步流程（Claude 工作 → 你離開 → 需要人 → Sumirea 叫你 → 回來決定）。目的：在首屏就把抽象承諾視覺化，降低 30 秒理解門檻。
-  2. **How it works Section（完整、可讀）：** 同一個故事攤成 5 步時間軸，第 3、4 步（需要人 / Sumirea 叫你）以 signal 色強調 —— 這是整個產品的高潮。
+  2. **How it works Section（完整、可讀）：** 同一個故事攤成 5 步時間軸，第 3、4 步（需要人 / Sumirea 叫你）以 signal 色強調，這是整個產品的高潮。
 - **敘事作用：** 它是 Problem（張力）與 Philosophy（信任）之間的橋。看完 Demo，使用者才有具體畫面去理解後面的「不是通知工具」與「Human in Control」。
 - **誠實邊界：** Demo 呈現 Browser MVP 的真實故事，不暗示尚未存在的能力（例如尚未支援的工具）。措辭上以「一則安靜的通知」呈現，避免讓它看起來像自動化。
 
@@ -164,7 +164,7 @@ FAQ           解除最後疑慮                    ← 補上臨門一腳
 - **大標：** Get called back, not burned out.／被叫回來，而不是被燒乾。
 - **副文：** 名額有限；邀請第一批開發者，一起定義「什麼配得上打擾你、什麼永遠不該」。
 - **表單微文案：** One email when your invite is ready. No spam.／邀請就緒時只寄一封信，不寄垃圾信、隨時退訂。
-- **送出後狀態：** 「你已在名單上。在邀請就緒前我們會保持安靜 —— 這正是重點。」（連確認訊息都示範 Quiet Intelligence）
+- **送出後狀態：** 「你已在名單上。在邀請就緒前我們會保持安靜，這正是重點。」（連確認訊息都示範 Quiet Intelligence）
 
 ### 6.3 CTA 原則
 

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Sumirea — Walk away. We'll call you when you're needed.</title>
+    <title>Sumirea: Walk away. We'll call you when you're needed.</title>
     <meta
       name="description"
-      content="Sumirea protects your cognitive bandwidth while your AI tools work. Walk away from the waiting and the micro decisions — come back only when a decision actually needs you. Not a notification tool. Not browser automation."
+      content="Sumirea protects your cognitive bandwidth while your AI tools work. Walk away from the waiting and the micro decisions, come back only when a decision actually needs you. Not a notification tool. Not browser automation."
     />
     <meta property="og:title" content="Walk away. We'll call you when you're needed." />
     <meta
@@ -172,6 +172,38 @@
       }
       .nav .btn {
         padding: 8px 15px;
+      }
+      .nav-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--line-2);
+        border-radius: 10px;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      .nav-toggle .bar {
+        width: 18px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition:
+          transform 0.25s ease,
+          opacity 0.2s ease;
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
       }
       .hero {
         padding: 92px 0 40px;
@@ -645,8 +677,45 @@
         .isnot {
           grid-template-columns: 1fr;
         }
-        .nav-links a:not(.lang):not(.btn) {
-          display: none;
+        .nav .wrap {
+          position: relative;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .nav-links {
+          position: absolute;
+          top: 62px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: color-mix(in srgb, var(--paper) 97%, transparent);
+          backdrop-filter: saturate(1.4) blur(10px);
+          border-bottom: 1px solid var(--line);
+          padding: 0 24px;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.32s ease;
+        }
+        .nav-links.open {
+          max-height: 70vh;
+        }
+        .nav-links a {
+          padding: 15px 2px;
+          border-top: 1px solid var(--line);
+          font-size: 16px;
+        }
+        .nav-links a:first-child {
+          border-top: none;
+        }
+        .nav-links .lang {
+          font-size: 14px;
+        }
+        .nav-links .btn {
+          margin: 14px 0 18px;
+          justify-content: center;
         }
       }
       @media (max-width: 520px) {
@@ -732,7 +801,18 @@
     <header class="nav">
       <div class="wrap">
         <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Sumirea</a>
-        <nav class="nav-links">
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
           <a href="#how">How it works</a>
           <a href="#why">Why</a>
           <a href="#models">Models</a>
@@ -751,7 +831,7 @@
             <p class="eyebrow">Protect Cognitive Bandwidth</p>
             <h1>Walk away.<br />We'll call you when you're needed.</h1>
             <p class="sub">
-              Your AI tools do the long, slow work. Sumirea watches — and pulls you back only for
+              Your AI tools do the long, slow work. Sumirea watches, then pulls you back only for
               the one decision that actually needs a human.
             </p>
             <div class="cta-row">
@@ -767,7 +847,7 @@
           <div class="device" aria-label="A short animation of the Sumirea flow">
             <div class="bar">
               <i></i><i></i><i></i>
-              <span class="title">claude.ai — working…</span>
+              <span class="title">claude.ai, working…</span>
             </div>
             <div class="stage" id="stage">
               <div class="step-line" data-step="0">
@@ -811,7 +891,7 @@
             <p class="eyebrow">The tax you stopped noticing</p>
             <h2>AI made the work faster. It also made you wait more.</h2>
             <p>
-              You run Claude Code, Cursor, ChatGPT, Codex, Gemini — often at the same time. Each one
+              You run Claude Code, Cursor, ChatGPT, Codex, Gemini, often at the same time. Each one
               is fast, and each one keeps stopping to ask you something. So you hover. You babysit.
               You context-switch a hundred times a day, and never quite drop into deep work.
             </p>
@@ -838,7 +918,7 @@
               <h3>Five tools, zero focus</h3>
               <p>
                 Every tab you keep half-watching is a tab pulling you out of flow. The cost isn't
-                the minutes — it's never getting a clean hour.
+                the minutes, it's never getting a clean hour.
               </p>
             </div>
           </div>
@@ -851,7 +931,7 @@
           <p class="eyebrow">The shift</p>
           <p class="big">
             Sumirea flips the default. Instead of you watching the machine,
-            <span class="accent">the machine waits for the moment it truly needs you</span> — and
+            <span class="accent">the machine waits for the moment it truly needs you</span>, and
             stays silent the rest of the time.
           </p>
           <p class="foot">
@@ -868,7 +948,7 @@
             <p class="eyebrow">The 30-second story</p>
             <h2>One boundary, drawn around your attention.</h2>
             <p>
-              This is the first thing Sumirea does — proof of the idea, not the whole of it. It
+              This is the first thing Sumirea does: proof of the idea, not the whole of it. It
               watches a long AI task and calls you back the instant a human decision appears. Here's
               the whole loop.
             </p>
@@ -892,7 +972,7 @@
             <div class="node hot">
               <p class="n">04</p>
               <h3>Sumirea calls you</h3>
-              <p>One notification — the single moment worth interrupting for.</p>
+              <p>One notification, the single moment worth interrupting for.</p>
             </div>
             <div class="node">
               <p class="n">05</p>
@@ -908,7 +988,7 @@
         <div class="wrap">
           <div class="section-head">
             <p class="eyebrow">Read this before you assume</p>
-            <h2>What Sumirea is — and what it refuses to be.</h2>
+            <h2>What Sumirea is, and what it refuses to be.</h2>
           </div>
           <div class="isnot">
             <div class="panel yes">
@@ -922,7 +1002,7 @@
                   Focus.
                 </li>
                 <li>
-                  <span class="mark">→</span> The signal that a real decision — not a chore — needs
+                  <span class="mark">→</span> The signal that a real decision, not a chore, needs
                   you.
                 </li>
                 <li>
@@ -963,7 +1043,7 @@
               </h2>
               <p style="margin-top: 20px; color: var(--ink-2); font-size: 17px; max-width: 46ch">
                 Your creativity and judgment are the point. The recurring, low-value choices around
-                them are the tax. Sumirea takes aim at the tax — never at the work only you can do.
+                them are the tax. Sumirea takes aim at the tax, never at the work only you can do.
               </p>
             </div>
             <div>
@@ -984,7 +1064,7 @@
               <div class="principle">
                 <h3>Quiet Intelligence</h3>
                 <p>
-                  Restraint is the feature. The best outcome is often silence — nothing needed you,
+                  Restraint is the feature. The best outcome is often silence, nothing needed you,
                   so nothing interrupted you.
                 </p>
               </div>
@@ -1000,8 +1080,8 @@
             <p class="eyebrow">Who it's for</p>
             <h2>Built for developers who run more than one AI at once.</h2>
             <p>
-              If your day is spread across several AI tools — each fast, each interrupting — you
-              feel the waiting and the micro decisions more than anyone. That's exactly who we're
+              If your day is spread across several AI tools, each fast, each interrupting, you feel
+              the waiting and the micro decisions more than anyone. That's exactly who we're
               building the beta for.
             </p>
           </div>
@@ -1024,7 +1104,7 @@
             <h2>Works with the models you already pay for.</h2>
             <p>
               Sumirea is model-agnostic. Bring your own key (BYOK) and route each task to the AI
-              provider you trust — or keep sensitive work on a Local Model that never leaves your
+              provider you trust, or keep sensitive work on a Local Model that never leaves your
               machine. Human in Control extends to your models, too.
             </p>
           </div>
@@ -1081,7 +1161,7 @@
                 <tr class="local">
                   <td class="prov">Ollama (local)</td>
                   <td class="mdl">llama3.2, qwen2.5:7b, gemma3</td>
-                  <td class="fit">Zero API cost — a Local Model that runs on your own machine</td>
+                  <td class="fit">Zero API cost: a Local Model that runs on your own machine</td>
                 </tr>
               </tbody>
             </table>
@@ -1098,12 +1178,12 @@
         <div class="wrap">
           <div class="waitlist">
             <p class="eyebrow" style="color: color-mix(in srgb, var(--paper) 60%, transparent)">
-              Beta — limited early access
+              Beta, limited early access
             </p>
             <h2>Get called back, not burned out.</h2>
             <p>
               Join the waitlist. We'll invite a first group of developers to try the beta and help
-              shape what earns the right to interrupt you — and what never should.
+              shape what earns the right to interrupt you, and what never should.
             </p>
             <form class="signup" id="signup" novalidate>
               <input
@@ -1122,7 +1202,7 @@
               time.
             </p>
             <p id="signup-done">
-              ✓ You're on the list. We'll be quiet until your invite is ready — that's the whole
+              ✓ You're on the list. We'll be quiet until your invite is ready, that's the whole
               point.
             </p>
           </div>
@@ -1141,7 +1221,7 @@
               <summary>Isn't this just a notification?<span class="plus">+</span></summary>
               <p>
                 A notification is the mechanism, not the product. Anything can buzz you. The hard
-                part — and the whole point — is buzzing you <em>only</em> at the one moment a human
+                part, and the whole point, is buzzing you <em>only</em> at the one moment a human
                 decision appears, and staying silent every other time. Sumirea is the judgment about
                 when you're actually needed.
               </p>
@@ -1160,7 +1240,7 @@
               <summary>Which tools does the beta work with?<span class="plus">+</span></summary>
               <p>
                 The first beta focuses on the "waiting for you" moment in the AI tools developers
-                use most. We're starting narrow and honest rather than claiming everything at once —
+                use most. We're starting narrow and honest rather than claiming everything at once,
                 join the waitlist and tell us which tool you'd want covered first.
               </p>
             </details>
@@ -1183,7 +1263,7 @@
               <summary>What does the beta cost?<span class="plus">+</span></summary>
               <p>
                 The beta is free for the first group of developers we invite. We want your honest
-                reaction to whether it actually protects your focus — that's worth more to us right
+                reaction to whether it actually protects your focus, that's worth more to us right
                 now than revenue.
               </p>
             </details>
@@ -1199,7 +1279,7 @@
             ><span class="dot" aria-hidden="true"></span>Sumirea</a
           ><br />
           Protect Cognitive Bandwidth. Human in Control. We automate the decisions that distract you
-          from creating — never the creating itself.
+          from creating, never the creating itself.
         </div>
         <div style="display: flex; gap: 22px; font-size: 14px; align-items: center">
           <a href="#how">How it works</a>
@@ -1210,16 +1290,33 @@
     </footer>
 
     <script>
+      // Mobile nav: accordion open/close
+      (function () {
+        var btn = document.querySelector('.nav-toggle');
+        var links = document.getElementById('nav-links');
+        if (!btn || !links) return;
+        function setOpen(open) {
+          links.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function () {
+          setOpen(!links.classList.contains('open'));
+        });
+        links.addEventListener('click', function (e) {
+          if (e.target.closest('a')) setOpen(false);
+        });
+      })();
+
       (function () {
         var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         var steps = Array.prototype.slice.call(document.querySelectorAll('.step-line'));
         var bar = document.querySelector('.device .bar .title');
         var foot = document.getElementById('stagefoot');
         var titles = [
-          'claude.ai — working…',
-          'claude.ai — working…',
-          'claude.ai — waiting for you',
-          'Sumirea — brought you back',
+          'claude.ai, working…',
+          'claude.ai, working…',
+          'claude.ai, waiting for you',
+          'Sumirea, brought you back',
         ];
         var foots = [
           "no notification until the moment you're needed",
