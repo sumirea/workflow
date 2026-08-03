@@ -278,12 +278,12 @@ Section 順序（與核可 IA 一致）：
 
 **Four directions（EN / 繁體中文）**
 
-| Direction             | EN                                                                                                    | 繁體中文                                                            |
-| --------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Workflow Coordination | Coordinate multiple AI tools and workflows so switching between them costs you less.                  | 協調多個 AI 工具與工作流程，降低彼此切換的成本。                    |
-| Workflow Observation  | Observe how your work actually flows and build a reviewable Workflow Journal.                         | 觀察你的開發流程，建立可回顧的 Workflow Journal。                   |
-| Workflow Learning     | Spot the patterns you repeat and suggest the workflows worth automating.                              | 找出你重複的模式，提出值得自動化的 Workflow 建議。                  |
-| Workflow Evolution    | Keep analyzing and improving workflows, so teams build best practices instead of running fixed steps. | 持續分析與改善 Workflow，讓團隊建立最佳實踐，而不只是執行固定流程。 |
+| Direction             | EN                                                                                                                                                                            | 繁體中文                                                                                                                  |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| Workflow Coordination | Move the right context between tools like ChatGPT and Claude Code for you; Sumirea decides which part to carry over, and you only step in when a decision actually needs you. | 在 ChatGPT、Claude Code 這些工具之間，自動幫你搬對的 context；要搬哪段由 Sumirea 決定，只有真正需要人拍板時才把你叫出來。 |
+| Workflow Observation  | Observe how your work actually flows and build a reviewable Workflow Journal.                                                                                                 | 觀察你的開發流程，建立可回顧的 Workflow Journal。                                                                         |
+| Workflow Learning     | Spot the patterns you repeat and suggest the workflows worth automating.                                                                                                      | 找出你重複的模式，提出值得自動化的 Workflow 建議。                                                                        |
+| Workflow Evolution    | Keep analyzing and improving workflows, so teams build best practices instead of running fixed steps.                                                                         | 持續分析與改善 Workflow，讓團隊建立最佳實踐，而不只是執行固定流程。                                                       |
 
 > 對應 Canonical 概念：**Workflow**、**Journal**、**Automation**、**Learning**、**Evolution**（皆為既有語彙）。此區塊呈現方向，不宣稱已上線，維持 Quiet Intelligence 的誠實。
 
