@@ -239,6 +239,43 @@
         gap: 8px;
         align-items: center;
       }
+      .bridge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .bridge-node {
+        border: 1px solid var(--line-2);
+        border-radius: 12px;
+        padding: 14px 20px;
+        font-family: var(--mono);
+        font-size: 14px;
+        background: var(--card);
+      }
+      .bridge-core {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        border: 1px solid var(--signal);
+        color: var(--signal);
+        border-radius: 12px;
+        padding: 14px 22px;
+        font-weight: 600;
+        background: color-mix(in srgb, var(--signal) 8%, var(--card));
+      }
+      .bridge-arrow {
+        color: var(--muted);
+        font-size: 20px;
+      }
+      .bridge-cap {
+        margin: 20px auto 0;
+        max-width: 64ch;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
       .device {
         border: 1px solid var(--line);
         background: var(--card);
@@ -730,6 +767,12 @@
         .cols-4 {
           grid-template-columns: 1fr;
         }
+        .bridge {
+          flex-direction: column;
+        }
+        .bridge-arrow {
+          transform: rotate(90deg);
+        }
         .flow {
           grid-template-columns: 1fr;
         }
@@ -843,8 +886,9 @@
             <p class="eyebrow">Protect Cognitive Bandwidth</p>
             <h1>Walk away.<br />We'll call you when you're needed.</h1>
             <p class="sub">
-              Sumirea is a Developer Workflow Platform. Your AI tools do the work; it pulls you back
-              only for the one decision that actually needs a human.
+              Sumirea is a Developer Workflow Platform. It carries context between your AI tools,
+              like ChatGPT and Claude Code, and only calls you back when a decision actually needs a
+              human.
             </p>
             <div class="cta-row">
               <a class="btn btn-primary" href="#waitlist">Join the beta waitlist</a>
@@ -893,6 +937,34 @@
               </p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- DIFFERENTIATOR -->
+      <section id="together">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">The difference</p>
+            <h2>Your AI tools, working together. Without you playing messenger.</h2>
+            <p>
+              You think in ChatGPT and build in Claude Code, and all day you copy and paste context
+              between them. Sumirea moves the right context across for you, decides which part
+              actually matters, and only pulls you in when a decision needs a human. Not another AI
+              to learn, a layer that coordinates the ones you already use.
+            </p>
+          </div>
+          <div class="bridge" aria-hidden="true">
+            <span class="bridge-node">ChatGPT</span>
+            <span class="bridge-arrow">⇄</span>
+            <span class="bridge-core"><span class="dot"></span>Sumirea</span>
+            <span class="bridge-arrow">⇄</span>
+            <span class="bridge-node">Claude Code</span>
+          </div>
+          <p class="bridge-cap">
+            Context moves automatically. You stay in control and step in only when it truly needs
+            you. The beta starts with the moment Claude needs you (see below); the full context
+            bridge is what we are building next.
+          </p>
         </div>
       </section>
 

@@ -240,6 +240,43 @@
         gap: 8px;
         align-items: center;
       }
+      .bridge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .bridge-node {
+        border: 1px solid var(--line-2);
+        border-radius: 12px;
+        padding: 14px 20px;
+        font-family: var(--mono);
+        font-size: 14px;
+        background: var(--card);
+      }
+      .bridge-core {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        border: 1px solid var(--signal);
+        color: var(--signal);
+        border-radius: 12px;
+        padding: 14px 22px;
+        font-weight: 600;
+        background: color-mix(in srgb, var(--signal) 8%, var(--card));
+      }
+      .bridge-arrow {
+        color: var(--muted);
+        font-size: 20px;
+      }
+      .bridge-cap {
+        margin: 20px auto 0;
+        max-width: 44ch;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
       .device {
         border: 1px solid var(--line);
         background: var(--card);
@@ -732,6 +769,12 @@
         .cols-4 {
           grid-template-columns: 1fr;
         }
+        .bridge {
+          flex-direction: column;
+        }
+        .bridge-arrow {
+          transform: rotate(90deg);
+        }
         .flow {
           grid-template-columns: 1fr;
         }
@@ -845,8 +888,8 @@
             <p class="eyebrow">Protect Cognitive Bandwidth</p>
             <h1>放心離開。<br />需要你的時候，我們會叫你。</h1>
             <p class="sub">
-              Sumirea 是一個 Developer Workflow Platform。讓 AI
-              工具去做那些工作，只在真正需要人來決定的那一刻，才把你叫回來。
+              Sumirea 是一個 Developer Workflow Platform。它在你的 AI 工具之間（像 ChatGPT 與 Claude
+              Code）自動搬運 context，只有真正需要人決定時，才把你叫回來。
             </p>
             <div class="cta-row">
               <a class="btn btn-primary" href="#waitlist">加入 Beta 候補名單</a>
@@ -889,6 +932,32 @@
               <p class="stage-foot" id="stagefoot">在需要你之前，不會有任何通知</p>
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- DIFFERENTIATOR -->
+      <section id="together">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">差異化</p>
+            <h2>讓你的 AI 工具彼此協作，而你不用當傳話筒。</h2>
+            <p>
+              你在 ChatGPT 想、在 Claude Code 做，一整天都在兩邊之間複製貼上。Sumirea 幫你把對的
+              context 搬過去，判斷哪一段才重要，只有真正需要人決定時，才把你叫出來。不是又一個要學的
+              AI，而是協調你已經在用的那些工具的一層。
+            </p>
+          </div>
+          <div class="bridge" aria-hidden="true">
+            <span class="bridge-node">ChatGPT</span>
+            <span class="bridge-arrow">⇄</span>
+            <span class="bridge-core"><span class="dot"></span>Sumirea</span>
+            <span class="bridge-arrow">⇄</span>
+            <span class="bridge-node">Claude Code</span>
+          </div>
+          <p class="bridge-cap">
+            context 自動流動，方向盤還在你手上，只有真正需要你時才出手。Beta 先從「Claude
+            需要你的那一刻」開始（見下方），完整的 context bridge 是我們接下來要做的。
+          </p>
         </div>
       </section>
 
