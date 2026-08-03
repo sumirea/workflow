@@ -220,6 +220,44 @@ Section 順序（與核可 IA 一致）：
 
 ---
 
+## 8.5 Bring your own model · _purpose: BYOK / model-agnostic 信任訊號（Human in Control 延伸到模型）_
+
+> 對應 Canonical 概念：**BYOK**、**AI Provider**、**Model**、**Local Model**（Ollama）、**Intelligence Routing**、**Human in Control**。此為行銷層的能力訊號，非 SDK / adapter 實作細節。
+
+**EN**
+
+- Eyebrow: `BRING YOUR OWN MODEL`
+- Heading: Works with the models you already pay for.
+- Intro: Sumirea is model-agnostic. Bring your own key (BYOK) and route each task to the AI provider you trust — or keep sensitive work on a Local Model that never leaves your machine. Human in Control extends to your models, too.
+- Table columns: Provider · Recommended models · Best for
+- Note: Nine providers today, and more on the way. Intelligence Routing picks the right model for each task; BYOK keeps your keys, accounts, and data yours.
+
+**繁體中文**
+
+- Eyebrow：`自帶你的模型`
+- Heading：用你已經在付費的模型就行。
+- Intro：Sumirea 是 model-agnostic。用你自己的金鑰（BYOK），把每個任務交給你信任的 AI Provider —— 或把敏感工作留在完全不離開你機器的 Local Model 上。Human in Control，也延伸到你的模型。
+- Table 欄位：供應商 · 建議模型 · 適合誰
+- Note：目前 9 家，之後會再增加。Intelligence Routing 為每個任務挑對模型；BYOK 讓金鑰、帳號與資料都還是你的。
+
+**Supported providers（9 家，EN 與 zh-Hant 共用同一份資料）**
+
+| Provider / 供應商                   | Recommended models / 建議模型                      | Best for（EN）                                    | 適合誰（中）                |
+| ----------------------------------- | -------------------------------------------------- | ------------------------------------------------- | --------------------------- |
+| Anthropic Claude                    | claude-sonnet-5, claude-opus-4-8, claude-haiku-4-5 | Default choice; already wired into production     | 預設選擇，正式站已接        |
+| OpenAI                              | gpt-4o-mini, gpt-4o, gpt-4.1-mini                  | Most developers already have an account           | 最多人已有帳號              |
+| Google Gemini                       | gemini-2.0-flash, 2.5-flash, 2.5-pro               | Generous free tier                                | 有免費額度                  |
+| DeepSeek                            | deepseek-chat, deepseek-reasoner                   | Low cost                                          | 便宜                        |
+| Kimi (Moonshot)                     | moonshot-v1-32k, kimi-latest                       | Long context                                      | 長文                        |
+| Zhipu GLM / 智譜 GLM                | glm-4-plus, glm-4-flash, glm-4-air                 | China-based option                                | 中國方案                    |
+| MiniMax                             | MiniMax-Text-01, abab6.5s-chat                     | China-based option                                | 中國方案                    |
+| Groq                                | llama-3.3-70b, llama-3.1-8b, qwen-2.5-72b          | Blazing fast, with a free tier                    | 速度極快、有免費額度        |
+| Ollama (local) / Ollama（本機模型） | llama3.2, qwen2.5:7b, gemma3                       | Zero API cost — a Local Model on your own machine | 零 API 費用，跑在自己電腦上 |
+
+> 對照來源表的兩處在地化調整（保留原意、貼合開發者 Landing 語氣）：Claude 的「課堂預設」→「預設選擇（Default choice）」；Groq 的「課堂示範友善」略去，保留「速度極快、有免費額度」。如需保留原「課堂」語境可還原。
+
+---
+
 ## 9. Beta Waitlist · _purpose: 轉換（收 email）_
 
 **EN**

@@ -674,6 +674,61 @@
         }
       }
     </style>
+    <style>
+      .models-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--card);
+      }
+      table.models {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14.5px;
+        min-width: 640px;
+      }
+      table.models th,
+      table.models td {
+        text-align: left;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      table.models thead th {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--paper-2);
+        white-space: nowrap;
+      }
+      table.models tbody tr:last-child td {
+        border-bottom: none;
+      }
+      table.models td.prov {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      table.models td.mdl {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--ink-2);
+      }
+      table.models td.fit {
+        color: var(--ink-2);
+      }
+      table.models tr.local td.prov {
+        color: var(--signal);
+      }
+      .models-note {
+        margin-top: 18px;
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 54ch;
+      }
+    </style>
   </head>
   <body>
     <header class="nav">
@@ -682,6 +737,7 @@
         <nav class="nav-links">
           <a href="#how">運作方式</a>
           <a href="#why">為什麼</a>
+          <a href="#models">模型</a>
           <a href="#faq">常見問題</a>
           <a class="lang" href="./index.html" hreflang="en">EN</a>
           <a class="btn btn-primary" href="#waitlist">加入 Beta</a>
@@ -933,6 +989,83 @@
             <span class="chip">Gemini</span>
             <span class="chip">…以及下一個</span>
           </div>
+        </div>
+      </section>
+
+      <!-- MODELS -->
+      <section id="models">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">自帶你的模型</p>
+            <h2>用你已經在付費的模型就行。</h2>
+            <p>
+              Sumirea 是 model-agnostic。用你自己的金鑰（BYOK），把每個任務交給你信任的 AI Provider
+              —— 或把敏感工作留在完全不離開你機器的 Local Model 上。Human in
+              Control，也延伸到你的模型。
+            </p>
+          </div>
+          <div class="models-wrap">
+            <table class="models">
+              <thead>
+                <tr>
+                  <th scope="col">供應商</th>
+                  <th scope="col">建議模型</th>
+                  <th scope="col">適合誰</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="prov">Anthropic Claude</td>
+                  <td class="mdl">claude-sonnet-5、claude-opus-4-8、claude-haiku-4-5</td>
+                  <td class="fit">預設選擇，正式站已接</td>
+                </tr>
+                <tr>
+                  <td class="prov">OpenAI</td>
+                  <td class="mdl">gpt-4o-mini、gpt-4o、gpt-4.1-mini</td>
+                  <td class="fit">最多人已有帳號</td>
+                </tr>
+                <tr>
+                  <td class="prov">Google Gemini</td>
+                  <td class="mdl">gemini-2.0-flash、2.5-flash、2.5-pro</td>
+                  <td class="fit">有免費額度</td>
+                </tr>
+                <tr>
+                  <td class="prov">DeepSeek</td>
+                  <td class="mdl">deepseek-chat、deepseek-reasoner</td>
+                  <td class="fit">便宜</td>
+                </tr>
+                <tr>
+                  <td class="prov">Kimi（Moonshot）</td>
+                  <td class="mdl">moonshot-v1-32k、kimi-latest</td>
+                  <td class="fit">長文</td>
+                </tr>
+                <tr>
+                  <td class="prov">智譜 GLM</td>
+                  <td class="mdl">glm-4-plus、glm-4-flash、glm-4-air</td>
+                  <td class="fit">中國方案</td>
+                </tr>
+                <tr>
+                  <td class="prov">MiniMax</td>
+                  <td class="mdl">MiniMax-Text-01、abab6.5s-chat</td>
+                  <td class="fit">中國方案</td>
+                </tr>
+                <tr>
+                  <td class="prov">Groq</td>
+                  <td class="mdl">llama-3.3-70b、llama-3.1-8b、qwen-2.5-72b</td>
+                  <td class="fit">速度極快、有免費額度</td>
+                </tr>
+                <tr class="local">
+                  <td class="prov">Ollama（本機模型）</td>
+                  <td class="mdl">llama3.2、qwen2.5:7b、gemma3</td>
+                  <td class="fit">零 API 費用，跑在自己電腦上（Local Model）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="models-note">
+            目前 9 家，之後會再增加。Intelligence Routing 為每個任務挑對模型；BYOK
+            讓金鑰、帳號與資料都還是你的。
+          </p>
         </div>
       </section>
 

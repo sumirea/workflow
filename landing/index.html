@@ -672,6 +672,61 @@
         }
       }
     </style>
+    <style>
+      .models-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--card);
+      }
+      table.models {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14.5px;
+        min-width: 640px;
+      }
+      table.models th,
+      table.models td {
+        text-align: left;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      table.models thead th {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--paper-2);
+        white-space: nowrap;
+      }
+      table.models tbody tr:last-child td {
+        border-bottom: none;
+      }
+      table.models td.prov {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      table.models td.mdl {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--ink-2);
+      }
+      table.models td.fit {
+        color: var(--ink-2);
+      }
+      table.models tr.local td.prov {
+        color: var(--signal);
+      }
+      .models-note {
+        margin-top: 18px;
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 74ch;
+      }
+    </style>
   </head>
   <body>
     <header class="nav">
@@ -680,6 +735,7 @@
         <nav class="nav-links">
           <a href="#how">How it works</a>
           <a href="#why">Why</a>
+          <a href="#models">Models</a>
           <a href="#faq">FAQ</a>
           <a class="lang" href="./index.zh-Hant.html" hreflang="zh-Hant">繁體中文</a>
           <a class="btn btn-primary" href="#waitlist">Join the beta</a>
@@ -957,6 +1013,83 @@
             <span class="chip">Gemini</span>
             <span class="chip">…and the next one</span>
           </div>
+        </div>
+      </section>
+
+      <!-- MODELS -->
+      <section id="models">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Bring your own model</p>
+            <h2>Works with the models you already pay for.</h2>
+            <p>
+              Sumirea is model-agnostic. Bring your own key (BYOK) and route each task to the AI
+              provider you trust — or keep sensitive work on a Local Model that never leaves your
+              machine. Human in Control extends to your models, too.
+            </p>
+          </div>
+          <div class="models-wrap">
+            <table class="models">
+              <thead>
+                <tr>
+                  <th scope="col">Provider</th>
+                  <th scope="col">Recommended models</th>
+                  <th scope="col">Best for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="prov">Anthropic Claude</td>
+                  <td class="mdl">claude-sonnet-5, claude-opus-4-8, claude-haiku-4-5</td>
+                  <td class="fit">Default choice; already wired into production</td>
+                </tr>
+                <tr>
+                  <td class="prov">OpenAI</td>
+                  <td class="mdl">gpt-4o-mini, gpt-4o, gpt-4.1-mini</td>
+                  <td class="fit">Most developers already have an account</td>
+                </tr>
+                <tr>
+                  <td class="prov">Google Gemini</td>
+                  <td class="mdl">gemini-2.0-flash, 2.5-flash, 2.5-pro</td>
+                  <td class="fit">Generous free tier</td>
+                </tr>
+                <tr>
+                  <td class="prov">DeepSeek</td>
+                  <td class="mdl">deepseek-chat, deepseek-reasoner</td>
+                  <td class="fit">Low cost</td>
+                </tr>
+                <tr>
+                  <td class="prov">Kimi (Moonshot)</td>
+                  <td class="mdl">moonshot-v1-32k, kimi-latest</td>
+                  <td class="fit">Long context</td>
+                </tr>
+                <tr>
+                  <td class="prov">Zhipu GLM</td>
+                  <td class="mdl">glm-4-plus, glm-4-flash, glm-4-air</td>
+                  <td class="fit">China-based option</td>
+                </tr>
+                <tr>
+                  <td class="prov">MiniMax</td>
+                  <td class="mdl">MiniMax-Text-01, abab6.5s-chat</td>
+                  <td class="fit">China-based option</td>
+                </tr>
+                <tr>
+                  <td class="prov">Groq</td>
+                  <td class="mdl">llama-3.3-70b, llama-3.1-8b, qwen-2.5-72b</td>
+                  <td class="fit">Blazing fast, with a free tier</td>
+                </tr>
+                <tr class="local">
+                  <td class="prov">Ollama (local)</td>
+                  <td class="mdl">llama3.2, qwen2.5:7b, gemma3</td>
+                  <td class="fit">Zero API cost — a Local Model that runs on your own machine</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="models-note">
+            Nine providers today, and more on the way. Intelligence Routing picks the right model
+            for each task; BYOK keeps your keys, accounts, and data yours.
+          </p>
         </div>
       </section>
 
