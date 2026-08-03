@@ -230,7 +230,7 @@ Section 順序（與核可 IA 一致）：
 - Heading: Works with the models you already pay for.
 - Intro: Sumirea is model-agnostic. Bring your own key (BYOK) and route each task to the AI provider you trust, or keep sensitive work on a Local Model that never leaves your machine. Human in Control extends to your models, too.
 - Table columns: Provider · Recommended models · Best for
-- Note: Nine providers today, and more on the way. Intelligence Routing picks the right model for each task; BYOK keeps your keys, accounts, and data yours.
+- Note: Nine providers today, and more on the way. Bring your own free key (most providers have one), or run a Local Model with Ollama and pay nothing. Intelligence Routing picks the right model for each task; BYOK keeps your keys, accounts, and data yours.
 
 **繁體中文**
 
@@ -238,7 +238,7 @@ Section 順序（與核可 IA 一致）：
 - Heading：用你已經在付費的模型就行。
 - Intro：Sumirea 是 model-agnostic。用你自己的金鑰（BYOK），把每個任務交給你信任的 AI Provider，或把敏感工作留在完全不離開你機器的 Local Model 上。Human in Control，也延伸到你的模型。
 - Table 欄位：供應商 · 建議模型 · 適合誰
-- Note：目前 9 家，之後會再增加。Intelligence Routing 為每個任務挑對模型；BYOK 讓金鑰、帳號與資料都還是你的。
+- Note：目前 9 家，之後會再增加。用你自己的免費 key（多數供應商都有），或用 Ollama 跑本機 Local Model，完全不用錢。Intelligence Routing 為每個任務挑對模型；BYOK 讓金鑰、帳號與資料都還是你的。
 
 **Supported providers（9 家，EN 與 zh-Hant 共用同一份資料）**
 
