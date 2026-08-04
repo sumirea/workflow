@@ -149,6 +149,13 @@
         background: var(--signal);
         box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 18%, transparent);
       }
+      .brand-logo {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: block;
+        flex: 0 0 auto;
+      }
       .nav-links {
         display: flex;
         align-items: center;
@@ -890,7 +897,9 @@
   <body>
     <header class="nav">
       <div class="wrap">
-        <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Sumirea</a>
+        <a class="brand" href="#top"
+          ><img class="brand-logo" src="./logo.png" alt="" width="26" height="26" />Sumirea</a
+        >
         <button
           class="nav-toggle"
           type="button"
