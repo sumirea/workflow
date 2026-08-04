@@ -62,6 +62,16 @@ in a VM context, so there is no build step and no source change just for
 testing. The live DOM behaviour is still exercised manually (below), since that
 depends on the real Claude Code Web markup.
 
+## Packaging
+
+```
+pnpm --filter @sumirea/browser-extension package
+```
+
+Produces `dist/sumirea-waiting-for-you-<version>.zip` (manifest at the root plus
+only the files the browser loads — dev files excluded) for upload to the Chrome
+Web Store. For local development, load the folder unpacked instead (below).
+
 Permissions requested (minimum):
 
 - `notifications` — to show the desktop notification (the core output).

@@ -8,7 +8,8 @@
   "scripts": {
     "build": "echo \"MV3 extension: load unpacked from this folder (no build step)\" && exit 0",
     "dev": "echo \"MV3 extension: load unpacked from this folder (no build step)\" && exit 0",
-    "clean": "rm -rf .turbo",
+    "package": "node scripts/package.mjs",
+    "clean": "rm -rf .turbo dist",
     "lint": "echo \"no lint yet\" && exit 0",
     "typecheck": "echo \"no typecheck yet\" && exit 0",
     "test": "node --test \"test/**/*.test.mjs\""
