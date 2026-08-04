@@ -11,6 +11,6 @@
     "clean": "rm -rf .turbo",
     "lint": "echo \"no lint yet\" && exit 0",
     "typecheck": "echo \"no typecheck yet\" && exit 0",
-    "test": "echo \"manual testing only (see README)\" && exit 0"
+    "test": "node --test \"test/**/*.test.mjs\""
   }
 }

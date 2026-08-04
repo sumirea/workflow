@@ -4,24 +4,25 @@
 // "Claude is waiting for you" state and, on that edge, asks the background
 // worker to notify the user. It never clicks, approves, or changes the page.
 //
-// All DOM knowledge lives in shared/claude-signals.js (loaded before this file
-// in the same content-script world, exposed as globalThis.SumireaClaudeSignals).
+// All DOM knowledge lives in shared/claude-signals.js and the edge logic in
+// shared/waiting-edge.js (both loaded before this file in the same content-
+// script world, exposed on globalThis). This file only wires them to chrome.
 
 (function () {
   const signals = globalThis.SumireaClaudeSignals;
-  if (!signals) return; // adapter missing — fail safe.
+  const edgeApi = globalThis.SumireaWaitingEdge;
+  if (!signals || !edgeApi) return; // adapter or edge missing — fail safe.
 
   const { STATE, getState } = signals;
 
-  // The last non-"waiting" observation. We fire only on the edge into WAITING,
-  // and re-arm once Claude leaves the waiting state — so one waiting episode
-  // produces at most one notification.
-  let lastState = null;
+  // Fires only on the edge into WAITING and re-arms once Claude leaves it, so
+  // one waiting episode produces at most one notification.
+  const edge = edgeApi.createWaitingEdge({ states: STATE });
   let enabled = true;
 
   // Load the master switch and keep it current.
   chrome.storage.local.get('enabled').then(({ enabled: e = true }) => {
-    enabled = e;
+    enabled = e !== false;
     evaluate();
   });
   chrome.storage.onChanged.addListener((changes, area) => {
@@ -29,23 +30,11 @@
   });
 
   function evaluate() {
-    const state = getState(document);
-
-    // Unsupported: cannot tell — stay silent and do not change the arming edge.
-    if (state === STATE.UNSUPPORTED) return;
-
-    if (state === STATE.WAITING) {
-      if (lastState !== STATE.WAITING) {
-        lastState = STATE.WAITING;
-        if (enabled) {
-          chrome.runtime.sendMessage({ type: 'claude-waiting', url: location.href });
-        }
-      }
-      return;
+    // The edge machine advances regardless of `enabled` so that toggling the
+    // switch never causes a stale re-fire; `enabled` only gates the send.
+    if (edge.next(getState(document)) && enabled) {
+      chrome.runtime.sendMessage({ type: 'claude-waiting', url: location.href });
     }
-
-    // Any known non-waiting state re-arms the edge for the next episode.
-    lastState = state;
   }
 
   // Debounce: the SPA mutates the DOM constantly; coalesce bursts.

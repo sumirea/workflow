@@ -27,14 +27,37 @@ popup/            master on/off switch + status
   index.html
   popup.js
 content/
-  content.js      MutationObserver, working -> waiting edge detection, messaging
+  content.js      MutationObserver -> observe state -> wire the edge to chrome
 shared/
   claude-signals.js   the ONLY file that knows the Claude DOM (see below)
+  waiting-edge.js     pure working -> waiting rising-edge machine (no DOM/chrome)
 background/
   service-worker.js   creates the notification, returns to the tab/window
+test/
+  waiting-edge.test.mjs    pins the edge semantics (fire once, re-arm, fail safe)
+  claude-signals.test.mjs  test hook works; real detection stays fail-safe
 manifest.json     MV3, minimum permissions
 icons/            see icons/README.md (production icons pending)
 ```
+
+The decision of _when_ to notify lives in `shared/waiting-edge.js` as a pure
+state machine with no DOM or `chrome` dependency, so it is unit-tested directly.
+`content/content.js` only observes the page (via `claude-signals.js`) and wires
+that machine's output to `chrome.runtime`.
+
+## Tests
+
+```
+pnpm --filter @sumirea/browser-extension test
+```
+
+Automated tests cover the two pieces of pure logic — the rising-edge machine and
+the signals adapter's contract (the documented test hook works, and real
+detection stays `unsupported` until verified selectors land, so it can never
+invent a false "waiting"). The tests load the shipped content-script files as-is
+in a VM context, so there is no build step and no source change just for
+testing. The live DOM behaviour is still exercised manually (below), since that
+depends on the real Claude Code Web markup.
 
 Permissions requested (minimum):
 
