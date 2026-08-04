@@ -15,7 +15,10 @@ It embodies Sumirea's product philosophy:
 
 1. Runs a content script only on `https://claude.ai/*`.
 2. Watches for the transition into the "Claude is waiting for you" state.
-3. On that edge, shows **one** desktop notification.
+3. Shows **one** desktop notification per waiting episode — but only when you are
+   **away** from the tab (a hidden tab, or an unfocused window). If you are
+   looking at it, it stays quiet; the notification arrives the moment you walk
+   away and it is still waiting.
 4. Clicking the notification focuses the original Claude tab and window.
 5. A popup master switch turns it on/off and shows a trivial "brought you back"
    count.

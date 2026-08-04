@@ -29,10 +29,17 @@
     if (area === 'local' && changes.enabled) enabled = changes.enabled.newValue !== false;
   });
 
+  // Are we away from this tab right now? A hidden tab, or a visible tab in an
+  // unfocused window, both count as away. If you are looking at the tab, there
+  // is nothing to bring you back to, so we stay quiet.
+  function isAway() {
+    return document.visibilityState === 'hidden' || !document.hasFocus();
+  }
+
   function evaluate() {
     // The edge machine advances regardless of `enabled` so that toggling the
     // switch never causes a stale re-fire; `enabled` only gates the send.
-    if (edge.next(getState(document)) && enabled) {
+    if (edge.next(getState(document), isAway()) && enabled) {
       chrome.runtime.sendMessage({ type: 'claude-waiting', url: location.href });
     }
   }
@@ -53,6 +60,12 @@
     childList: true,
     attributes: true,
   });
+
+  // Re-evaluate when you leave or return, so a notification can fire the moment
+  // you walk away from a tab that is already waiting.
+  document.addEventListener('visibilitychange', schedule);
+  window.addEventListener('blur', schedule);
+  window.addEventListener('focus', schedule);
 
   // Initial read in case the page is already in a waiting state on load.
   evaluate();

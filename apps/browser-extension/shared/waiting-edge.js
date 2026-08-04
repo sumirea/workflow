@@ -1,47 +1,57 @@
 // shared/waiting-edge.js
 //
-// Pure rising-edge detector for the working -> waiting transition. No DOM and
-// no chrome APIs live here, so it is fully unit-testable and shared by the
-// content script.
+// Pure decision machine for the Waiting for You MVP. No DOM and no chrome APIs
+// live here, so it is fully unit-testable and shared by the content script.
 //
-// Contract: feed it the current state on each observation. next(state) returns
-// true exactly once per "waiting episode" — the first observation of WAITING
-// after a known non-waiting state (or as the very first observation). A known
-// non-waiting state (e.g. WORKING) re-arms it. UNSUPPORTED is inert: it never
-// fires and never changes the arming, so a momentary "can't tell" can neither
-// consume nor trigger an edge. This is what keeps one waiting episode to at
-// most one notification, and prevents false fires.
+// It answers one question on each observation: should we notify *now*? It fires
+// at most once per "waiting episode", at the first moment the human is BOTH
+// needed (state === WAITING) and away from the tab. That means:
+//   - if Claude starts waiting while you are watching the tab, nothing fires;
+//     the notification arrives the moment you walk away (and it is still
+//     waiting), not before, and not twice;
+//   - a known non-waiting state (e.g. WORKING) ends the episode and re-arms;
+//   - UNSUPPORTED is inert: it never fires and never changes the episode, so a
+//     momentary "can't tell" can neither trigger nor consume an episode.
 
 (function (global) {
   function createWaitingEdge({ states }) {
     const { WAITING, UNSUPPORTED } = states;
 
-    // The last known non-UNSUPPORTED state. null means "armed from the start".
-    let last = null;
+    let inEpisode = false; // currently observing a waiting episode
+    let notified = false; // already fired for the current episode
 
     return {
-      // Returns true iff this observation is the rising edge into WAITING.
-      next(state) {
+      // state: the current observed state.
+      // away:  is the human away from the tab right now? Defaults to true so a
+      //        caller that does not care about presence keeps the plain
+      //        "fire on the rising edge into waiting" behaviour.
+      // Returns true iff we should notify now.
+      next(state, away = true) {
         if (state === UNSUPPORTED) return false;
         if (state === WAITING) {
-          if (last !== WAITING) {
-            last = WAITING;
+          inEpisode = true;
+          if (!notified && away) {
+            notified = true;
             return true;
           }
           return false;
         }
-        // Any known non-waiting state re-arms the edge for the next episode.
-        last = state;
+        // Any known non-waiting state ends the episode and re-arms.
+        inEpisode = false;
+        notified = false;
         return false;
       },
 
-      // Re-arm as if freshly constructed.
       reset() {
-        last = null;
+        inEpisode = false;
+        notified = false;
       },
 
-      get last() {
-        return last;
+      get waiting() {
+        return inEpisode;
+      },
+      get notified() {
+        return notified;
       },
     };
   }

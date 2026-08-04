@@ -52,3 +52,31 @@ test('reset re-arms the machine', () => {
   edge.reset();
   assert.equal(edge.next(STATE.WAITING), true);
 });
+
+// --- presence gating: only notify once you are away ---
+
+test('does not fire while you are present, even though Claude is waiting', () => {
+  const edge = createWaitingEdge({ states: STATE });
+  assert.equal(edge.next(STATE.WAITING, false), false);
+  assert.equal(edge.next(STATE.WAITING, false), false);
+});
+
+test('fires the moment you walk away from a tab that is already waiting', () => {
+  const edge = createWaitingEdge({ states: STATE });
+  assert.equal(edge.next(STATE.WAITING, false), false); // present: quiet
+  assert.equal(edge.next(STATE.WAITING, true), true); // walked away: fire
+  assert.equal(edge.next(STATE.WAITING, true), false); // still waiting: quiet
+});
+
+test('fires on the edge if you were already away', () => {
+  const edge = createWaitingEdge({ states: STATE });
+  assert.equal(edge.next(STATE.WORKING, true), false);
+  assert.equal(edge.next(STATE.WAITING, true), true);
+});
+
+test('coming back before it fired, then a new episode, still fires once when away', () => {
+  const edge = createWaitingEdge({ states: STATE });
+  assert.equal(edge.next(STATE.WAITING, false), false); // present, waiting
+  assert.equal(edge.next(STATE.WORKING, false), false); // episode ends
+  assert.equal(edge.next(STATE.WAITING, true), true); // new episode, away
+});
