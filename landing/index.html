@@ -1,0 +1,1568 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      // Language: let the browser decide on first entry; respect a manual choice.
+      (function () {
+        try {
+          var pref = localStorage.getItem('sumirea-lang');
+          if (pref === 'zh') return location.replace('./index.zh-Hant.html');
+          if (pref === 'en') return;
+          var langs = (navigator.languages || [navigator.language || '']).join(',').toLowerCase();
+          if (/(^|,)zh|zh-/.test(langs)) location.replace('./index.zh-Hant.html');
+        } catch (e) {}
+      })();
+    </script>
+    <title>Sumirea: Walk away. We'll call you when you're needed.</title>
+    <meta
+      name="description"
+      content="Sumirea is a Developer Workflow Platform that protects your cognitive bandwidth while your AI tools work. It cuts the waiting, the tool-switching, and the repetitive decisions, so you stay focused on creating. Not another AI. Not another IDE."
+    />
+    <meta property="og:title" content="Walk away. We'll call you when you're needed." />
+    <meta
+      property="og:description"
+      content="A Developer Workflow Platform that protects your cognitive bandwidth while Claude, Cursor, ChatGPT, Codex and Gemini do the work."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="og.png" />
+    <link rel="alternate" hreflang="en" href="./index.html" />
+    <link rel="alternate" hreflang="zh-Hant" href="./index.zh-Hant.html" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="apple-touch-icon" href="./favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f7f6f3;
+        --paper-2: #efeee9;
+        --ink: #17171a;
+        --ink-2: #4b4b52;
+        --muted: #63636b;
+        --line: #e2e0da;
+        --line-2: #d4d2ca;
+        --signal: #e0522f;
+        --signal-ink: #ffffff;
+        --signal-text: #b8401e;
+        --btn-bg: #b8401e;
+        --btn-ink: #ffffff;
+        --card: #fffffe;
+        --radius: 14px;
+        --maxw: 1080px;
+        --font:
+          -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Roboto, Helvetica, Arial,
+          'Noto Sans TC', 'Source Han Sans TC', 'Source Han Sans TW', 'Noto Sans CJK TC', sans-serif;
+        --mono:
+          ui-monospace, 'SF Mono', 'JetBrains Mono', 'Roboto Mono', Menlo, 'Noto Sans TC',
+          'Source Han Sans TC', monospace;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --paper: #101012;
+          --paper-2: #17171a;
+          --ink: #f4f3ef;
+          --ink-2: #c3c2bd;
+          --muted: #8b8b92;
+          --line: #26262b;
+          --line-2: #32323a;
+          --signal: #ff6a45;
+          --signal-text: #ff6a45;
+          --btn-bg: #ff6a45;
+          --btn-ink: #101012;
+          --card: #17171a;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+      a {
+        color: inherit;
+      }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 0 0 18px;
+      }
+      h1,
+      h2,
+      h3 {
+        letter-spacing: -0.02em;
+        line-height: 1.08;
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      header.nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: saturate(1.4) blur(10px);
+        background: color-mix(in srgb, var(--paper) 82%, transparent);
+        border-bottom: 1px solid var(--line);
+      }
+      .nav .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 62px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 620;
+        letter-spacing: -0.01em;
+        text-decoration: none;
+        font-size: 17px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--signal);
+        box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 18%, transparent);
+      }
+      .brand-logo {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        display: block;
+        flex: 0 0 auto;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        font-size: 14.5px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--ink-2);
+      }
+      .nav-links a:hover {
+        color: var(--ink);
+      }
+      .lang {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--line-2);
+        background: transparent;
+        color: var(--ink);
+        padding: 11px 18px;
+        border-radius: 999px;
+        font: inherit;
+        font-size: 14.5px;
+        font-weight: 560;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          transform 0.12s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+      }
+      .btn.btn-primary {
+        background: var(--btn-bg);
+        color: var(--btn-ink);
+        border-color: var(--btn-bg);
+      }
+      .btn.btn-primary:hover {
+        background: color-mix(in srgb, var(--btn-bg) 85%, #000);
+      }
+      .nav .btn {
+        padding: 8px 15px;
+      }
+      .nav-toggle {
+        display: none;
+        width: 40px;
+        height: 40px;
+        border: 1px solid var(--line-2);
+        border-radius: 10px;
+        background: transparent;
+        cursor: pointer;
+        padding: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+      .nav-toggle .bar {
+        width: 18px;
+        height: 2px;
+        background: var(--ink);
+        border-radius: 2px;
+        transition:
+          transform 0.25s ease,
+          opacity 0.2s ease;
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-toggle[aria-expanded='true'] .bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+      }
+      .hero {
+        padding: 92px 0 40px;
+      }
+      .hero .wrap {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .hero h1 {
+        font-size: clamp(40px, 6.2vw, 68px);
+        font-weight: 660;
+      }
+      .hero .sub {
+        margin-top: 22px;
+        font-size: clamp(17px, 2.2vw, 20px);
+        color: var(--ink-2);
+        max-width: 38ch;
+      }
+      .hero .cta-row {
+        margin-top: 34px;
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .hero .assurance {
+        margin-top: 18px;
+        font-size: 13.5px;
+        color: var(--muted);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .bridge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .bridge-node {
+        border: 1px solid var(--line-2);
+        border-radius: 12px;
+        padding: 14px 20px;
+        font-family: var(--mono);
+        font-size: 14px;
+        background: var(--card);
+      }
+      .bridge-core {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+        border: 1px solid var(--signal);
+        color: var(--signal-text);
+        border-radius: 12px;
+        padding: 14px 22px;
+        font-weight: 600;
+        background: color-mix(in srgb, var(--signal) 8%, var(--card));
+      }
+      .bridge-arrow {
+        color: var(--muted);
+        font-size: 20px;
+      }
+      .bridge-cap {
+        margin: 20px auto 0;
+        max-width: 64ch;
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .device {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow:
+          0 1px 0 var(--line),
+          0 30px 60px -40px rgba(0, 0, 0, 0.35);
+      }
+      .device .bar {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        padding: 13px 16px;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper-2);
+      }
+      .device .bar i {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--line-2);
+        display: inline-block;
+      }
+      .device .bar .title {
+        margin-left: 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .stage {
+        padding: 26px 24px 28px;
+        min-height: 268px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .step-line {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 9px 0;
+        opacity: 0.32;
+        transition:
+          opacity 0.4s ease,
+          transform 0.4s ease;
+        transform: translateY(2px);
+      }
+      .step-line.on {
+        opacity: 1;
+        transform: none;
+      }
+      .step-line .ic {
+        flex: 0 0 auto;
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--line-2);
+        font-size: 14px;
+        margin-top: 1px;
+      }
+      .step-line.signal .ic {
+        background: var(--btn-bg);
+        border-color: var(--btn-bg);
+        color: var(--btn-ink);
+      }
+      .step-line.signal.on .ic {
+        animation: pulse 1.8s ease-out infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 55%, transparent);
+        }
+        70% {
+          box-shadow: 0 0 0 12px color-mix(in srgb, var(--signal) 0%, transparent);
+        }
+        100% {
+          box-shadow: 0 0 0 0 color-mix(in srgb, var(--signal) 0%, transparent);
+        }
+      }
+      .step-line .tx b {
+        display: block;
+        font-size: 14.5px;
+        font-weight: 580;
+      }
+      .step-line .tx span {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .stage-foot {
+        margin-top: 16px;
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--muted);
+        text-align: center;
+      }
+      section {
+        padding: 76px 0;
+        border-top: 1px solid var(--line);
+      }
+      .section-head {
+        max-width: 62ch;
+        margin-bottom: 44px;
+      }
+      .section-head h2 {
+        font-size: clamp(28px, 3.6vw, 40px);
+        font-weight: 640;
+      }
+      .section-head p {
+        margin-top: 16px;
+        font-size: 18px;
+        color: var(--ink-2);
+      }
+      .cols-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .cols-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+      }
+      .card {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 26px 24px;
+      }
+      .card .k {
+        font-family: var(--mono);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--signal-text);
+        margin-bottom: 12px;
+      }
+      .card h3 {
+        font-size: 19px;
+        font-weight: 600;
+      }
+      .card p {
+        margin-top: 10px;
+        color: var(--ink-2);
+        font-size: 15px;
+      }
+      .statement {
+        background: var(--paper-2);
+      }
+      .statement .wrap {
+        max-width: 900px;
+      }
+      .statement p.big {
+        font-size: clamp(26px, 4.2vw, 44px);
+        font-weight: 620;
+        letter-spacing: -0.02em;
+        line-height: 1.14;
+      }
+      .statement .accent {
+        color: var(--signal-text);
+      }
+      .statement .foot {
+        margin-top: 24px;
+        font-size: 17px;
+        color: var(--ink-2);
+        max-width: 60ch;
+      }
+      .flow {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+      }
+      .flow .node {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: var(--radius);
+        padding: 22px 18px;
+      }
+      .flow .node .n {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .flow .node h3 {
+        margin-top: 12px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+      .flow .node p {
+        margin-top: 8px;
+        font-size: 13.5px;
+        color: var(--ink-2);
+      }
+      .flow .node.hot {
+        border-color: color-mix(in srgb, var(--signal) 55%, var(--line));
+        box-shadow: 0 0 0 1px color-mix(in srgb, var(--signal) 30%, transparent);
+      }
+      .flow .node.hot .n {
+        color: var(--signal-text);
+      }
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+        align-items: start;
+      }
+      .principle {
+        padding: 22px 0;
+        border-top: 1px solid var(--line);
+      }
+      .principle:first-child {
+        border-top: none;
+        padding-top: 0;
+      }
+      .principle h3 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .principle p {
+        margin-top: 8px;
+        color: var(--ink-2);
+        font-size: 15.5px;
+      }
+      .isnot {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .isnot .panel {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 26px 24px;
+        background: var(--card);
+      }
+      .isnot .panel.no {
+        background: var(--paper-2);
+      }
+      .isnot h3 {
+        font-size: 15px;
+        font-family: var(--mono);
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .isnot ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .isnot li {
+        padding: 10px 0;
+        border-top: 1px dashed var(--line);
+        display: flex;
+        gap: 12px;
+        font-size: 15.5px;
+        color: var(--ink-2);
+      }
+      .isnot li:first-child {
+        border-top: none;
+      }
+      .isnot .mark {
+        font-family: var(--mono);
+        flex: 0 0 auto;
+      }
+      .isnot .yes .mark {
+        color: var(--signal-text);
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 22px;
+      }
+      .chip {
+        border: 1px solid var(--line-2);
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-family: var(--mono);
+        color: var(--ink-2);
+      }
+      .waitlist {
+        background: var(--ink);
+        color: var(--paper);
+        border-radius: 24px;
+        padding: 56px 44px;
+        text-align: center;
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist {
+          background: var(--paper-2);
+          border: 1px solid var(--line-2);
+        }
+      }
+      .waitlist h2 {
+        font-size: clamp(28px, 4vw, 42px);
+        font-weight: 660;
+        color: var(--paper);
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist h2 {
+          color: var(--ink);
+        }
+      }
+      .waitlist p {
+        margin: 16px auto 0;
+        max-width: 48ch;
+        color: color-mix(in srgb, var(--paper) 74%, transparent);
+        font-size: 17px;
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist p {
+          color: var(--ink-2);
+        }
+      }
+      form.signup {
+        margin: 30px auto 0;
+        display: flex;
+        gap: 10px;
+        max-width: 460px;
+      }
+      form.signup input {
+        flex: 1;
+        border: 1px solid color-mix(in srgb, var(--paper) 30%, transparent);
+        background: color-mix(in srgb, var(--paper) 8%, transparent);
+        color: var(--paper);
+        border-radius: 999px;
+        padding: 13px 20px;
+        font: inherit;
+        font-size: 15px;
+        outline: none;
+      }
+      @media (prefers-color-scheme: dark) {
+        form.signup input {
+          color: var(--ink);
+          border-color: var(--line-2);
+          background: var(--card);
+        }
+      }
+      form.signup input::placeholder {
+        color: color-mix(in srgb, var(--paper) 55%, transparent);
+      }
+      form.signup input:focus {
+        border-color: var(--signal-text);
+      }
+      .waitlist .micro {
+        margin-top: 16px;
+        font-size: 13px;
+        color: color-mix(in srgb, var(--paper) 55%, transparent);
+      }
+      @media (prefers-color-scheme: dark) {
+        .waitlist .micro {
+          color: var(--muted);
+        }
+      }
+      #signup-done {
+        display: none;
+        margin-top: 26px;
+        font-size: 17px;
+        color: var(--paper);
+      }
+      @media (prefers-color-scheme: dark) {
+        #signup-done {
+          color: var(--ink);
+        }
+      }
+      .faq details {
+        border-top: 1px solid var(--line);
+        padding: 20px 0;
+      }
+      .faq details:last-child {
+        border-bottom: 1px solid var(--line);
+      }
+      .faq summary {
+        cursor: pointer;
+        list-style: none;
+        font-size: 18px;
+        font-weight: 560;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+      }
+      .faq summary::-webkit-details-marker {
+        display: none;
+      }
+      .faq summary .plus {
+        font-family: var(--mono);
+        color: var(--muted);
+        transition: transform 0.2s ease;
+      }
+      .faq details[open] summary .plus {
+        transform: rotate(45deg);
+      }
+      .faq p {
+        margin-top: 14px;
+        color: var(--ink-2);
+        font-size: 16px;
+        max-width: 74ch;
+      }
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 44px 0 60px;
+        color: var(--muted);
+      }
+      footer .wrap {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      footer .fnote {
+        font-size: 13.5px;
+        max-width: 52ch;
+      }
+      footer a {
+        color: var(--ink-2);
+        text-decoration: none;
+      }
+      footer a:hover {
+        color: var(--ink);
+      }
+      @media (max-width: 860px) {
+        .hero .wrap {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .cols-3 {
+          grid-template-columns: 1fr;
+        }
+        .cols-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+        .flow {
+          grid-template-columns: 1fr 1fr;
+        }
+        .split {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+        .isnot {
+          grid-template-columns: 1fr;
+        }
+        .nav .wrap {
+          position: relative;
+        }
+        .nav-toggle {
+          display: inline-flex;
+        }
+        .nav-links {
+          position: absolute;
+          top: 62px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0;
+          background: color-mix(in srgb, var(--paper) 97%, transparent);
+          backdrop-filter: saturate(1.4) blur(10px);
+          border-bottom: 1px solid var(--line);
+          padding: 0 24px;
+          max-height: 0;
+          overflow: hidden;
+          visibility: hidden;
+          transition:
+            max-height 0.32s ease,
+            visibility 0s linear 0.32s;
+        }
+        .nav-links.open {
+          max-height: 70vh;
+          visibility: visible;
+          transition:
+            max-height 0.32s ease,
+            visibility 0s;
+        }
+        .nav-links a {
+          padding: 15px 2px;
+          border-top: 1px solid var(--line);
+          font-size: 16px;
+        }
+        .nav-links a:first-child {
+          border-top: none;
+        }
+        .nav-links .lang {
+          font-size: 14px;
+        }
+        .nav-links .btn {
+          margin: 14px 0 18px;
+          justify-content: center;
+        }
+      }
+      @media (max-width: 520px) {
+        .cols-4 {
+          grid-template-columns: 1fr;
+        }
+        .bridge {
+          flex-direction: column;
+        }
+        .bridge-arrow {
+          transform: rotate(90deg);
+        }
+        .flow {
+          grid-template-columns: 1fr;
+        }
+        form.signup {
+          flex-direction: column;
+        }
+        .waitlist {
+          padding: 40px 22px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+        .step-line {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+    <style>
+      .models-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--card);
+      }
+      table.models {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14.5px;
+        min-width: 640px;
+      }
+      table.models th,
+      table.models td {
+        text-align: left;
+        padding: 14px 18px;
+        border-bottom: 1px solid var(--line);
+        vertical-align: top;
+      }
+      table.models thead th {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        background: var(--paper-2);
+        white-space: nowrap;
+      }
+      table.models tbody tr:last-child td {
+        border-bottom: none;
+      }
+      table.models td.prov {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      table.models td.mdl {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--ink-2);
+      }
+      table.models td.fit {
+        color: var(--ink-2);
+      }
+      table.models tr.local td.prov {
+        color: var(--signal-text);
+      }
+      .models-note {
+        margin-top: 18px;
+        font-size: 14px;
+        color: var(--muted);
+        max-width: 74ch;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="#top"
+          ><img class="brand-logo" src="./logo.png" alt="" width="26" height="26" />Sumirea</a
+        >
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-label="Menu"
+          aria-expanded="false"
+          aria-controls="nav-links"
+        >
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+          <a href="#how">How it works</a>
+          <a href="#why">Why</a>
+          <a href="#models">Models</a>
+          <a href="#vision">Vision</a>
+          <a href="#faq">FAQ</a>
+          <a class="lang" href="./index.zh-Hant.html" hreflang="zh-Hant">繁體中文</a>
+          <a class="btn btn-primary" href="#waitlist">Join the beta</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" style="border-top: none">
+        <div class="wrap">
+          <div>
+            <p class="eyebrow">Protect Cognitive Bandwidth</p>
+            <h1>Walk away.<br />We'll call you when you're needed.</h1>
+            <p class="sub">
+              Sumirea is a Developer Workflow Platform. It carries context between your AI tools,
+              like ChatGPT and Claude Code, and only calls you back when a decision actually needs a
+              human.
+            </p>
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#waitlist">Join the beta waitlist</a>
+              <a class="btn" href="#how">See the 30-second story →</a>
+            </div>
+            <p class="assurance">
+              <span class="dot" aria-hidden="true" style="width: 8px; height: 8px"></span>
+              It never clicks, approves, or changes anything. Human in Control, always.
+            </p>
+          </div>
+
+          <div class="device" aria-label="A short animation of the Sumirea flow">
+            <div class="bar">
+              <i></i><i></i><i></i>
+              <span class="title">claude.ai, working…</span>
+            </div>
+            <div class="stage" id="stage">
+              <div class="step-line" data-step="0">
+                <span class="ic">▶</span>
+                <span class="tx"
+                  ><b>Claude is working</b><span>You kick off a long task.</span></span
+                >
+              </div>
+              <div class="step-line" data-step="1">
+                <span class="ic">↗</span>
+                <span class="tx"
+                  ><b>You walk away</b><span>Coffee. Another repo. Real life.</span></span
+                >
+              </div>
+              <div class="step-line signal" data-step="2">
+                <span class="ic">!</span>
+                <span class="tx"
+                  ><b>A decision needs you</b
+                  ><span>It reaches a point only you can settle.</span></span
+                >
+              </div>
+              <div class="step-line" data-step="3">
+                <span class="ic">✓</span>
+                <span class="tx"
+                  ><b>Sumirea calls you back</b
+                  ><span>One quiet notification. You return, decide, done.</span></span
+                >
+              </div>
+              <p class="stage-foot" id="stagefoot">
+                no notification until the moment you're needed
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DIFFERENTIATOR -->
+      <section id="together">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">The difference</p>
+            <h2>Your AI tools, working together. Without you playing messenger.</h2>
+            <p>
+              You think in ChatGPT and build in Claude Code, and all day you copy and paste context
+              between them. Sumirea moves the right context across for you, decides which part
+              actually matters, and only pulls you in when a decision needs a human. Not another AI
+              to learn, a layer that coordinates the ones you already use.
+            </p>
+          </div>
+          <div class="bridge" aria-hidden="true">
+            <span class="bridge-node">ChatGPT</span>
+            <span class="bridge-arrow">⇄</span>
+            <span class="bridge-core"><span class="dot"></span>Sumirea</span>
+            <span class="bridge-arrow">⇄</span>
+            <span class="bridge-node">Claude Code</span>
+          </div>
+          <p class="bridge-cap">
+            Context moves automatically. You stay in control and step in only when it truly needs
+            you. The beta starts with the moment Claude needs you (see below); the full context
+            bridge is what we are building next.
+          </p>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">The tax you stopped noticing</p>
+            <h2>AI made the work faster. It also made you wait more.</h2>
+            <p>
+              You run Claude Code, Cursor, ChatGPT, Codex, Gemini, often at the same time. Each one
+              is fast, and each one keeps stopping to ask you something. So you hover. You babysit.
+              You context-switch a hundred times a day, and never quite drop into deep work.
+            </p>
+          </div>
+          <div class="cols-3">
+            <div class="card">
+              <p class="k">Waiting</p>
+              <h3>Hovering over a progress bar</h3>
+              <p>
+                The task takes eight minutes. You watch all eight, because you don't know when it
+                will need you. That's cognitive bandwidth spent on nothing.
+              </p>
+            </div>
+            <div class="card">
+              <p class="k">Micro Decisions</p>
+              <h3>Death by tiny prompts</h3>
+              <p>
+                "Proceed? Which option? Approve this?" Dozens of small, low-stakes choices a day.
+                Individually trivial. Together, that's Decision Fatigue.
+              </p>
+            </div>
+            <div class="card">
+              <p class="k">Switching</p>
+              <h3>Five tools, zero focus</h3>
+              <p>
+                Every tab you keep half-watching is a tab pulling you out of flow. The cost isn't
+                the minutes, it's never getting a clean hour.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STATEMENT -->
+      <section class="statement">
+        <div class="wrap">
+          <p class="eyebrow">The shift</p>
+          <p class="big">
+            Sumirea flips the default. Instead of you watching the machine,
+            <span class="accent">the machine waits for the moment it truly needs you</span>, and
+            stays silent the rest of the time.
+          </p>
+          <p class="foot">
+            Silence is a feature. If nothing needs your judgment, you hear nothing. Quiet
+            Intelligence means the product proves its worth by how little it interrupts you.
+          </p>
+        </div>
+      </section>
+
+      <!-- HOW / DEMO -->
+      <section id="how">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">The 30-second story</p>
+            <h2>One boundary, drawn around your attention.</h2>
+            <p>
+              This is the first thing Sumirea does: proof of the idea, not the whole of it. It
+              watches a long AI task and calls you back the instant a human decision appears. Here's
+              the whole loop.
+            </p>
+          </div>
+          <div class="flow">
+            <div class="node">
+              <p class="n">01</p>
+              <h3>Claude is working</h3>
+              <p>A long task is running in your AI tool of choice.</p>
+            </div>
+            <div class="node">
+              <p class="n">02</p>
+              <h3>You walk away</h3>
+              <p>Start something else. Step out. Stop hovering.</p>
+            </div>
+            <div class="node hot">
+              <p class="n">03</p>
+              <h3>It needs a human</h3>
+              <p>The task hits a point only your judgment can resolve.</p>
+            </div>
+            <div class="node hot">
+              <p class="n">04</p>
+              <h3>Sumirea calls you</h3>
+              <p>One notification, the single moment worth interrupting for.</p>
+            </div>
+            <div class="node">
+              <p class="n">05</p>
+              <h3>You return &amp; decide</h3>
+              <p>Land back in context, make the call, then walk away again.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- IS / IS NOT -->
+      <section id="isnot">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Read this before you assume</p>
+            <h2>What Sumirea is, and what it refuses to be.</h2>
+          </div>
+          <div class="isnot">
+            <div class="panel yes">
+              <h3>It is</h3>
+              <ul>
+                <li>
+                  <span class="mark">→</span> A boundary around your attention while AI works.
+                </li>
+                <li>
+                  <span class="mark">→</span> A way to protect Cognitive Bandwidth and Protected
+                  Focus.
+                </li>
+                <li>
+                  <span class="mark">→</span> The signal that a real decision, not a chore, needs
+                  you.
+                </li>
+                <li>
+                  <span class="mark">→</span> Human in Control by design: it observes, it never acts
+                  for you.
+                </li>
+              </ul>
+            </div>
+            <div class="panel no">
+              <h3>It is not</h3>
+              <ul>
+                <li>
+                  <span class="mark">✕</span> A notification tool that buzzes you about everything.
+                </li>
+                <li>
+                  <span class="mark">✕</span> Browser automation that clicks, approves, or edits.
+                </li>
+                <li><span class="mark">✕</span> Another AI chat, agent, or IDE to learn.</li>
+                <li>
+                  <span class="mark">✕</span> A tool that automates <em>you</em>. It automates the
+                  distractions.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHILOSOPHY -->
+      <section id="why">
+        <div class="wrap">
+          <div class="split">
+            <div>
+              <p class="eyebrow">Why we build it this way</p>
+              <h2 style="font-size: clamp(28px, 3.6vw, 40px); font-weight: 640">
+                We don't automate developers.
+                <br />We automate the decisions that distract them from creating.
+              </h2>
+              <p style="margin-top: 20px; color: var(--ink-2); font-size: 17px; max-width: 46ch">
+                Your creativity and judgment are the point. The recurring, low-value choices around
+                them are the tax. Sumirea takes aim at the tax, never at the work only you can do.
+              </p>
+            </div>
+            <div>
+              <div class="principle">
+                <h3>Protect Cognitive Bandwidth</h3>
+                <p>
+                  Your attention is finite and precious. Every needless interruption spends it. The
+                  job is to spend less of it, not more.
+                </p>
+              </div>
+              <div class="principle">
+                <h3>Human in Control</h3>
+                <p>
+                  You hold authority over every consequential decision. Sumirea can watch and
+                  signal, but it will not click, approve, or change your work.
+                </p>
+              </div>
+              <div class="principle">
+                <h3>Quiet Intelligence</h3>
+                <p>
+                  Restraint is the feature. The best outcome is often silence, nothing needed you,
+                  so nothing interrupted you.
+                </p>
+              </div>
+              <div class="principle">
+                <h3>Automate Decisions, Not Creativity</h3>
+                <p>
+                  Sumirea automates the repetitive, low-value decisions around your work. Your
+                  creativity and judgment are never the target.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO -->
+      <section id="who">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Who it's for</p>
+            <h2>Built for developers who run more than one AI at once.</h2>
+            <p>
+              If your day is spread across several AI tools, each fast, each interrupting, you feel
+              the waiting and the micro decisions more than anyone. That's exactly who we're
+              building the beta for.
+            </p>
+          </div>
+          <div class="chips" aria-label="Who Sumirea is for">
+            <span class="chip">AI Heavy Developers</span>
+            <span class="chip">Solo Founders</span>
+            <span class="chip">Indie Hackers</span>
+            <span class="chip">AI Startup Teams</span>
+            <span class="chip">Open Source Maintainers</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- MODELS -->
+      <section id="models">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Bring your own model</p>
+            <h2>Works with the models you already pay for.</h2>
+            <p>
+              Sumirea is model-agnostic. Bring your own key (BYOK) and route each task to the AI
+              provider you trust, or keep sensitive work on a Local Model that never leaves your
+              machine. Human in Control extends to your models, too.
+            </p>
+          </div>
+          <div class="models-wrap">
+            <table class="models">
+              <thead>
+                <tr>
+                  <th scope="col">Provider</th>
+                  <th scope="col">Recommended models</th>
+                  <th scope="col">Best for</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="prov">Anthropic Claude</td>
+                  <td class="mdl">claude-sonnet-5, claude-opus-4-8, claude-haiku-4-5</td>
+                  <td class="fit">Default choice; already wired into production</td>
+                </tr>
+                <tr>
+                  <td class="prov">OpenAI</td>
+                  <td class="mdl">gpt-4o-mini, gpt-4o, gpt-4.1-mini</td>
+                  <td class="fit">Most developers already have an account</td>
+                </tr>
+                <tr>
+                  <td class="prov">Google Gemini</td>
+                  <td class="mdl">gemini-2.0-flash, 2.5-flash, 2.5-pro</td>
+                  <td class="fit">Generous free tier</td>
+                </tr>
+                <tr>
+                  <td class="prov">DeepSeek</td>
+                  <td class="mdl">deepseek-chat, deepseek-reasoner</td>
+                  <td class="fit">Low cost</td>
+                </tr>
+                <tr>
+                  <td class="prov">Kimi (Moonshot)</td>
+                  <td class="mdl">moonshot-v1-32k, kimi-latest</td>
+                  <td class="fit">Long context</td>
+                </tr>
+                <tr>
+                  <td class="prov">Zhipu GLM</td>
+                  <td class="mdl">glm-4-plus, glm-4-flash, glm-4-air</td>
+                  <td class="fit">China-based option</td>
+                </tr>
+                <tr>
+                  <td class="prov">MiniMax</td>
+                  <td class="mdl">MiniMax-Text-01, abab6.5s-chat</td>
+                  <td class="fit">China-based option</td>
+                </tr>
+                <tr>
+                  <td class="prov">Groq</td>
+                  <td class="mdl">llama-3.3-70b, llama-3.1-8b, qwen-2.5-72b</td>
+                  <td class="fit">Blazing fast, with a free tier</td>
+                </tr>
+                <tr class="local">
+                  <td class="prov">Ollama (local)</td>
+                  <td class="mdl">llama3.2, qwen2.5:7b, gemma3</td>
+                  <td class="fit">Zero API cost: a Local Model that runs on your own machine</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="models-note">
+            Nine providers today, and more on the way. Bring your own free key (most providers have
+            one), or run a Local Model with Ollama and pay nothing. Intelligence Routing picks the
+            right model for each task; BYOK keeps your keys, accounts, and data yours.
+          </p>
+        </div>
+      </section>
+
+      <!-- FUTURE -->
+      <section id="vision">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Where it's going</p>
+            <h2>
+              Waiting for You is step one. Sumirea grows into a full Developer Workflow Platform.
+            </h2>
+            <p>
+              These are directions we're building toward, not shipped features. Each one follows the
+              same rule: reduce the interruptions and repetitive decisions around your work, never
+              the creative work itself.
+            </p>
+          </div>
+          <div class="cols-4">
+            <div class="card">
+              <p class="k">Coordination</p>
+              <h3>Workflow Coordination</h3>
+              <p>
+                Move the right context between tools like ChatGPT and Claude Code for you. Sumirea
+                decides which part to carry over; you only step in when a decision actually needs
+                you.
+              </p>
+            </div>
+            <div class="card">
+              <p class="k">Observation</p>
+              <h3>Workflow Observation</h3>
+              <p>Observe how your work actually flows and build a reviewable Workflow Journal.</p>
+            </div>
+            <div class="card">
+              <p class="k">Learning</p>
+              <h3>Workflow Learning</h3>
+              <p>Spot the patterns you repeat and suggest the workflows worth automating.</p>
+            </div>
+            <div class="card">
+              <p class="k">Evolution</p>
+              <h3>Workflow Evolution</h3>
+              <p>
+                Keep analyzing and improving workflows, so teams build best practices instead of
+                just running fixed steps.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WAITLIST -->
+      <section id="waitlist" style="border-top: none">
+        <div class="wrap">
+          <div class="waitlist">
+            <p class="eyebrow" style="color: rgba(247, 246, 243, 0.62)">
+              Beta, limited early access
+            </p>
+            <h2>Get called back, not burned out.</h2>
+            <p>
+              Join the waitlist. We'll invite a first group of developers to try the beta and help
+              shape what earns the right to interrupt you, and what never should.
+            </p>
+            <form class="signup" id="signup" novalidate>
+              <input
+                id="email"
+                type="email"
+                inputmode="email"
+                autocomplete="email"
+                placeholder="you@company.com"
+                aria-label="Email address"
+                required
+              />
+              <button class="btn btn-primary" type="submit">Request beta access</button>
+            </form>
+            <p class="micro">
+              One email when your invite is ready. No spam, no selling your address. Unsubscribe any
+              time.
+            </p>
+            <p id="signup-done">
+              ✓ You're on the list. We'll be quiet until your invite is ready, that's the whole
+              point.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="eyebrow">Questions</p>
+            <h2>The honest FAQ.</h2>
+          </div>
+          <div class="faq">
+            <details>
+              <summary>Isn't this just a notification?<span class="plus">+</span></summary>
+              <p>
+                A notification is the mechanism, not the product. Anything can buzz you. The hard
+                part, and the whole point, is buzzing you <em>only</em> at the one moment a human
+                decision appears, and staying silent every other time. Sumirea is the judgment about
+                when you're actually needed.
+              </p>
+            </details>
+            <details>
+              <summary>
+                Does it click buttons or approve things for me?<span class="plus">+</span>
+              </summary>
+              <p>
+                No. Never. Sumirea observes and signals; it does not act on your behalf. Human in
+                Control is a hard rule, not a setting. It will not click, approve, merge, or edit
+                anything.
+              </p>
+            </details>
+            <details>
+              <summary>Which tools does the beta work with?<span class="plus">+</span></summary>
+              <p>
+                The first beta focuses on the "waiting for you" moment in the AI tools developers
+                use most. We're starting narrow and honest rather than claiming everything at once,
+                join the waitlist and tell us which tool you'd want covered first.
+              </p>
+            </details>
+            <details>
+              <summary>Will it interrupt me constantly?<span class="plus">+</span></summary>
+              <p>
+                The opposite is the design goal. Quiet Intelligence means the product is measured by
+                how <em>little</em> it interrupts you. If nothing needs your judgment, you hear
+                nothing.
+              </p>
+            </details>
+            <details>
+              <summary>Is it another AI I have to learn?<span class="plus">+</span></summary>
+              <p>
+                No. Sumirea isn't a chat, an agent, or an IDE. It sits quietly beside the tools you
+                already use and does one thing: bring you back at the right moment.
+              </p>
+            </details>
+            <details>
+              <summary>What does the beta cost?<span class="plus">+</span></summary>
+              <p>
+                The beta is free for the first group of developers we invite. We want your honest
+                reaction to whether it actually protects your focus, that's worth more to us right
+                now than revenue.
+              </p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="wrap">
+        <div class="fnote">
+          <a class="brand" href="#top" style="font-size: 16px; margin-bottom: 10px"
+            ><span class="dot" aria-hidden="true"></span>Sumirea</a
+          ><br />
+          Protect Cognitive Bandwidth. Human in Control. We automate the decisions that distract you
+          from creating, never the creating itself.
+        </div>
+        <div style="display: flex; gap: 22px; font-size: 14px; align-items: center">
+          <a href="#how">How it works</a>
+          <a href="#waitlist">Join the beta</a>
+          <a href="./index.zh-Hant.html" hreflang="zh-Hant">繁體中文</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Remember an explicit language choice so the browser-detect entry respects it.
+      (function () {
+        document.addEventListener('click', function (e) {
+          var a = e.target.closest && e.target.closest('a');
+          if (!a) return;
+          var href = a.getAttribute('href') || '';
+          try {
+            if (/index\.zh-Hant\.html$/.test(href)) localStorage.setItem('sumirea-lang', 'zh');
+            else if (/index\.html$/.test(href)) localStorage.setItem('sumirea-lang', 'en');
+          } catch (_) {}
+        });
+      })();
+
+      // Mobile nav: accordion open/close
+      (function () {
+        var btn = document.querySelector('.nav-toggle');
+        var links = document.getElementById('nav-links');
+        if (!btn || !links) return;
+        function setOpen(open) {
+          links.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        btn.addEventListener('click', function () {
+          setOpen(!links.classList.contains('open'));
+        });
+        links.addEventListener('click', function (e) {
+          if (e.target.closest('a')) setOpen(false);
+        });
+      })();
+
+      (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var steps = Array.prototype.slice.call(document.querySelectorAll('.step-line'));
+        var bar = document.querySelector('.device .bar .title');
+        var foot = document.getElementById('stagefoot');
+        var titles = [
+          'claude.ai, working…',
+          'claude.ai, working…',
+          'claude.ai, waiting for you',
+          'Sumirea, brought you back',
+        ];
+        var foots = [
+          "no notification until the moment you're needed",
+          "no notification until the moment you're needed",
+          '…the one moment worth interrupting for',
+          'one click returns you, in context',
+        ];
+        if (reduce) {
+          steps.forEach(function (s) {
+            s.classList.add('on');
+          });
+          return;
+        }
+        var i = 0;
+        function tick() {
+          steps.forEach(function (s, idx) {
+            s.classList.toggle('on', idx <= i);
+          });
+          if (bar) bar.textContent = titles[i] || titles[0];
+          if (foot) foot.textContent = foots[i] || foots[0];
+          i++;
+          if (i > steps.length) {
+            setTimeout(function () {
+              i = 0;
+              tick();
+            }, 1600);
+            return;
+          }
+          setTimeout(tick, 1150);
+        }
+        tick();
+      })();
+
+      (function () {
+        var form = document.getElementById('signup');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = document.getElementById('email');
+          if (!email.value || email.value.indexOf('@') === -1) {
+            email.focus();
+            email.style.borderColor = 'var(--signal)';
+            return;
+          }
+          form.style.display = 'none';
+          var done = document.getElementById('signup-done');
+          if (done) done.style.display = 'block';
+          // Integration point: POST email.value to the beta waitlist endpoint.
+        });
+      })();
+    </script>
+  </body>
+</html>
