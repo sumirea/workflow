@@ -62,6 +62,27 @@ in a VM context, so there is no build step and no source change just for
 testing. The live DOM behaviour is still exercised manually (below), since that
 depends on the real Claude Code Web markup.
 
+### Real-browser integration test (optional)
+
+```
+pnpm --filter @sumirea/browser-extension test:browser
+```
+
+This loads the actual MV3 extension into Chromium (via `playwright-core`),
+drives the built-in test hook on a page the content script is injected into, and
+asserts the whole pipeline reacts end to end: content script -> background
+service worker -> `chrome.storage`. It proves the wiring the unit tests cannot
+(message passing, the service worker, the manifest), and confirms the
+fire-once / re-arm / fail-safe semantics survive a real browser.
+
+It is kept out of `pnpm test` on purpose (the `.e2e.mjs` name is outside the
+unit-test glob): it needs Playwright and a Chromium binary, which are not part
+of the normal test path. The "only notify when you are away" gate reads real
+focus / visibility, which an automation browser keeps as "present"; the test
+forces presence to "away" in a throwaway copy of the extension so it can
+exercise the rest of the wiring (the shipped code is untouched, and the gate
+itself is covered by the unit tests).
+
 ## Packaging
 
 ```
