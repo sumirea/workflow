@@ -18,7 +18,11 @@ importers:
         specifier: ^5.5.0
         version: 5.9.3
 
-  apps/browser-extension: {}
+  apps/browser-extension:
+    devDependencies:
+      playwright-core:
+        specifier: 1.62.1
+        version: 1.62.1
 
   apps/cli:
     dependencies:
@@ -206,6 +210,11 @@ packages:
     cpu: [arm64]
     os: [win32]
 
+  playwright-core@1.62.1:
+    resolution: {integrity: sha512-wPYSwEBJY9GHraISXqyqtx0na0LpO3XEX7jNDhntbex7tzUS7kLnZsOlFruFJB4Hi/rhDMjXGqHewDZ68nYZVw==}
+    engines: {node: '>=20'}
+    hasBin: true
+
   prettier@3.9.4:
     resolution: {integrity: sha512-yWG/o/4oJfo036EKAfK6ACAoDOfHeRHx4tuxkfBZiauURiaSmYwlpOr5LQqKtIkRD2z1PLteme2WoxEnj4tHTg==}
     engines: {node: '>=14'}
@@ -239,6 +248,8 @@ snapshots:
 
   '@turbo/windows-arm64@2.10.2':
     optional: true
+
+  playwright-core@1.62.1: {}
 
   prettier@3.9.4: {}
 

@@ -2,15 +2,20 @@
   "name": "@sumirea/browser-extension",
   "version": "0.0.0",
   "private": true,
-  "description": "Sumirea Browser MVP — a Chrome MV3 extension that notifies you when Claude Code Web is waiting for you.",
+  "description": "Sumirea Browser MVP: a Chrome MV3 extension that notifies you when Claude Code Web is waiting for you.",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "build": "echo \"MV3 extension: load unpacked from this folder (no build step)\" && exit 0",
     "dev": "echo \"MV3 extension: load unpacked from this folder (no build step)\" && exit 0",
-    "clean": "rm -rf .turbo",
+    "package": "node scripts/package.mjs",
+    "clean": "rm -rf .turbo dist",
     "lint": "echo \"no lint yet\" && exit 0",
     "typecheck": "echo \"no typecheck yet\" && exit 0",
-    "test": "echo \"manual testing only (see README)\" && exit 0"
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "test:browser": "node test/pipeline.e2e.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.62.1"
   }
 }

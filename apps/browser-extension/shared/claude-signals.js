@@ -1,7 +1,7 @@
 // shared/claude-signals.js
 //
 // The ONE place that knows anything about the Claude Code Web DOM. Every other
-// file depends only on the abstract state this returns — never on selectors.
+// file depends only on the abstract state this returns, never on selectors.
 // When Claude Code Web changes its markup, this is the only file that changes.
 //
 // Design rules (see README):
@@ -18,9 +18,9 @@
 //      "waiting" | "working" | "unsupported".
 //
 // States:
-//   'waiting'     — Claude needs the human (finished, or asking / prompting).
-//   'working'     — Claude is busy; nothing for the human to do.
-//   'unsupported' — we cannot tell; fail safe, do nothing.
+//   'waiting'     : Claude needs the human (finished, or asking / prompting).
+//   'working'     : Claude is busy; nothing for the human to do.
+//   'unsupported' : we cannot tell; fail safe, do nothing.
 
 (function attachClaudeSignals(global) {
   const STATE = Object.freeze({
@@ -33,7 +33,7 @@
 
   // Detect the state from the live DOM.
   //
-  // TODO(M1 — verify against authenticated Claude Code Web): replace the body
+  // TODO(M1: verify against authenticated Claude Code Web): replace the body
   // below with high-confidence, verified anchors. It must only return WAITING
   // on a genuine human-required signal (e.g. an approval dialog is present, or
   // generation has ended and the composer is idle awaiting input). Anything

@@ -11,8 +11,8 @@ function render(enabled, count) {
   checkbox.checked = enabled !== false;
   const on = enabled !== false;
   status.textContent = on
-    ? `On — brought you back ${count || 0} time${count === 1 ? '' : 's'}.`
-    : 'Off — you will not be notified.';
+    ? `On: brought you back ${count || 0} time${count === 1 ? '' : 's'}.`
+    : 'Off: you will not be notified.';
 }
 
 // Initial load. `enabled` defaults to true when unset.
