@@ -1,7 +1,7 @@
 // background/service-worker.js
 //
 // Receives "waiting" messages from the content script, shows one desktop
-// notification, and — when the user clicks it — returns focus to the exact
+// notification, and, when the user clicks it, returns focus to the exact
 // Claude Code tab and window that raised it.
 //
 // MV3 service workers are ephemeral, so the notification -> tab/window mapping

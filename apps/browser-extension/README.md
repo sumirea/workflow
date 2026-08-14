@@ -1,4 +1,4 @@
-# @sumirea/browser-extension — Waiting for You (MVP)
+# @sumirea/browser-extension: Waiting for You (MVP)
 
 A Chrome MV3 extension that does exactly one thing: **tell you when Claude Code
 Web is waiting for you**, and bring you back to the tab when you click the
@@ -6,16 +6,16 @@ notification.
 
 It embodies Sumirea's product philosophy:
 
-- **Protect Cognitive Bandwidth** — walk away from long AI tasks; get pulled
+- **Protect Cognitive Bandwidth**: walk away from long AI tasks; get pulled
   back only when you are needed.
-- **Human in Control** — it **never** clicks, approves, or changes the page. It
+- **Human in Control**: it **never** clicks, approves, or changes the page. It
   only observes and notifies.
 
 ## What it does
 
 1. Runs a content script only on `https://claude.ai/*`.
 2. Watches for the transition into the "Claude is waiting for you" state.
-3. Shows **one** desktop notification per waiting episode — but only when you are
+3. Shows **one** desktop notification per waiting episode, but only when you are
    **away** from the tab (a hidden tab, or an unfocused window). If you are
    looking at it, it stays quiet; the notification arrives the moment you walk
    away and it is still waiting.
@@ -54,7 +54,7 @@ that machine's output to `chrome.runtime`.
 pnpm --filter @sumirea/browser-extension test
 ```
 
-Automated tests cover the two pieces of pure logic — the rising-edge machine and
+Automated tests cover the two pieces of pure logic: the rising-edge machine and
 the signals adapter's contract (the documented test hook works, and real
 detection stays `unsupported` until verified selectors land, so it can never
 invent a false "waiting"). The tests load the shipped content-script files as-is
@@ -90,20 +90,20 @@ pnpm --filter @sumirea/browser-extension package
 ```
 
 Produces `dist/sumirea-waiting-for-you-<version>.zip` (manifest at the root plus
-only the files the browser loads — dev files excluded) for upload to the Chrome
+only the files the browser loads, dev files excluded) for upload to the Chrome
 Web Store. For local development, load the folder unpacked instead (below).
 
 Permissions requested (minimum):
 
-- `notifications` — to show the desktop notification (the core output).
-- `storage` — to persist the on/off switch and the count, and to map a
+- `notifications`: to show the desktop notification (the core output).
+- `storage`: to persist the on/off switch and the count, and to map a
   notification back to its tab/window across service-worker restarts.
-- host `https://claude.ai/*` — to inject the content script and read the page.
+- host `https://claude.ai/*`: to inject the content script and read the page.
 
 No `tabs` permission is needed: the content script's message carries
 `sender.tab.id`, and activating a known tab id does not require it.
 
-## Known limitation — selector verification is pending
+## Known limitation: selector verification is pending
 
 **The exact, stable DOM anchors for the "waiting" state are not yet verified.**
 They must be captured from a real, authenticated Claude Code Web session and
@@ -126,22 +126,22 @@ Load unpacked:
 Verify the real workflow using the built-in test hook (which drives the state
 without needing verified selectors):
 
-- **Content script scope**: open `https://claude.ai/` — the content script
-  runs. Open any other site — it does not.
-- **Popup switch persists**: toggle Enabled off, reopen the popup — it stays
+- **Content script scope**: open `https://claude.ai/`, the content script
+  runs. Open any other site, it does not.
+- **Popup switch persists**: toggle Enabled off, reopen the popup, it stays
   off. Toggle back on.
 - **One notification on waiting**: on a `claude.ai` tab, in DevTools console run
   `document.documentElement.setAttribute('data-sumirea-test-state','working')`
   then `...setAttribute('data-sumirea-test-state','waiting')`. Exactly **one**
   notification appears. Setting it to `waiting` again without leaving the state
   does **not** produce a second one.
-- **Return to tab**: switch to a different window, click the notification —
+- **Return to tab**: switch to a different window, click the notification,
   focus returns to the original Claude tab and window.
 - **Disabled mode suppresses**: turn the popup switch off, repeat the waiting
-  transition — no notification appears.
+  transition, no notification appears.
 - **Unsupported fails silent**: set
   `document.documentElement.setAttribute('data-sumirea-test-state','unsupported')`
-  (or remove the attribute) — no notification, no errors. This is also the live
+  (or remove the attribute): no notification, no errors. This is also the live
   default until selectors are verified.
 
 ## Not in this MVP

@@ -3,7 +3,7 @@
 // The signals adapter is the only place that reads the page. Two things must
 // hold no matter what: the documented test hook works (so the pipeline is
 // provable end-to-end today), and real detection stays fail-safe (UNSUPPORTED)
-// until verified selectors land in M1 — it must never invent a WAITING.
+// until verified selectors land in M1; it must never invent a WAITING.
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';

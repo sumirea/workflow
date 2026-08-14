@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Sumirea — Waiting for You",
+  "name": "Sumirea: Waiting for You",
   "version": "0.0.1",
   "description": "Notifies you when Claude Code Web is waiting for you, and brings you back to the tab. It never clicks or approves anything.",
   "permissions": ["notifications", "storage"],
@@ -17,6 +17,6 @@
   ],
   "action": {
     "default_popup": "popup/index.html",
-    "default_title": "Sumirea — Waiting for You"
+    "default_title": "Sumirea: Waiting for You"
   }
 }

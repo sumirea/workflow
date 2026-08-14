@@ -2,7 +2,7 @@
   "name": "@sumirea/browser-extension",
   "version": "0.0.0",
   "private": true,
-  "description": "Sumirea Browser MVP — a Chrome MV3 extension that notifies you when Claude Code Web is waiting for you.",
+  "description": "Sumirea Browser MVP: a Chrome MV3 extension that notifies you when Claude Code Web is waiting for you.",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {

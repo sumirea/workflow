@@ -11,7 +11,7 @@
 (function () {
   const signals = globalThis.SumireaClaudeSignals;
   const edgeApi = globalThis.SumireaWaitingEdge;
-  if (!signals || !edgeApi) return; // adapter or edge missing — fail safe.
+  if (!signals || !edgeApi) return; // adapter or edge missing, fail safe.
 
   const { STATE, getState } = signals;
 
